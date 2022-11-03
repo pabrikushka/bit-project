@@ -1,0 +1,26 @@
+.gallery-section {
+    margin-top: 3rem;
+    height: 80vh;
+    position: relative;
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 40%;
+        pointer-events: none;
+        user-select: none;
+        left: 0;
+    }
+
+    &::before {
+        top: 0;
+        background: -webkit-linear-gradient(-90deg, rgba($bit-dark, 1) 0%, rgba($bit-dark, 0) 100%);
+        z-index: 3;
+    }
+
+    &::after {
+        bottom: 0;
+        background: -webkit-linear-gradient(90deg, rgba($bit-dark, 1) 0%, rgba($bit-dark, 0) 100%);
+        z-index: 3;
+    }
+}

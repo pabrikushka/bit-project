@@ -1,0 +1,47 @@
+// Dark
+$bit-dark: #0C0C0E;
+
+// Light
+$bit-light-100: #fff;
+$bit-light-90: rgba(#fff, .9);
+$bit-light-80: rgba(#fff, .8);
+$bit-light-70: rgba(#fff, .7);
+$bit-light-60: rgba(#fff, .6);
+
+// Blue
+$bit-blue: #41E7FF;
+
+// Purple 
+$bit-purple: #5C2179;
+
+// Illusion
+$bit-illusion: #F5B0E0;
+
+
+$theme-colors: (
+  "primary": $bit-light-100,
+  "secondary": $bit-blue,
+);
+
+// Text Colors 
+.text-light-90 {
+    color: $bit-light-90;
+}
+
+.text-light-80 {
+    color: $bit-light-80;
+}
+
+.text-light-70 {
+    color: $bit-light-70;
+}
+
+.text-light-60 {
+    color: $bit-light-60;
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(90deg, $bit-blue 0%, $bit-illusion 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

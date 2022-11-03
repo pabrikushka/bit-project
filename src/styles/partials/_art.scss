@@ -1,0 +1,265 @@
+// History Section Title
+
+.title-block {
+    position: relative;
+    @include media-breakpoint-up(lg) {
+        border-bottom: 1px solid transparent;
+        height: calc(4rem + 10.5vw);
+        &.section-title {
+            border-bottom: 1px solid $bit-light-100;
+        }
+        .art-title-holder {
+            overflow: hidden;
+            .art-title {
+                max-width: 20ch;
+            }
+        }
+        .art-details {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        height: 13rem;
+    }
+}
+
+// Art Card 
+.art-card {
+    text-decoration: none;
+    color: $bit-light-100 !important;
+    border-bottom: 1px solid $bit-light-100;
+    transition: all .3s ease-out;
+    position: relative;
+    display: block;
+
+    .art-card-content {
+        position: relative;
+    }
+
+    @include media-breakpoint-between(sm, lg) {
+        .art-card-content {
+            padding-left: 20rem;
+
+            .art-wrapper {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 20rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+
+                .art-holder {
+                    height: 100%;
+
+                    .art-frame {
+                        height: 100%;
+
+                        .art-img {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    @include media-breakpoint-up(lg) {
+        .art-card-content {
+            padding-left: 0;
+
+            .art-wrapper {
+                position: absolute;
+                left: auto;
+                right: 0;
+                top: 0;
+                height: 100%;
+
+                .art-holder {
+                    display: inline-block;
+                    .art-frame {
+                        transform-origin: top center;
+                        transform: scale(1.2) rotate(1deg) translateY(-4rem) translateX(2rem);
+                        filter: blur(30px);
+                        opacity: 0;
+                        transition: transform .2s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .1s ease-out;
+                    }
+                }
+            }
+        }
+
+        &:hover,
+        &:focus {
+            .art-card-content {
+                .art-wrapper {
+                    .art-holder {
+                        display: inline-block;
+
+                        .art-frame {
+                            opacity: 1;
+                            filter: blur(0px);
+                            transform: scale(1) rotate(0) translateY(0rem) translateX(0rem) !important;
+                            transition: transform .6s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .2s ease-out;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Banner & Card Heights 
+.art-card-content,
+.art-banner {
+    @include media-breakpoint-up(lg) {
+        min-height: 18rem;
+        .art-holder {
+            // height: 18rem;
+            // aspect-ratio: 2/1;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        min-height: 18rem;
+    }
+
+    @include media-breakpoint-up(xxl) {
+        // min-height: 17rem;
+        ;
+    }
+}
+
+// Art Image
+.art-holder {
+    z-index: 3;
+    transform-origin: center;
+    .art-img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    @include media-breakpoint-up(md) {
+        height: 100%;
+
+        .art-frame {
+            height: 100%;
+
+            .art-img {
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+
+
+    @include media-breakpoint-up(lg) {
+        pointer-events: none;
+        display: block;
+        width: 100%;
+        position: relative;
+        transition: transform .5s ease-out;
+
+        .art-frame {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+
+            .art-img {
+                position: absolute;
+                width: 120%;
+                height: 120%;
+                left: -10%;
+                top: -10%;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                transition: transform .5s ease-out;
+
+            }
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+    }
+
+    @include media-breakpoint-up(xxl) {
+        // max-width: 42rem;
+    }
+
+}
+
+.art-wrapper {
+    @include media-breakpoint-up(xl) {
+        height: 120%;
+        top: -10%;
+    }
+
+    @include media-breakpoint-up(xl) {
+        height: 150%;
+        top: -25%;
+    }
+
+    @include media-breakpoint-up(xxl) {
+        height: 180%;
+        top: -40%;
+    }
+}
+
+// Art Banner 
+.art-banner {
+    position: relative;
+    border-bottom: 1px solid transparent;
+    // aspect-ratio: 2/1;
+    .art-wrapper {
+        position: absolute;
+        left: auto;
+        right: 50%;
+        transform: translateX(50%);
+        top: 0;
+        height: 100%;
+        .art-holder {
+            // height: 100%;
+            // top: 0;
+        }
+    }
+}
+
+// Art Body 
+.art-body {
+    position: relative;
+    margin-top:650px;
+    // border-bottom: 2px solid $bit-light-100;
+    @include media-breakpoint-up(lg) {
+        .art-credits-col {
+            position: relative;
+            overflow: visible;
+            .art-credits-holder {
+                position: sticky;
+                top: 1rem;
+                left: 0;
+            }
+        }
+    }
+}
+
+// Art Credits 
+.art-credits {
+    border-top: 1px solid $bit-light-70;
+    display: flex;
+    flex-wrap: wrap;
+    .art-credit {
+        flex: 1 1 50%;
+    }
+    @include media-breakpoint-up(lg) {
+        border-bottom: 1px solid $bit-light-70;
+    }
+}

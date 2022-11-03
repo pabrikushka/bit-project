@@ -1,0 +1,30 @@
+body {
+    font-family: "Neue Machina";
+    font-weight: 400;
+}
+
+h1,h1 {
+    font-weight: 300;
+}
+
+.h1-mini {
+    font-size: calc(1rem + 7.5vw);
+    line-height: 1.1;
+    @include media-breakpoint-up(sm) {
+        font-size: 4.2rem;
+    }
+}
+
+h3, h3 {
+    font-weight: 500;
+}
+
+
+// Helpers 
+.font-aeonik {
+    font-family: 'AeonikMono' !important;
+}
+
+.fw-400 {
+    font-weight: 400;
+}

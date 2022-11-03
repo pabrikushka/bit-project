@@ -1,0 +1,18 @@
+.blob {
+    pointer-events: none;
+    user-select: none;
+    position: relative;
+    z-index: -1;
+    background: -webkit-radial-gradient(circle, rgba($bit-purple, .8) 0%, rgba($bit-purple, 0) 50%);
+}
+
+.rt-blob {
+    width: 200rem;
+    height: 200rem;
+    opacity: 0;
+    top: -100rem;
+    left: 20%;
+    z-index: 4;
+    pointer-events: none;
+    user-select: none;
+}

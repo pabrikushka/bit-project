@@ -1,0 +1,53 @@
+.rt-section {
+    position: relative;
+    // overflow: hidden;
+    padding: 4rem 0;
+    min-height: 35rem;
+    position: relative;
+        z-index: 3;
+    @include media-breakpoint-up(sm) {
+        min-height: 45rem;
+    }
+    @include media-breakpoint-up(md) {
+        min-height: 60rem;
+    }
+    .rt-line {
+        
+        overflow: hidden;
+        line-height: 1;
+        margin: 0;
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+    
+        .rt-line-content {
+            text-transform: uppercase;
+            // font-size: calc(1.5rem + 7.5vw);
+            display: flex;
+            white-space: nowrap;
+            display: flex;
+            flex-wrap: nowrap;
+    
+            .rt-line-text {
+                display: inline-flex;
+                align-items: center;
+                line-height: .8;
+                font-weight: 400;
+    
+                .circle {
+                    width: 1rem;
+                    height: 1rem;
+                    display: inline-block;
+                    border-radius: 50%;
+                    background: $bit-light-100;
+                    margin: 0 2rem;
+                    @include media-breakpoint-up(md) {
+                        width: 1.8rem;
+                        height: 1.8rem;
+                    }
+                }
+            }
+        }
+    
+    }
+}

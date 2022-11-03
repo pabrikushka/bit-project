@@ -1,0 +1,64 @@
+// Fonts 
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('./fonts/NeueMachina-Variable.ttf') format('truetype');
+       font-weight: 100 900;
+       font-display: swap;
+       font-style: normal;
+}
+
+@font-face {
+  font-family: 'AeonikMono';
+  src: url('./fonts/AeonikMono-Regular.otf') format('opentype');
+       font-weight: 400;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+// ---------------Imports-------------------
+
+// Base 
+@import 'styles/base/colors';
+@import 'styles/base/variables';
+
+
+// Bootstrap 
+@import 'bootstrap/scss/bootstrap.scss';
+
+
+@import 'styles/base/layout';
+@import 'styles/base/typography';
+
+// Partials 
+@import 'styles/partials/nav';
+@import 'styles/partials/buttons';
+@import 'styles/partials/hero';
+@import 'styles/partials/running-text';
+@import 'styles/partials/art';
+@import 'styles/partials/blobs';
+@import 'styles/partials/gallery';
+
+
+.box {
+  width: 200px;
+  height: 200px;
+  background: black;
+  
+}
+
+// body {
+//   min-height: 100vh;
+// }
+
+// #root {
+//   min-height: 100vh;
+// }
+
+// .App {
+//   height: 100vh;
+//   display: flex;
+//   align-items: center;
+
+// }
+
