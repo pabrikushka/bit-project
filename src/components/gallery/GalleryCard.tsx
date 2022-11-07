@@ -4,22 +4,35 @@ import { useState, useRef, useCallback } from "react";
 import { useSpring, config, animated, a } from "@react-spring/three";
 import { motion, useScroll, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
 import React from "react";
+import { CardData } from "./types";
+import { hoverCard } from "./helpers";
+import { useNavigate  } from "react-router-dom";
 
-const GalleryCard = (props: any) => {
-  // const {
 
-  // } = props;
+interface GalleryCardtProps {
+  cardData: CardData
+}
+
+const GalleryCard = (props: GalleryCardtProps) => {
+  const {
+    cardData
+  } = props;
+
   const [hovered, setHovered] = useState(false);
 
+  const navigate  = useNavigate();
+
+  const currentCard = hovered? hoverCard(cardData): cardData;
+
   const { position, rotation, opacity } = useSpring({
-    position: hovered ? [props.position[0], props.position[1] + 0.1, props.position[2] + 0.2] : props.position,
-    rotation: props.hovered ? [-0.1, 0, 0] : props.rotation,
-    opacity: props.hovered ? 1 : 0.5,
+    position: currentCard.position,
+    rotation: currentCard.rotation,
+    opacity: hovered ? 1 : 0.5,
     config: config.wobbly,
   });
 
   const onClick = (e: any) => {
-    alert("onClick");
+    navigate("/art")
   };
   const onHover = useCallback((e: any, value: boolean) => {
     setHovered(value);
@@ -38,3 +51,4 @@ const GalleryCard = (props: any) => {
 };
 
 export default GalleryCard;
+

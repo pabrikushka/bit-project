@@ -2,15 +2,11 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls } from "@react-three/drei";
 import { useState, useRef } from "react";
 import { useSpring, config, animated, a } from "@react-spring/three";
-import ListCards from "./data/listCards.json";
 import { motion, useScroll, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
 import React from "react";
 import GalleryCard from "./GalleryCard";
+import { getListCards } from "./helpers";
 
-const getListCards = () => {
-
-    return [...ListCards]
-};
 
 const GalleryWidget = (props: any) => {
   const ref = useRef(null);
@@ -24,18 +20,16 @@ const GalleryWidget = (props: any) => {
     rotation: [0.2, 0, 0],
   };
 
- console.log(getListCards());
-
   return (
     <section className="gallery-section mb-5 pb-5" ref={ref}>
       <Canvas className="canvas">
         <ambientLight />
         <spotLight position={[0, 5, 10]} penumbra={1} castShadow />
-        {/* <OrbitControls /> */}
+        <OrbitControls />
         <perspectiveCamera {...cameraConfig}>
           <group>
             {getListCards().map((card: any, index: number) => (
-              <GalleryCard {...card} key={`Card${index}`} />
+              <GalleryCard cardData={card} key={`Card${index}`} />
             ))}
           </group>
         </perspectiveCamera>
