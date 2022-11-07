@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 
-function Overview(props) {
+function Overview(props: any) {
     const sectionVariants: Variants = {
         offscreen: {
             y: 100,

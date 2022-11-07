@@ -9,9 +9,10 @@ import {
     useAnimationFrame
 } from "framer-motion";
 import { wrap } from "@motionone/utils";
+import React from "react";
 
 interface ParallaxProps {
-    children: string,
+    children: any,
     baseVelocity: number,
 }
 
