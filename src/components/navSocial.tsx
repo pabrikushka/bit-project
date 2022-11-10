@@ -3,7 +3,7 @@ import TwitterIcon from '../icons/twitter';
 
 
 
-function NavSocial(props){
+function NavSocial(props : any){
     return (
         <div className={`nav-social py-4 ${ props.styleName }`}>
             <li className='nav-item me-md-3'>

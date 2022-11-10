@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Logo from '../images/logo'
-import NavSocial from '../components/navSocial.tsx';
+import NavSocial from '../components/navSocial';
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 import isMobileSM from '../components/isMobile';
 
@@ -190,7 +190,7 @@ const Navbar = () => {
                     </AnimatePresence>
                     <NavSocial styleName={'d-none d-md-flex'} />
                     <button
-                        onClick={cycleOpen}
+                        onClick={(e) => cycleOpen()}
                         className={`nav-trigger btn btn-link d-md-none p-0 ${open ? 'open' : ''}`}
                     >
                         <div className="trigger-labels">
