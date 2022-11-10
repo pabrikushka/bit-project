@@ -68,7 +68,7 @@ const Art = () => {
 
     return (
         <>
-            <Container className='px-md-5 pt-5'>
+            <Container className='px-xl-5 pt-5 mt-5'>
                 <Row>
                     <Col xs={12}>
                         <motion.header className="pb-xl-3 title-block art-title-block">

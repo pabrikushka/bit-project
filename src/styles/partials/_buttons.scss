@@ -60,3 +60,15 @@
         margin-right: .7rem;
     }
 }
+
+.glow-svg-hover {
+    svg {
+        transition: all .2s ease-out;
+    }
+
+    &:hover {
+       svg {
+            filter: drop-shadow(3px 3px 30px rgba($bit-blue, .9));
+       }
+    }
+}
