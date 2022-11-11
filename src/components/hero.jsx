@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useSpring, useTransform, MotionValue } from "framer-motion";
 // import useMouse from "@react-hook/mouse-position";
-import hero from '../images/hero.jpg';
+import hero from '../assets/images/hero.jpg';
 
 
 // function useParallax(value: MotionValue<number>, distance: number) {

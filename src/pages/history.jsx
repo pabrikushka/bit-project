@@ -7,10 +7,10 @@ import { motion, useAnimation, usePresence, Data } from "framer-motion";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import dummy from '../images/dummy.jpg';
-import dummy2 from '../images/dummy2.jpg';
-import honeybadger from '../images/honeybadger.jpg';
-import AnimatedArrow from '../icons/animatedArrow';
+import dummy from '../assets/images/dummy.jpg';
+import dummy2 from '../assets/images/dummy2.jpg';
+import honeybadger from '../assets/images/honeybadger.jpg';
+import AnimatedArrow from '../assets/icons/animatedArrow';
 import useWindowParams from '../shared/useWindowParams';
 
 

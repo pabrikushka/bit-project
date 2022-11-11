@@ -1,4 +1,4 @@
-import { Object3DNode, Vector3 } from "@react-three/fiber";
+import { Vector3 } from "@react-three/fiber";
 import { Euler } from "three";
 import ListCards from "./data/listCards.json";
 import { CardData, Vector3Numbers } from "./types";
@@ -39,7 +39,7 @@ const getListCards = (): CardData[] => {
         id,
         position,
         rotation,
-        item: 1,
+        item: 1 
       });
     }
   }

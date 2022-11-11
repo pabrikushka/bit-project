@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
-import Logo from '../images/logo'
+import Logo from '../assets/images/logo'
 import NavSocial from '../components/navSocial';
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 
