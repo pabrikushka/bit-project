@@ -57,16 +57,17 @@ const hoverCard = (cardData: CardData): CardData => {
   };
 };
 
-const prepareCameraConfig = (scrollYstate: number| null): any =>{
-    if(scrollYstate === null){
+const prepareCameraConfig = (scrollY: number| null): any =>{
+    const initRorationX = -0.5;
+    if(scrollY === null){
         return {
           position: [0, 1, 0],
-          rotation: [0.2, 0, 0],
+          rotation: [initRorationX, 0, 0],
         }
     }
     return {
       position: [0, 1, 0],
-      rotation: [0.2 + scrollYstate, 0, 0],
+      rotation: [initRorationX + scrollY, 0, 0],
     }
 }
 
