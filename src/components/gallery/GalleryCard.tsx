@@ -1,8 +1,5 @@
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, ScrollControls } from "@react-three/drei";
-import { useState, useRef, useCallback } from "react";
-import { useSpring, config, animated, a } from "@react-spring/three";
-import { motion, useScroll, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
+import { useState, useCallback } from "react";
+import { useSpring, config, animated } from "@react-spring/three";
 import React from "react";
 import { CardData } from "./types";
 import { hoverCard } from "./helpers";

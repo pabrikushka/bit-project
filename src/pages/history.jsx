@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useRef, useEffect } from "react";
-import isMobile from '../components/isMobile';
 import HistoryNav from '../components/historyNav.tsx';
 import { useMeasure } from 'react-use'
 import { Link } from "react-router-dom";
@@ -12,6 +11,7 @@ import dummy from '../images/dummy.jpg';
 import dummy2 from '../images/dummy2.jpg';
 import honeybadger from '../images/honeybadger.jpg';
 import AnimatedArrow from '../icons/animatedArrow';
+import useWindowParams from '../shared/useWindowParams';
 
 
 
@@ -24,6 +24,8 @@ const History = () => {
     let centerArt = {};
     let resetArt = {};
     let hideBorder = {}
+
+    const { isMobile } = useWindowParams();
 
 
     if (!isMobile) {

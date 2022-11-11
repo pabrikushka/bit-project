@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Logo from '../images/logo'
 import NavSocial from '../components/navSocial';
 import { AnimatePresence, motion, useCycle } from "framer-motion";
-import isMobileSM from '../components/isMobile';
 
 
 const Navbar = () => {
@@ -36,11 +35,6 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     })
     
-
-    if(isMobileSM) {
-        
-    }
-
     const curtainsVariants = {
         closed: {
             scale: 2.1,

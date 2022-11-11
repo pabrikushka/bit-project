@@ -1,11 +1,9 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, ScrollControls } from "@react-three/drei";
 import { useState, useRef, useEffect, useCallback } from "react";
-import { motion, useScroll, useTransform, useMotionValue, useVelocity, useAnimationFrame, useSpring } from "framer-motion";
+import { useScroll, useSpring } from "framer-motion";
 import React from "react";
 import GalleryCard from "./GalleryCard";
 import { getListCards, prepareCameraConfig } from "./helpers";
-import { useThrottle } from "react-use";
 
 
 const GalleryWidget = (props: any) => {
@@ -24,8 +22,8 @@ const GalleryWidget = (props: any) => {
     restDelta: 0.001
   });
 
-  const updateCamera = useCallback((e: number) => {
-    setSetCameraConfig(prepareCameraConfig(e))
+  const updateCamera = useCallback((scrollY: number) => {
+    setSetCameraConfig(prepareCameraConfig(scrollY))
   }, []);
 
 
