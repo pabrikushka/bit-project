@@ -6,7 +6,7 @@ const AnimatedArrow = () => {
 
     return (
         <svg className="cta-arrow icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 48 25" enable-background="new 0 0 48 25">
+            viewBox="0 0 48 25" enableBackground="new 0 0 48 25">
             <motion.path
                 fill="currentColor"
                 d="M32,11.9L20.3,0.2l-0.9,0.9l10.6,10.6H0.3V13h29.6L19.3,23.6l0.9,0.9L32,12.8c0.1-0.1,0.2-0.3,0.2-0.5S32.1,12,32,11.9z"

@@ -1,11 +1,9 @@
 import React from "react";
-import { AnimationControls, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Col from "react-bootstrap/Col";
-import dummy2 from "../assets/images/dummy2.jpg";
-import honeybadger from "../assets/images/honeybadger.jpg";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
-import MotionArtLink from "./MotionArtLink";
 import { IHistoryItem } from "./types";
+import ArtLink from "./ArtLink";
 
 interface HistoryItemProps {
   itemData: IHistoryItem,
@@ -24,6 +22,8 @@ const HistoryItem = (props: HistoryItemProps) => {
     hideBorder,
     imageSrc,
   } = props.itemData;
+
+  const MotionArtLink = motion(ArtLink, { forwardMotionProps: true });
 
   return (
     <MotionArtLink initial="rest" whileHover="hover" whileFocus="hover" animate="rest" exit={hideBorder}>
