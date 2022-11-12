@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 
 // Pages 
 import Home from "./pages/home.jsx";
-import History from "./pages/history";
+import HistoryWidget from "./components/history/HistoryWidget";
 import Art from "./pages/art";
 
 
@@ -14,7 +14,7 @@ const AnimatedRoutes = () => {
         <AnimatePresence exitBeforeEnter>
             <Routes location={location} key={location.pathname}>
                 <Route path="/" exact element={<Home />} />
-                <Route path="/history" exact element={<History />} />
+                <Route path="/history" exact element={<HistoryWidget />} />
                 <Route path="/art" exact element={<Art />} />
             </Routes>
         </AnimatePresence>
