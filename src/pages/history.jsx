@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useRef, useEffect } from "react";
-import HistoryNav from '../components/historyNav.tsx';
+// import HistoryNav from '../components/historyNav.tsx';
 import { useMeasure } from 'react-use'
 import { Link } from "react-router-dom";
 import { motion, useAnimation, usePresence, Data } from "framer-motion";
@@ -500,7 +500,7 @@ const History = () => {
                                 </div>
                             </section>
                         </div>
-                        <HistoryNav/>
+                        {/* <HistoryNav/> */}
                     </Col>
                 </Row>
             </Container>

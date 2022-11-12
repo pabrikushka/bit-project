@@ -8,9 +8,9 @@ interface HistoryGroupProps {
 }
 
 const HistoryGroup = (props: HistoryGroupProps) => {
-  const { historyItems, groupFadeOut, year } = props.groupData;
+  const { historyItems, groupFadeOut, year, id } = props.groupData;
   return (
-    <section id="15" className="history-section">
+    <section id={id.toString()} className="history-section">
       <motion.header exit={groupFadeOut} className="title-block section-title pb-xl-3">
         <h2 className="h1">{year}</h2>
       </motion.header>

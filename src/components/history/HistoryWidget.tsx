@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import HistoryNav from './historyNav';
 import { useAnimation } from "framer-motion";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +8,7 @@ import useWindowParams from '../../shared/useWindowParams';
 import HistoryGroup from "./HistoryGroup";
 import { IHistoryData, IHistoryGroup } from "./types";
 import { getDataForHistory, prepareHistoryGroupData } from "./helpers";
+import HistoryYearNavigation from "./HistoryYearNavigation";
 
 
 const HistoryWidget = (props: any) => {
@@ -65,7 +65,7 @@ const HistoryWidget = (props: any) => {
 
   return (
       <main className=''>
-          <Container className='px-xl-5'>
+          <Container className='px-xl-5' style={{paddingBottom: 100}}>
               <Row>
                   <Col xs={12} className="history-wrapper">
                       <div className="history-holder overflow-hidden">
@@ -73,7 +73,7 @@ const HistoryWidget = (props: any) => {
                           <HistoryGroup groupData={groupData} key={`historuGroupId${groupData.id}`}/>
                         ))}
                       </div>
-                      <HistoryNav/>
+                      <HistoryYearNavigation dataForHistory={dataForHistory}/>
                   </Col>
               </Row>
           </Container>
