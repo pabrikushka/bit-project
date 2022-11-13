@@ -13,7 +13,7 @@ const GalleryWidget = (props: any) => {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start center", "center start"],
+    offset: ["start end", "end start"],
   });
 
   const scrollInSpring = useSpring(scrollYProgress, {
