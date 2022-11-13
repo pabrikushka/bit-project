@@ -1,12 +1,12 @@
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, ScrollControls } from "@react-three/drei";
-import { useState, useRef, useCallback } from "react";
-import { useSpring, config, animated, a } from "@react-spring/three";
-import { motion, useScroll, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
+import { useState, useCallback } from "react";
+import { useSpring, config, animated } from "@react-spring/three";
 import React from "react";
 import { CardData } from "./types";
 import { hoverCard } from "./helpers";
 import { useNavigate  } from "react-router-dom";
+import honeybadger from '../../assets/images/honeybadger.jpg';
+import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three";
 
 
 interface GalleryCardtProps {
@@ -17,6 +17,9 @@ const GalleryCard = (props: GalleryCardtProps) => {
   const {
     cardData
   } = props;
+
+  // TODO discuss how better to work with pictures
+  const texture = useLoader(TextureLoader, honeybadger)
 
   const [hovered, setHovered] = useState(false);
 
@@ -44,7 +47,7 @@ const GalleryCard = (props: GalleryCardtProps) => {
     <animated.mesh position={position} castShadow onClick={onClick} onPointerOver={(e) => onHover(e, true)} onPointerOut={(e) => onHover(e, false)}>
       <planeGeometry args={[2, 1]} />
       {/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
-      <animated.meshStandardMaterial color="blue" transparent opacity={opacity} attach="material" />
+      <animated.meshBasicMaterial transparent opacity={opacity} attach="material"  map={texture}/>
     </animated.mesh>
     </>
   );

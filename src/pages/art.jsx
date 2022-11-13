@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import dummy from '../images/dummy.jpg';
-import honeybadger from '../images/honeybadger.jpg';
-import AnimatedArrow from '../icons/animatedArrow';
-import DeepDiveIcon from '../icons/deepDiveIcon';
+import dummy from '../assets/images/dummy.jpg';
+import honeybadger from '../assets/images/honeybadger.jpg';
+import AnimatedArrow from '../assets/icons/animatedArrow';
+import DeepDiveIcon from '../assets/icons/deepDiveIcon';
 
 
 // export const useContainerDimensions = myRef => {

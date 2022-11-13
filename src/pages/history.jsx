@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useState, useRef, useEffect } from "react";
-import isMobile from '../components/isMobile';
-import HistoryNav from '../components/historyNav.tsx';
+// import HistoryNav from '../components/historyNav.tsx';
 import { useMeasure } from 'react-use'
 import { Link } from "react-router-dom";
 import { motion, useAnimation, usePresence, Data } from "framer-motion";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import dummy from '../images/dummy.jpg';
-import dummy2 from '../images/dummy2.jpg';
-import honeybadger from '../images/honeybadger.jpg';
-import AnimatedArrow from '../icons/animatedArrow';
+import dummy from '../assets/images/dummy.jpg';
+import dummy2 from '../assets/images/dummy2.jpg';
+import honeybadger from '../assets/images/honeybadger.jpg';
+import AnimatedArrow from '../assets/icons/animatedArrow';
+import useWindowParams from '../shared/useWindowParams';
 
 
 
@@ -24,6 +24,8 @@ const History = () => {
     let centerArt = {};
     let resetArt = {};
     let hideBorder = {}
+
+    const { isMobile } = useWindowParams();
 
 
     if (!isMobile) {
@@ -498,7 +500,7 @@ const History = () => {
                                 </div>
                             </section>
                         </div>
-                        <HistoryNav/>
+                        {/* <HistoryNav/> */}
                     </Col>
                 </Row>
             </Container>

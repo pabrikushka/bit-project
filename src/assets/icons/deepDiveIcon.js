@@ -7,7 +7,7 @@ const DeepDiveIcon = () => {
 
     return (
         <svg className="icon deep-dive" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            viewBox="0 0 29 29" enable-background="new 0 0 29 29" >
+            viewBox="0 0 29 29" enableBackground="new 0 0 29 29" >
             <path id="frame" fill="currentColor" d="M9.9,24.5H2.8c-1.2,0-2.2-1-2.2-2.2V2.8c0-1.2,1-2.2,2.2-2.2h19.5c1.2,0,2.2,1,2.2,2.2v7.4
 	c0,0.4-0.3,0.8-0.8,0.8S23,10.6,23,10.2V2.8C23,2.3,22.7,2,22.2,2H2.8C2.3,2,2,2.3,2,2.8v19.5C2,22.7,2.3,23,2.8,23h7.1
 	c0.4,0,0.8,0.3,0.8,0.8S10.3,24.5,9.9,24.5z"/>
