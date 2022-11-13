@@ -7,10 +7,10 @@ const cardsInRow = 9;
 const cardsInTotal = 63;
 
 const minX = -10;
-const stepX = 2.5;
+const stepX = 2.1;
 
 const minY = -4.5;
-const stepY = 1.5;
+const stepY = 1.1;
 
 const calcXForId = (idInRow: number) => minX + (idInRow - 1) * stepX;
 const calcYForId = (rowIndex: number) => minY + rowIndex * stepY;

@@ -44,7 +44,7 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
                 to={data.id.toString()}
                 spy={true}
                 delay={50}
-                smooth={true}
+                smooth={false}
                 onSetActive = {handleSetActive}
               >
                 {data.id}
