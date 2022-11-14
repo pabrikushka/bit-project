@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TwitterIcon from '../assets/icons/twitter';
+import TwitterIcon from '../../assets/icons/twitter';
 
 
 
