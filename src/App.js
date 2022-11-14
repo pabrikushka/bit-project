@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { BrowserRouter } from "react-router-dom";
 import AnimatedRoutes from "./AnimatedRoutes";
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
-import Navbar from "./components/navbar.tsx";
+import NavbarWidget from "./components/navbar/NavbarWidget";
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <Navbar/>
+      <NavbarWidget />
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
