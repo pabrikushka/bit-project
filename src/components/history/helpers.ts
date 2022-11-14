@@ -102,6 +102,7 @@ const createCenterArt = (isMobile: boolean, domNode:  React.MutableRefObject<HTM
 
     let yOffSet = 0;
     if(coordinates && !isNaN(coordinates.y)){
+        // TODO calc 278 dynamicly depend on screen hight or choose one value for all???
         yOffSet = 278 - coordinates.y;
     }
 
