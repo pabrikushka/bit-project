@@ -11,6 +11,7 @@ export interface IHistoryItem {
   ctaMotion: any;
   hideBorder: any;
   imageSrc: any;
+  isMobile: boolean;
 }
 
 export interface IHistoryGroup {
