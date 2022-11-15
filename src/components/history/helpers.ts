@@ -95,10 +95,20 @@ const createFadeOut = (isMobile: boolean): any => {
     };
 }
 
-const createCenterArt = (isMobile: boolean): any => {
+const createCenterArt = (isMobile: boolean, domNode:  React.MutableRefObject<HTMLInputElement> | null = null): any => {
     if (isMobile) return {};
 
+    const coordinates = domNode?.current?.getBoundingClientRect();
+
+    let yOffSet = 0;
+    if(coordinates && !isNaN(coordinates.y)){
+        // TODO calc 278 dynamicly depend on screen hight or choose one value for all???
+        yOffSet = 278 - coordinates.y;
+    }
+
     return {
+        x: 0,
+        y: yOffSet,
         right: '50%',
         translateX: "50%",
         transition: {
@@ -155,7 +165,8 @@ const prepareHistoryItemData = (
         artHolderMotion: createArtHolderMotion(isMobile),
         ctaMotion: createCTAMotion(isMobile),
         hideBorder: createHideBorder(isMobile),
-        imageSrc: imageSrc
+        imageSrc: imageSrc,
+        isMobile: isMobile
     }
 }
 
@@ -240,4 +251,4 @@ const getDataForHistory = (): IHistoryData[] =>{
 
 
 
-export { prepareHistoryGroupData, getDataForHistory };
+export { prepareHistoryGroupData, getDataForHistory, createCenterArt };

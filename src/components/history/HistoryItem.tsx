@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
 import { IHistoryItem } from "./types";
 import ArtLink from "./ArtLink";
+import HistoryItemPicture from "./HistoryItemPicture";
 
 interface HistoryItemProps {
   itemData: IHistoryItem,
@@ -12,15 +13,9 @@ interface HistoryItemProps {
 const HistoryItem = (props: HistoryItemProps) => {
   const {
     fadeOut,
-    centerArt,
-    resetArt,
-    artHolderAnimation,
-    artImgAnimation,
     detailsMotion,
-    artHolderMotion,
     ctaMotion,
     hideBorder,
-    imageSrc,
   } = props.itemData;
 
   const MotionArtLink = motion(ArtLink, { forwardMotionProps: true });
@@ -34,13 +29,7 @@ const HistoryItem = (props: HistoryItemProps) => {
             <h5 className="font-aeonik small text-light-70">1BTC:$438.89</h5>
           </motion.div>
         </Col>
-        <motion.div exit={centerArt} className="art-wrapper col-xs-12 col-lg-4 order-md-3 col-xl-5">
-          <motion.div exit={resetArt} className="art-holder" animate={artHolderAnimation}>
-            <motion.div exit={resetArt} className="art-frame" variants={artHolderMotion}>
-              <motion.img exit={resetArt} src={imageSrc} alt="Dummy" className="art-img" animate={artImgAnimation} />
-            </motion.div>
-          </motion.div>
-        </motion.div>
+        <HistoryItemPicture itemData={props.itemData} />
         <Col xs={12} lg={{ span: 5, order: 1 }} xl={4}>
           <motion.div exit={fadeOut} className="art-card-main mt-4 mt-md-0 d-md-flex flex-column h-100">
             <h3 className="mb-md-3 text-light-100">IRS declares bitcoin be taxed as property</h3>
@@ -62,3 +51,4 @@ const HistoryItem = (props: HistoryItemProps) => {
 };
 
 export default HistoryItem;
+

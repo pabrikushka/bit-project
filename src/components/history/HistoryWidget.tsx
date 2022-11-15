@@ -13,14 +13,11 @@ import HistoryYearNavigation from "./HistoryYearNavigation";
 
 const HistoryWidget = (props: any) => {
 
-
   const { isMobile } = useWindowParams();
 
   const [dataForHistory, setDataForHistory] = useState<IHistoryData[]>([]);
   const [historyGroups, setHistoryGroups] = useState<IHistoryGroup[]>([]);
 
-
-  // const imgAnimation = useAnimation();
   const artHolderAnimation = useAnimation()
   const artImgAnimation = useAnimation()
 
