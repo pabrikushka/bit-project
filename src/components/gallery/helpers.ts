@@ -4,7 +4,7 @@ import ListCards from "./data/listCards.json";
 import { CardData, Vector3Numbers } from "./types";
 
 const cardsInRow = 9;
-const cardsInTotal = 63;
+const cardsInTotal = 81;
 
 const minX = -10;
 const stepX = 2.1;
@@ -58,16 +58,21 @@ const hoverCard = (cardData: CardData): CardData => {
 };
 
 const prepareCameraConfig = (scrollY: number| null): any =>{
-    const initRorationX = -0.5;
+    const initPositionX = 2; 
+    const initPositionY = -2; 
+    const initPositionZ = -0.4; 
+
+    const initRorationX = -0.7;
+    const initRorationY = 0;
     if(scrollY === null){
         return {
-          position: [0, 1, 0],
+          position: [0, 0, 0],
           rotation: [initRorationX, 0, 0],
         }
     }
     return {
-      position: [0, 1, 0],
-      rotation: [initRorationX + scrollY, 0, 0],
+      position: [initPositionX + scrollY*5, initPositionY + scrollY*2, initPositionZ - scrollY/3],
+      rotation: [initRorationX + scrollY, initRorationY - scrollY/4, initRorationY - scrollY/4],
     }
 }
 

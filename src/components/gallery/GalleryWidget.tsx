@@ -18,7 +18,7 @@ const GalleryWidget = (props: any) => {
 
   const scrollInSpring = useSpring(scrollYProgress, {
     stiffness: 100,
-    damping: 30,
+    damping: 40,
     restDelta: 0.001
   });
 
@@ -33,7 +33,7 @@ const GalleryWidget = (props: any) => {
   }, []);
 
   return (
-    <section className="gallery-section mb-5 pb-5" ref={ref}>
+    <section className="gallery-section mb-5" ref={ref}>
       <Canvas className="canvas">
         <ambientLight />
         <spotLight position={[0, 5, 10]} penumbra={1} castShadow />

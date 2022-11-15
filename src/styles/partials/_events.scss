@@ -1,0 +1,23 @@
+// Header 
+.events-header {
+    height: 85vh;
+    // background: rgba($bit-blue, .4);
+    .hero-bg-holder {
+        .hero-video {
+            // mix-blend-mode: hard-light;
+            // opacity: .4;
+        }
+        .hero-running-text {
+            // opacity: 0;
+            position: absolute;
+            z-index: 4;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+
+
+   
+}

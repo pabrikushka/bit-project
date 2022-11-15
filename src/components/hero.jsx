@@ -1,65 +1,60 @@
 import * as React from 'react';
 import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useSpring, useTransform, MotionValue } from "framer-motion";
-// import useMouse from "@react-hook/mouse-position";
-import hero from '../assets/images/hero.jpg';
-
+import { motion, useScroll, useSpring, useTransform, useMotionValue, MotionValue } from "framer-motion";
+import Mona from "../assets/videos/tunnel.mp4"
 
 // function useParallax(value: MotionValue<number>, distance: number) {
 //     return useTransform(value, [0, 1], [-distance, distance]);
 // }
 
 const Hero = () => {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["end center", "center start"]
-    });
-    const scrollVelocity = useSpring(scrollYProgress, {
+    // const ref = useRef(null);
+    // const { scrollYProgress } = useScroll({
+    //     target: ref,
+    //     offset: ["end center", "center start"]
+    // });
+    // const scrollVelocity = useSpring(scrollYProgress, {
+    //     damping: 120,
+    //     stiffness: 400
+    // });
+    // const y = useTransform(scrollVelocity, [0, 1], [0, -300]);
+
+    const x = useMotionValue(50)
+    const y = useMotionValue(50)
+    const mouseSpring = {
         damping: 120,
         stiffness: 400
-    });
-    const y = useTransform(scrollVelocity, [0, 1], [0, -300]);
+    }
 
+    const xVelocity = useSpring(x, mouseSpring);
+    const yVelocity = useSpring(y, mouseSpring);
 
-    const [mousePos, setMousePos] = useState({});
-    useEffect(() => {
-        const handleMouseMove = (event) => {
-            setMousePos({ x: event.clientX / window.innerWidth * 100, y: event.clientY / window.innerHeight * 100 });
-        };
+    const moveX = useTransform(xVelocity, [0, 100], ["5%", "-5%"])
+    const moveY = useTransform(yVelocity, [0, 100], ["5%", "-5%"])
 
-        window.addEventListener('mousemove', handleMouseMove);
+    function handleMouse(event) {
+        x.set(event.clientX / window.innerWidth * 100)
+        y.set(event.clientY / window.innerHeight * 100)
+    }
 
-        return () => {
-            window.removeEventListener(
-                'mousemove',
-                handleMouseMove
-            );
-        };
-    }, []);
-
-    
-
-
+    window.addEventListener('mousemove', handleMouse);
 
     return (
-        <header className='hero-header' ref={ref}>
-            <div className='info'>
-                ({mousePos.x}, {mousePos.y})
-            </div>
-            <motion.div
-                style={{
-                    y: y,
-                }}
+        <header
+            className='hero-header'
+        // ref={ref}
+        >
+            <motion.div 
+            className='hero-bg-holder'
             >
-                <motion.img
-                    src={hero}
-                    alt="Hero"
-                    className="hero-img"
+                <motion.video
                     style={{
-                        translateX: mousePos.x,
+                        x: moveX,
+                        y: moveY,
                     }}
-                />
+                    className='hero-video' src={Mona} loop muted autoPlay="true">
+
+                    </motion.video>
             </motion.div>
 
         </header>
