@@ -5,7 +5,8 @@ import NavSocial from "./navSocial";
 import { AnimatePresence } from "framer-motion";
 import MenuButton from "./MenuButton";
 import useWindowParams from "../../shared/useWindowParams";
-import NavbarContent from "./NavbarContent";
+import NavbarContent from "./NavbarContentMobile";
+import NavbarContentMobile from "./NavbarContentMobile";
 
 const NavbarWidget = (props: any) => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -57,7 +58,7 @@ const NavbarWidget = (props: any) => {
             <Logo className={"brand-logo primary"} />
             {/* <Logo className={'brand-logo secondary'}/> */}
           </a>
-          {isSmallScreen ? <AnimatePresence>{isMenuOpened && <NavbarContent />}</AnimatePresence> : <NavbarContent />}
+          {isSmallScreen ? <AnimatePresence>{isMenuOpened && <NavbarContentMobile />}</AnimatePresence> : <NavbarContent />}
           <NavSocial styleName={"d-none d-md-flex"} />
           {isSmallScreen && <MenuButton isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />}
         </div>
