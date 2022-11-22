@@ -10,6 +10,7 @@ import dummy from '../assets/images/dummy.jpg';
 import honeybadger from '../assets/images/honeybadger.jpg';
 import AnimatedArrow from '../assets/icons/animatedArrow';
 import DeepDiveIcon from '../assets/icons/deepDiveIcon';
+import { animateScroll } from "react-scroll";
 
 
 // export const useContainerDimensions = myRef => {
@@ -41,7 +42,17 @@ import DeepDiveIcon from '../assets/icons/deepDiveIcon';
 //   };
 
 const Art = () => {
-
+    // useEffect(() => {
+    //     // as optional scroll transition solution option 2
+    //     // const interval = setInterval(() => {
+    //     //     window.scrollTo(0, 0);
+    //     //   }, 500);
+    //     //   return () => {
+    //     //     clearInterval(interval);
+    //     //   }
+    //     // as optional scroll transition solution option 3
+    //     // animateScroll.scrollTo(0);
+    //   }, []);
 
     const transition = { duration: 1, delay: 3, ease: "easeInOut" };
     const [ref, { width }] = useMeasure();

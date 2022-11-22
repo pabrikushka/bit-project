@@ -5,7 +5,7 @@ import NavSocial from "./navSocial";
 import { AnimatePresence } from "framer-motion";
 import MenuButton from "./MenuButton";
 import useWindowParams from "../../shared/useWindowParams";
-import NavbarContent from "./NavbarContentMobile";
+import NavbarContent from "./NavbarContent";
 import NavbarContentMobile from "./NavbarContentMobile";
 
 const NavbarWidget = (props: any) => {
