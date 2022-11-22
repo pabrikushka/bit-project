@@ -16,8 +16,12 @@ const calcXForId = (idInRow: number) => minX + (idInRow - 1) * stepX;
 const calcYForId = (rowIndex: number) => minY + rowIndex * stepY;
 
 const calcPositionFromId = (id: number): Vector3 | null => {
-  const x = calcXForId(id % cardsInRow == 0 ? cardsInRow : id % cardsInRow);
-  const y = calcYForId(Math.trunc((id - 1) / cardsInRow));
+  const rowIndex = Math.trunc((id - 1) / cardsInRow);
+  const y = calcYForId(rowIndex);
+
+  const oddXOffset = rowIndex % 2 * stepX/2;
+
+  const x = calcXForId(id % cardsInRow == 0 ? cardsInRow : id % cardsInRow) + oddXOffset; 
   return [x, y, 3];
 };
 
