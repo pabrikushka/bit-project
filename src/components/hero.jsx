@@ -41,7 +41,7 @@ const Hero = () => {
 
     return (
         <header
-            className='hero-header'
+            className='hero fader fader-40 fader-bottom'
         // ref={ref}
         >
             <motion.div 

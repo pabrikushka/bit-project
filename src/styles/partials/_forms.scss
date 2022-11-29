@@ -1,0 +1,15 @@
+.form-control {
+    border-radius: 0;
+}
+
+
+.arrow-group {
+    background: $bit-light-100;
+    .btn {
+        background: $bit-light-100;
+        svg {
+            width: 3rem;
+            opacity: .6;
+        }
+    }
+}

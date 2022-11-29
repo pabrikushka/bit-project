@@ -33,7 +33,7 @@ const GalleryWidget = (props: any) => {
   }, []);
 
   return (
-    <section className="gallery-section mb-5" ref={ref}>
+    <section className="gallery-section fader fader-40 fader-top fader-bottom" ref={ref}>
       <Canvas className="canvas">
         <ambientLight />
         <spotLight position={[0, 5, 10]} penumbra={1} castShadow />

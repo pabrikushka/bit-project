@@ -3,16 +3,27 @@
     user-select: none;
     position: relative;
     z-index: -1;
-    background: -webkit-radial-gradient(circle, rgba($bit-purple, .8) 0%, rgba($bit-purple, 0) 50%);
+    background: -webkit-radial-gradient(circle, rgba($bit-purple, .4) 0%, rgba($bit-purple, 0) 50%);
 }
 
-.rt-blob {
-    width: 200rem;
-    height: 200rem;
-    opacity: 0;
-    top: -100rem;
-    left: 20%;
-    z-index: 4;
+.rt-blob-1 {
+    width: 80rem;
+    height: 80rem;
+    opacity: .8;
+    top: 20%;
+    left: -40rem;
+    z-index: 8;
+    pointer-events: none;
+    user-select: none;
+}
+
+.rt-blob-2 {
+    width: 100rem;
+    height: 100rem;
+    opacity: .4;
+    top: -40%;
+    right: -80rem;
+    z-index: 8;
     pointer-events: none;
     user-select: none;
 }

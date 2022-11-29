@@ -174,7 +174,7 @@ body {
         text-shadow: 0px 0px 20px rgba($bit-blue, 0);
         &:hover,
         &:focus {
-            color: $bit-blue;
+            color: $bit-blue !important;
             text-shadow: 3px 3px 50px rgba($bit-blue, 1);
         }
 

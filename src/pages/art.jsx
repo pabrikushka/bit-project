@@ -254,7 +254,7 @@ const Art = () => {
                     </Col>
                     
                 </Row>
-                <div className="dummy" style={{ height: 2000 }}></div>
+                {/* <div className="dummy" style={{ height: 2000 }}></div> */}
             </Container>
         </>
     )

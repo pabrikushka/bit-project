@@ -1,4 +1,4 @@
-.hero-header {
+.hero {
     width: 100%;
     overflow: hidden;
     height: 75vh;
@@ -18,20 +18,6 @@
         height: 100%;
         top: 0;
         left: 0;
-
-        // Gradient
-        &::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 50%;
-            pointer-events: none;
-            user-select: none;
-            left: 0;
-            bottom: 0;
-            background: -webkit-linear-gradient(90deg, rgba($bit-dark, 1) 0%, rgba($bit-dark, 0) 100%);
-            z-index: 3;
-        }
 
         // BG Image 
         .hero-img {

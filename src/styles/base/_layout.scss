@@ -8,3 +8,8 @@ body {
     max-width: 100vw;
     height: auto;
 }
+
+.overview-section {
+    position: relative;
+    z-index: 5;
+}

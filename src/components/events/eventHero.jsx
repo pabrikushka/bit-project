@@ -45,7 +45,7 @@ const EventHero = () => {
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     return (
-        <header className='hero-header events-header' ref={ref}>
+        <header className='hero events-header' ref={ref}>
             <div className='hero-bg-holder'>
                 <motion.video
                     style={{

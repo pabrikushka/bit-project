@@ -1,8 +1,10 @@
 import * as React from 'react';
 import Hero from "../components/hero";
-import RunningText from "../components/runningText.tsx";
+import RunningText from "../components/runningText.jsx";
+import Book from "../components/book.tsx";
 import Overview from "../components/overview.tsx";
 import GalleryWidget from "../components/gallery/GalleryWidget";
+import Exhibition from '../components/exhibition';
 
 
 
@@ -23,7 +25,13 @@ const Home = () => {
                 text={"Experience a multi-sensory journey through 128 uniquly enhanced Bitcoin artworks by leading creatives from the Smashtoshi Collective. Combined with AR, AI, customisable materials and print finishes BIT is unique in the world of luxury publications."}
                 buttonText={"Buy BIT"}
             />
-            <div className="dummy" style={{ height: 2000 }}></div>
+            <Book/>
+            <Overview
+                title={"Experience the exhibition"}
+                text={"Kicking off the world tour at legendary W1 Curates in the heart of London. Experience a multi-sensory journey through 128 uniquly enhanced bitcoin artworks by leading creatives from the Smashtoshi Collective. "}
+                buttonText={"Book Your Tickets"}
+            />
+            <Exhibition/>
         </main>
     )
 }

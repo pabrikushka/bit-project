@@ -167,7 +167,7 @@
                     .art-frame {
                         transform-origin: top center;
                         transform: scale(1.2) rotate(1deg) translateY(-4rem) translateX(2rem);
-                        filter: blur(30px);
+                        // filter: blur(30px);
                         opacity: 0;
                         transition: transform .2s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .1s ease-out;
                     }
@@ -184,7 +184,7 @@
 
                         .art-frame {
                             opacity: 1;
-                            filter: blur(0px);
+                            // filter: blur(0px);
                             transform: scale(1) rotate(0) translateY(0rem) translateX(0rem) !important;
                             transition: transform .6s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .2s ease-out;
 

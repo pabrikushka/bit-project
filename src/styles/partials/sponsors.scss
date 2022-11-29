@@ -1,0 +1,15 @@
+.sponsor {
+    display: block;
+    width: 100%;
+    transition: all .25s ease-out;
+
+    .sponsor-img {
+        width: 100%;
+        // min-height: 3rem;
+    }
+
+    &:hover {
+        opacity: .6;
+        transform: scale(1.03);
+    }
+}

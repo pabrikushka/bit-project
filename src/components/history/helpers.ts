@@ -206,7 +206,7 @@ const getDataForHistory = (): IHistoryData[] =>{
                     imageSrc: honeybadger  
                 },
                 {
-                    imageSrc: dummy2  
+                    imageSrc: honeybadger   
                 }
             ]
         },
@@ -218,7 +218,7 @@ const getDataForHistory = (): IHistoryData[] =>{
                     imageSrc: honeybadger  
                 },
                 {
-                    imageSrc: dummy2  
+                    imageSrc: honeybadger   
                 }
             ]
         },
@@ -230,7 +230,7 @@ const getDataForHistory = (): IHistoryData[] =>{
                     imageSrc: honeybadger  
                 },
                 {
-                    imageSrc: dummy2  
+                    imageSrc: honeybadger   
                 }
             ]
         },

@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import AnimatedRoutes from "./AnimatedRoutes";
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavbarWidget from "./components/navbar/NavbarWidget";
+import Footer from './components/footer/FooterWidget';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
+      <Footer/>
     </ThemeProvider>
   );
 }

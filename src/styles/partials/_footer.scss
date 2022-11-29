@@ -1,0 +1,37 @@
+footer {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    overflow: hidden;
+    .footer-col {
+        padding-top: 1.5rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+        border-top: none;
+
+        .footer-main {
+            border-top: 1px solid $bit-light-50;
+        }
+        .footer-col {
+            padding-top: 3rem;
+            margin-top: -5px;
+            &.footer-main-col {
+                border-top: 5px solid $bit-light-100;
+            }
+        }
+        
+    }
+}
+
+
+.footer-nav-items {
+    list-style: none;
+    padding: 0;
+    .footer-nav-item {
+        .nav-link {
+            font-size: 1rem !important;
+            text-align: left;
+            color: $bit-light-60;
+        }
+    }
+}
