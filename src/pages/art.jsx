@@ -78,12 +78,13 @@ const Art = () => {
     }
 
     return (
-        <>
-            <Container className='px-xl-5 pt-5 mt-5'>
-                <Row>
-                    <Col xs={12}>
-                        <motion.header className="pb-xl-3 title-block art-title-block">
-                            {/* <motion.h1 className="art-title h1-mini" variants={sentence} initial="hidden" animate="visible">
+        <main>
+            <section>
+                <Container className='px-xl-5 pt-5 mt-5'>
+                    <Row>
+                        <Col xs={12}>
+                            <motion.header className="pb-xl-3 title-block art-title-block">
+                                {/* <motion.h1 className="art-title h1-mini" variants={sentence} initial="hidden" animate="visible">
                                 {line1.split("").map((char, index) => {
                                     return (
                                         <motion.span key={char + "-" + index} variants={letter}>
@@ -101,162 +102,166 @@ const Art = () => {
                                 })}
                             </motion.h1> */}
 
-                            <motion.div className="art-title-holder">
-                                <motion.h1 className='art-title h1-mini'
+                                <motion.div className="art-title-holder pb-4">
+                                    <motion.h1 className='art-title h1-mini'
+                                        initial={{
+                                            y: 300,
+                                            opacity: 0,
+                                            skewY: -30
+                                        }}
+                                        animate={{
+                                            y: 0,
+                                            opacity: 1,
+                                            skewY: 0,
+                                            transition: {
+                                                duration: .3,
+                                                ease: "easeOut"
+                                            },
+                                        }}
+                                    >
+                                        IRS declares bitcoin be taxed as property
+                                    </motion.h1>
+                                </motion.div>
+
+                                <motion.div
+                                    className="art-details d-flex align-items-end justify-content-between pt-4 pt-lg-2"
                                     initial={{
-                                        y: 300,
+                                        y: 40,
                                         opacity: 0,
-                                        skewY: -30
+                                        // skewY: -30
                                     }}
                                     animate={{
                                         y: 0,
                                         opacity: 1,
                                         skewY: 0,
                                         transition: {
-                                            delay: .3,
+                                            delay: .2,
                                             duration: .3,
                                             ease: "easeOut"
                                         },
                                     }}
                                 >
-                                    IRS declares bitcoin be taxed as property
-                                </motion.h1>
-                            </motion.div>
-
-                            {/* <h1 className='art-title h1-mini'>
-                                <motion.span
-                                    initial={{
-                                        y: 50,
-                                        opacity: 0
-                                    }}
-                                    animate={{
-                                        y: 0,
-                                        opacity: 1,
-                                        transition: {
-                                            delay: .5,
-                                            duration: 1,
-                                            ease: "easeOut"
-                                        },
-                                    }}
+                                    <h2 className='h3 font-aeonik text-light-70'>March 25, 2014</h2>
+                                    <h3 className='h3 font-aeonik text-light-70'>1BTC:$438.89</h3>
+                                </motion.div>
+                            </motion.header>
+                        </Col>
+                        <Col xs={12}>
+                            <div className="art-banner row pb-3 pb-md-4" ref={ref}>
+                                <motion.div
+                                    className="art-wrapper"
+                                // initial={{
+                                //     right: '50%',
+                                //     translateX: "50%",
+                                //     height: "100%",
+                                //     y: 0
+                                // }}
+                                // animate={{
+                                //     y: 80,
+                                //     width: width,
+                                //     height: width / 2,
+                                //     transition: { transition },
+                                // }}
                                 >
-                                    IRS declares bitcoin
-                                </motion.span>
-                                <motion.span>
-                                    be taxed as property
-                                </motion.span>
-                            </h1> */}
-                            <motion.div
-                                className="art-details d-flex align-items-end justify-content-between pt-4 pt-lg-2"
-                                initial={{
-                                    y: 40,
-                                    opacity: 0,
-                                    // skewY: -30
-                                }}
-                                animate={{
-                                    y: 0,
-                                    opacity: 1,
-                                    skewY: 0,
-                                    transition: {
-                                        delay: .5,
-                                        duration: .3,
-                                        ease: "easeOut"
-                                    },
-                                }}
-                            >
-                                <h2 className='h3 font-aeonik text-light-70'>March 25, 2014</h2>
-                                <h3 className='h3 font-aeonik text-light-70'>1BTC:$438.89</h3>
-                            </motion.div>
-                        </motion.header>
-                    </Col>
-                    <Col xs={12}>
-                        <div className="art-banner row py-3 py-md-4" ref={ref}>
-                            <motion.div
-                                className="art-wrapper col-xs-12 col-lg-4 col-xl-5"
-
-                                initial={{
-                                    right: '50%',
-                                    translateX: "50%",
-                                    height: "100%",
-                                    y: 0
-                                }}
-                                animate={{
-                                    y: 80,
-                                    width: width,
-                                    height: width / 2,
-                                    transition: { transition },
-                                }}
-                            >
-                                <motion.div className='art-holder'>
-                                    <motion.div className="art-frame">
-                                        <motion.img src={honeybadger} alt="Dummy" className="art-img" />
+                                    <motion.div className='art-holder'>
+                                        <motion.div className="art-frame">
+                                            <motion.img src={honeybadger} alt="Dummy" className="art-img" />
+                                        </motion.div>
                                     </motion.div>
                                 </motion.div>
-                            </motion.div>
-                        </div>
-                    </Col>
-                </Row>
-                <Row className="art-body">
-                    <Col xs={12} lg={7} className="art-body-main">
-                        <div className="pe-xl-5">
-                            <p className="lead mb-4 pb-2">
-                                It’s official, bitcoin is not a currency. The Internal Revenue Service ruled in May 2014 that the Bitcoin and its rivals will be treated as property, not cash, for tax purposes.
-                            </p>
-                            <p>
-                                The ruling had been expected and marked another step in the wider attempt to make bitcoin mainstream. In its notice, the IRS said bitcoin would be treated like stock or other intangible property.
-                            </p>
-                            <p>
-                                "The notice provides that virtual currency is treated as property for US federal tax purposes. General tax principles that apply to property transactions apply to transactions using virtual currency," according to an IRS news release.
-                            </p>
-                            <p>
-                                The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                            </p>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row className="art-body">
+                        <Col xs={12} lg={7} className="art-body-main">
+                            <div className="pe-xl-5">
+                                <p className="lead mb-4 pb-2">
+                                    It’s official, bitcoin is not a currency. The Internal Revenue Service ruled in May 2014 that the Bitcoin and its rivals will be treated as property, not cash, for tax purposes.
+                                </p>
+                                <p>
+                                    The ruling had been expected and marked another step in the wider attempt to make bitcoin mainstream. In its notice, the IRS said bitcoin would be treated like stock or other intangible property.
+                                </p>
+                                <p>
+                                    "The notice provides that virtual currency is treated as property for US federal tax purposes. General tax principles that apply to property transactions apply to transactions using virtual currency," according to an IRS news release.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
 
-                        </div>
-                    </Col>
-                    <Col xs={12} lg={{span: 12, order: 3}}>
-                          <Row className="art-actions g-4 mt-4">
+                            </div>
+                        </Col>
+                        <Col xs={12} lg={{ span: 12, order: 3 }}>
+                            <Row className="art-actions g-4 mt-4">
                                 <Col xs={12} sm={6}>
                                     <Button variant="outline-primary" className="bit-btn icon-btn d-block d-lg-inline-block" href="#">
                                         <DeepDiveIcon />
                                         Deep Dive
                                     </Button>
                                 </Col>
-                                <Col xs={12} sm={6} lg={{span: 5, offset: 1}} className="ps-xl-5 px-xxl-5">
+                                <Col xs={12} sm={6} lg={{ span: 5, offset: 1 }} className="ps-xl-5 px-xxl-5">
                                     <div className="btn-holder w-100 d-lg-block ps-xl-5 px-xxl-5">
-                                        <Button variant="outline-primary"  className="bit-btn icon-btn w-100" href="#">
+                                        <Button variant="outline-primary" className="bit-btn icon-btn w-100" href="#">
                                             <AnimatedArrow />
                                             Share This
                                         </Button>
                                     </div>
                                 </Col>
-                          </Row>
-                    </Col>
-                    <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
-                        <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                            <h2 className="small font-aeonik text-light-70 text-uppercase">
-                                Credits
-                            </h2>
-                            <div className="art-credits py-3 my-3">
-                                <div className="art-credit py-1 my-1">
-                                    <h3 className="small font-aeonik text-light-70">Artist</h3>
-                                    <h4 className="p">Illtopia</h4>
-                                </div>
-                                <div className="art-credit py-1 my-1">
-                                    <h3 className="small font-aeonik text-light-70">Label</h3>
-                                    <h4 className="small font-aeonik text-light-70">AR Enchanced</h4>
-                                </div>
-                                <div className="art-credit py-1 my-1">
-                                    <h3 className="small font-aeonik text-light-70">Audio</h3>
-                                    <h4 className="p">Dj Phantom</h4>
+                            </Row>
+                        </Col>
+                        <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
+                            <div className="art-credits-holder ps-xl-5 px-xxl-5">
+                                <h2 className="small font-aeonik text-light-70 text-uppercase">
+                                    Credits
+                                </h2>
+                                <div className="art-credits py-3 my-3">
+                                    <div className="art-credit py-1 my-1">
+                                        <h3 className="small font-aeonik text-light-70">Artist</h3>
+                                        <h4 className="p">Illtopia</h4>
+                                    </div>
+                                    <div className="art-credit py-1 my-1">
+                                        <h3 className="small font-aeonik text-light-70">Label</h3>
+                                        <h4 className="small font-aeonik text-light-70">AR Enchanced</h4>
+                                    </div>
+                                    <div className="art-credit py-1 my-1">
+                                        <h3 className="small font-aeonik text-light-70">Audio</h3>
+                                        <h4 className="p">Dj Phantom</h4>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Col>
-                    
-                </Row>
-                {/* <div className="dummy" style={{ height: 2000 }}></div> */}
-            </Container>
-        </>
+                        </Col>
+                        <Col xs={12}>
+
+                        </Col>
+
+                    </Row>
+                </Container>
+            </section>
+            <section className="art-slider">
+                <Container className="px-xl-5">
+                    <Row className="g-0">
+                        <Col xs={12} lg={6}>
+                            <Link className="art-card slider-card">
+                                <div className="art-card-content d-sm-flex">
+                                    <div className="art-wrapper">
+                                        <img className="art-img" src={honeybadger} alt="" />
+                                    </div>
+                                    <div className="art-card-body py-4 py-sm-1 ps-sm-4">
+                                        <div className="art-details d-flex align-items-center justify-content-between justify-content-sm-start mb-1">
+                                            <h4 className="font-aeonik small text-light-70 me-5">March 25, 2014</h4>
+                                            <h5 className="font-aeonik small text-light-70">1BTC:$438.89</h5>
+                                        </div>
+                                        <div className="art-card-main">
+                                            <h3 className="mb-0">IRS declares bitcoin be taxed as property</h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </Link>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+        </main>
     )
 }
 

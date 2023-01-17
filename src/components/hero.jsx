@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useSpring, useTransform, useMotionValue, MotionValue } from "framer-motion";
-import Mona from "../assets/videos/tunnel.mp4"
+import Mona from "../assets/videos/dude.mp4"
 
 // function useParallax(value: MotionValue<number>, distance: number) {
 //     return useTransform(value, [0, 1], [-distance, distance]);
@@ -37,11 +37,11 @@ const Hero = () => {
         y.set(event.clientY / window.innerHeight * 100)
     }
 
-    window.addEventListener('mousemove', handleMouse);
+    // window.addEventListener('mousemove', handleMouse);
 
     return (
         <header
-            className='hero fader fader-40 fader-bottom'
+            className='hero fader fader-40 fader-bottom fader-top'
         // ref={ref}
         >
             <motion.div 
@@ -49,8 +49,8 @@ const Hero = () => {
             >
                 <motion.video
                     style={{
-                        x: moveX,
-                        y: moveY,
+                        // x: moveX,
+                        // y: moveY,
                     }}
                     className='hero-video' src={Mona} loop muted autoPlay="true">
 

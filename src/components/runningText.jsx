@@ -56,7 +56,7 @@ export default function RunningText() {
         y.set(event.clientY / window.innerHeight * 100)
     }
 
-    window.addEventListener('mousemove', handleMouse);
+    // window.addEventListener('mousemove', handleMouse);
 
     return (
         <section className="rt-section" ref={ref}>
@@ -65,8 +65,8 @@ export default function RunningText() {
                     className="rt-blob-1 position-absolute"
                     style={{
                         scale: blobScale,
-                        x: blob1X,
-                        y: blob1Y,
+                        // x: blob1X,
+                        // y: blob1Y,
                     }}
                 >
                     <motion.div className="blob w-100 h-100"></motion.div>
@@ -75,8 +75,8 @@ export default function RunningText() {
                     className="rt-blob-2 position-absolute"
                     style={{
                         scale: blobScale,
-                        x: blob2X,
-                        y: blob2Y,
+                        // x: blob2X,
+                        // y: blob2Y,
                     }}
                 >
                     <motion.div className="blob w-100 h-100"></motion.div>

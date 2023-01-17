@@ -1,5 +1,6 @@
 import React, {  } from "react";
 import NavSocial from "./navSocial";
+import NavbarButton from "./NavbarButton";
 import { motion } from "framer-motion";
 import {
   createCurtainsVariants,
@@ -29,6 +30,7 @@ const NavbarContentMobile = (props: any) => {
         <NavbarListNavs />
         <motion.div variants={createNavLinkVariants()}>
           <NavSocial styleName={"d-flex d-md-none justify-content-center"} />
+          <NavbarButton styleName={'d-flex justify-content-center'}/>
         </motion.div>
       </motion.div>
     </>

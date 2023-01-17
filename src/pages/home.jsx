@@ -26,12 +26,12 @@ const Home = () => {
                 buttonText={"Buy BIT"}
             />
             <Book/>
-            <Overview
+            {/* <Overview
                 title={"Experience the exhibition"}
                 text={"Kicking off the world tour at legendary W1 Curates in the heart of London. Experience a multi-sensory journey through 128 uniquly enhanced bitcoin artworks by leading creatives from the Smashtoshi Collective. "}
                 buttonText={"Book Your Tickets"}
-            />
-            <Exhibition/>
+            /> */}
+            {/* <Exhibition/> */}
         </main>
     )
 }

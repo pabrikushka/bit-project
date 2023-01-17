@@ -16,7 +16,7 @@ body {
 
 
 .bit-nav {
-    position: fixed;
+    position: sticky;
     width: 100%;
     top: 0;
     left: 0;
@@ -136,8 +136,10 @@ body {
     align-items: center;
 
     .brand-logo {
-        width: 8rem;
+        width: 13rem;
         transition: all .25s ease-out;
+        position: relative;
+        top: .15rem;
     }
 
     @include media-breakpoint-up(md) {
@@ -152,7 +154,8 @@ body {
 
     @include media-breakpoint-up(xl) {
         .brand-logo {
-            width: 10rem;
+            width: 14rem;
+            top: .25rem;
         }
     }
 }
@@ -201,7 +204,7 @@ body {
         padding: 1.2rem 1.6rem;
         &.nav-social-link {
             .icon {
-                width: 1.5rem;
+                width: 1.3rem;
             }
         }
     }

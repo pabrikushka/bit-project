@@ -17,16 +17,6 @@ const NavbarListNavs = (props: any) => {
             Book
           </motion.a>
         </li>
-        <li className="nav-item">
-          <motion.a variants={createNavLinkVariants()} href="" className="nav-link">
-            Events
-          </motion.a>
-        </li>
-        <li className="nav-item">
-          <motion.a variants={createNavLinkVariants()} href="" className="nav-link">
-            Collective
-          </motion.a>
-        </li>
     </>
   );
 };

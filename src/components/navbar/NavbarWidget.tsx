@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Logo from "../../assets/images/logo";
 import NavSocial from "./navSocial";
+import NavbarButton from "./NavbarButton";
 import { AnimatePresence } from "framer-motion";
 import MenuButton from "./MenuButton";
 import useWindowParams from "../../shared/useWindowParams";
@@ -60,6 +61,7 @@ const NavbarWidget = (props: any) => {
           </a>
           {isSmallScreen ? <AnimatePresence>{isMenuOpened && <NavbarContentMobile />}</AnimatePresence> : <NavbarContent />}
           <NavSocial styleName={"d-none d-md-flex"} />
+          <NavbarButton styleName={"ps-4 d-none d-md-block"}/>
           {isSmallScreen && <MenuButton isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />}
         </div>
       </Container>

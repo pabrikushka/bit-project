@@ -13,11 +13,11 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
   
   const dotTopValue = currentIndex * 2 + 1;
   
-  React.useEffect(() => {
-    if(dataForHistory?.length){
-        animateScroll.scrollTo(dataForHistory[0].id)
-    }
-  }, [dataForHistory]);
+  // React.useEffect(() => {
+  //   if(dataForHistory?.length){
+  //       animateScroll.scrollTo(dataForHistory[0].id)
+  //   }
+  // }, [dataForHistory]);
 
   const handleSetActive = (to: string, element: HTMLElement) =>{
     const foundIndex = dataForHistory.findIndex(q => q.id.toString() === to);

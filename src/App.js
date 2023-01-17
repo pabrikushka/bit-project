@@ -5,6 +5,7 @@ import AnimatedRoutes from "./AnimatedRoutes";
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import NavbarWidget from "./components/navbar/NavbarWidget";
 import Footer from './components/footer/FooterWidget';
+import SiteAlert from './components/siteAlert';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
+      <SiteAlert/>
       <NavbarWidget />
       <BrowserRouter>
         <AnimatedRoutes />
