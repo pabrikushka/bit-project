@@ -20,7 +20,7 @@
 
         .art-details {
             position: absolute;
-            bottom: 0%;
+            bottom: 1rem;
             left: 0;
             width: 100%;
         }
@@ -204,10 +204,7 @@
     @include media-breakpoint-up(lg) {
         min-height: 18rem;
 
-        .art-holder {
-            // height: 18rem;
-            // aspect-ratio: 2/1;
-        }
+        .art-holder {}
     }
 
     @include media-breakpoint-up(xl) {
@@ -243,7 +240,6 @@
 
 
     @include media-breakpoint-up(lg) {
-        pointer-events: none;
         display: block;
         width: 100%;
         position: relative;
@@ -296,32 +292,10 @@
     }
 }
 
-// Art Banner 
-.art-banner {
-    position: relative;
-    border-bottom: 1px solid transparent;
-
-    // aspect-ratio: 2/1;
-    .art-wrapper {
-        top: 0;
-        height: 100%;
-        position: relative;
-        // position: absolute;
-
-        .art-holder {
-            .art-frame {
-                .art-img {
-                    position: static;
-                    width: 100%;
-                }
-            }
-        }
-    }
-}
+// Art Video 
 
 // Art Body 
 .art-body {
-    position: relative;
     margin-top: 3rem;
     // margin-top: 650px;
 
@@ -358,7 +332,7 @@
 
 // Art Slider 
 .art-slider {
-      
+
     .row {
         padding-top: 5rem;
         margin-top: 5rem;
@@ -369,7 +343,7 @@
 
 .slider-card {
     border: none;
-    
+
     .art-card-content {
         min-height: 0 !important;
         padding: 0;
@@ -379,6 +353,7 @@
             flex: 0 0 15rem;
             height: 10rem;
             overflow: hidden;
+
             .art-img {
                 position: absolute;
                 width: 100%;
@@ -393,6 +368,7 @@
 
         .art-card-main {
             transition: color .3s ease-out;
+
             h3 {
                 font-size: 2rem;
             }
@@ -416,8 +392,111 @@
             .art-card-main {
                 color: $bit-blue;
             }
+
             .art-img {
                 transform: scale(1.1);
+            }
+        }
+    }
+}
+
+
+// Art Tease 
+.art-tease {
+    transition: all .4s ease-out;
+    position: fixed;
+    overflow: hidden;
+    height: auto;
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 9;
+    border: 5px solid $bit-dark;
+    background: $bit-dark;
+    box-shadow: 0px 4px 36px 1px rgba($bit-dark, .8);
+    cursor: pointer;
+
+    .art-holder {
+        background: $bit-dark;
+
+        .art-img {
+            width: 8rem;
+            height: 5rem;
+            object-fit: cover;
+            // opacity: .5;
+        }
+
+        .icon {
+            position: absolute;
+            filter: drop-shadow(0px 3px 36px rgba($bit-dark, 1));
+            z-index: 5;
+            left: 50%;
+            opacity: 0;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @media(min-width: 390px) {
+        .art-holder {
+            .art-img {
+                width: 10rem;
+                height: 6rem;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        @media(min-width: 390px) {
+            .art-holder {
+                .art-img {
+                    width: 12rem;
+                    height: 8rem;
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        background: transparent;
+        box-shadow: none;
+        border: none;
+
+        .art-holder {
+            overflow: hidden;
+
+            .art-img {
+                transition: all .3s ease-out;
+                opacity: 1;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                aspect-ratio: 2/1;
+            }
+
+            .icon {
+                width: 2.5rem;
+                height: auto;
+                opacity: 0;
+                transition: all .3s ease-out;
+            }
+        }
+
+        &:hover {
+            .art-holder {
+                .art-img {
+                    transform: scale(1.1);
+                    opacity: .3;
+                }
+
+                .icon {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(1.2);
+                    transition-delay: .1s;
+                }
             }
         }
     }

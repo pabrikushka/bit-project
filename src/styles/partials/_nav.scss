@@ -3,13 +3,16 @@ body {
     main {
         transition: filter .6s ease-out;
         transition-delay: .4s;
-        filter: blur(0px);
+        // filter: blur(0px);
     }
     &.menu-open {
         overflow: hidden;
         main {
             filter: blur(45px);
             transition-delay: .2s;
+        }
+        .art-tease {
+            opacity: 0;
         }
     }
 }
@@ -42,7 +45,6 @@ body {
             list-style: none;
             display: flex;
 
-            .nav-item {}
         }
     }
 

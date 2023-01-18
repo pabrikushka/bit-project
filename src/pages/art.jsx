@@ -8,52 +8,18 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import dummy from '../assets/images/dummy.jpg';
 import honeybadger from '../assets/images/honeybadger.jpg';
+import honeybadgerLoop from "../assets/videos/Honey-Badger-Loop.mp4"
 import AnimatedArrow from '../assets/icons/animatedArrow';
 import DeepDiveIcon from '../assets/icons/deepDiveIcon';
+import FullScreenIcon from "../assets/icons/fullScreenIcon";
+import AudioOnIcon from "../assets/icons/audioOnIcon";
+import AudioOffIcon from "../assets/icons/audioOffIcon";
+import PlayIcon from "../assets/icons/playIcon";
+import PauseIcon from "../assets/icons/pauseIcon";
 import { animateScroll } from "react-scroll";
 
 
-// export const useContainerDimensions = myRef => {
-//     const getDimensions = () => ({
-//       width: myRef.current.offsetWidth,
-//       height: myRef.current.offsetHeight
-//     })
-
-//     const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-
-//     useEffect(() => {
-//       const handleResize = () => {
-//         setDimensions(getDimensions())
-//       }
-
-//       if (myRef.current) {
-//         setDimensions(getDimensions())
-//       }
-
-//       setDimensions(getDimensions())
-//       window.addEventListener("resize", handleResize)
-
-//       return () => {
-//         window.removeEventListener("resize", handleResize)
-//       }
-//     }, [myRef])
-
-//     return dimensions;
-//   };
-
 const Art = () => {
-    // useEffect(() => {
-    //     // as optional scroll transition solution option 2
-    //     // const interval = setInterval(() => {
-    //     //     window.scrollTo(0, 0);
-    //     //   }, 500);
-    //     //   return () => {
-    //     //     clearInterval(interval);
-    //     //   }
-    //     // as optional scroll transition solution option 3
-    //     // animateScroll.scrollTo(0);
-    //   }, []);
-
     const transition = { duration: 1, delay: 3, ease: "easeInOut" };
     const [ref, { width }] = useMeasure();
     const line1 = "IRS declares bitcoin "
@@ -84,24 +50,6 @@ const Art = () => {
                     <Row>
                         <Col xs={12}>
                             <motion.header className="pb-xl-3 title-block art-title-block">
-                                {/* <motion.h1 className="art-title h1-mini" variants={sentence} initial="hidden" animate="visible">
-                                {line1.split("").map((char, index) => {
-                                    return (
-                                        <motion.span key={char + "-" + index} variants={letter}>
-                                            {char}
-                                        </motion.span>
-                                    )
-                                })}
-                                <br />
-                                {line2.split("").map((char, index) => {
-                                    return (
-                                        <motion.span key={char + "-" + index} variants={letter}>
-                                            {char}
-                                        </motion.span>
-                                    )
-                                })}
-                            </motion.h1> */}
-
                                 <motion.div className="art-title-holder pb-4">
                                     <motion.h1 className='art-title h1-mini'
                                         initial={{
@@ -147,32 +95,55 @@ const Art = () => {
                             </motion.header>
                         </Col>
                         <Col xs={12}>
-                            <div className="art-banner row pb-3 pb-md-4" ref={ref}>
+                            <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
                                 <motion.div
-                                    className="art-wrapper"
-                                // initial={{
-                                //     right: '50%',
-                                //     translateX: "50%",
-                                //     height: "100%",
-                                //     y: 0
-                                // }}
-                                // animate={{
-                                //     y: 80,
-                                //     width: width,
-                                //     height: width / 2,
-                                //     transition: { transition },
-                                // }}
+                                    className="art-wrapper position-relative h-100 top-0"
                                 >
-                                    <motion.div className='art-holder'>
+                                    <motion.div className='art-holder position-relative overflow-hidden'>
                                         <motion.div className="art-frame">
-                                            <motion.img src={honeybadger} alt="Dummy" className="art-img" />
+                                            <motion.img src={honeybadger} alt="Dummy" className="art-img position-static w-100" />
+                                        </motion.div>
+                                        <motion.div className="art-video-frame position-absolute top-0 left-0 w-100 h-100">
+                                            <motion.video
+                                                className='art-video w-100 h-100' src={honeybadgerLoop} loop muted autoPlay="true">
+                                            </motion.video>
+                                        </motion.div>
+                                        <motion.div
+                                            className="controls-holder fader fader-bottom"
+                                            initial={{
+                                                opacity: 0,
+                                                y: 100
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                y: 0
+                                            }}
+                                            transition={{
+                                                delay: .3,
+                                                duration: .5,
+                                                ease: "easeOut"
+                                            }}
+                                        >
+                                            <div className="controls-content d-flex align-items-center px-2 py-1">
+                                                <Button variant="link" href="#" className="controls-btn p-2 glow-svg-hover" title="Mute">
+                                                    <AudioOnIcon />
+                                                    <AudioOffIcon />
+                                                </Button>
+                                                <Button variant="link" href="#" className="controls-btn p-2 glow-svg-hover" title="Pause">
+                                                    <PlayIcon />
+                                                    <PauseIcon />
+                                                </Button>
+                                                <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen">
+                                                    <FullScreenIcon />
+                                                </Button>
+                                            </div>
                                         </motion.div>
                                     </motion.div>
                                 </motion.div>
                             </div>
                         </Col>
                     </Row>
-                    <Row className="art-body">
+                    <Row className="art-body position-relative">
                         <Col xs={12} lg={7} className="art-body-main">
                             <div className="pe-xl-5">
                                 <p className="lead mb-4 pb-2">
@@ -183,6 +154,30 @@ const Art = () => {
                                 </p>
                                 <p>
                                     "The notice provides that virtual currency is treated as property for US federal tax purposes. General tax principles that apply to property transactions apply to transactions using virtual currency," according to an IRS news release.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                </p>
+                                <p>
+                                    The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
                                 </p>
                                 <p>
                                     The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
@@ -209,7 +204,18 @@ const Art = () => {
                             </Row>
                         </Col>
                         <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
+
+
                             <div className="art-credits-holder ps-xl-5 px-xxl-5">
+                                <motion.div className="art-wrapper art-tease mb-lg-5">
+                                    <div className="art-holder position-relative">
+                                        <motion.img className="art-img" src={honeybadger} alt=""></motion.img>
+                                        <FullScreenIcon/>
+                                    </div>
+                                    <div className="small text-uppercase font-aeonik text-center d-lg-none">
+                                        Expand
+                                    </div>
+                                </motion.div>
                                 <h2 className="small font-aeonik text-light-70 text-uppercase">
                                     Credits
                                 </h2>

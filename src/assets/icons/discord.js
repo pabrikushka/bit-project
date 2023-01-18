@@ -1,6 +1,3 @@
-
-
-
 const DiscordIcon = () => {
 
     return (
