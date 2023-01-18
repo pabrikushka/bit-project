@@ -20,6 +20,20 @@ import { animateScroll } from "react-scroll";
 
 
 const Art = () => {
+     useEffect(() => {
+    //     // as optional scroll transition solution option 2
+    //     // const interval = setInterval(() => {
+    //     //     window.scrollTo(0, 0);
+    //     //   }, 500);
+    //     //   return () => {
+    //     //     clearInterval(interval);
+    //     //   }
+    //     // as optional scroll transition solution option 3
+    //     // animateScroll.scrollTo(0);
+    
+    //document.documentElement.scrollTop || document.body.scrollTop
+    // document.documentElement.scrollTo
+      }, []);
     const transition = { duration: 1, delay: 3, ease: "easeInOut" };
     const [ref, { width }] = useMeasure();
     const line1 = "IRS declares bitcoin "
