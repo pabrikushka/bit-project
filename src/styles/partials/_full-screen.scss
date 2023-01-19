@@ -1,8 +1,14 @@
 .full-screen {
     height: 100vh;
+    width: 100vw !important;
     background: $bit-dark;
     z-index: 9999;
     .art-banner {
+        width: 100% !important;
         padding: 0 !important;
+        .art-wrapper {
+            padding: 0;
+            margin: 0;
+        }
     }
 }
