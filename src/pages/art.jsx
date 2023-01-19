@@ -268,7 +268,7 @@ const Art = () => {
         </section>
       </main>
       {isFullScreenBanner ? (
-        <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center">
+        <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center justify-content-center">
           <ArtBanner
             image={honeybadger}
             video={honeybadgerLoop}
