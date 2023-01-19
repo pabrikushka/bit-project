@@ -69,10 +69,10 @@ const Art = () => {
         <>
             <main>
                 <section>
-                    <Container className='px-xl-5 pt-5 mt-5'>
+                    <Container className='px-xl-5'>
                         <Row>
                             <Col xs={12}>
-                                <motion.header className="pb-xl-3 title-block art-title-block">
+                                <motion.header className="title-block art-title-block">
                                     <motion.div className="art-title-holder pb-4">
                                         <motion.h1 className='art-title h1-mini'
                                             initial={{
@@ -126,7 +126,7 @@ const Art = () => {
                                             <motion.div className="art-frame">
                                                 <motion.img src={honeybadger} alt="Dummy" className="art-img position-static w-100" />
                                             </motion.div>
-                                            <motion.div className="art-video-frame position-absolute top-0 left-0 w-100 h-100">
+                                            <motion.div className="art-video-frame position-absolute top-0 left-0 w-100 h-100 d-none">
                                                 <motion.video
                                                     className='art-video w-100 h-100' src={honeybadgerLoop} loop muted autoPlay="true">
                                                 </motion.video>
@@ -167,103 +167,119 @@ const Art = () => {
                                 </div>
                             </Col>
                         </Row>
-                        <Row className="art-body position-relative">
-                            <Col xs={12} lg={7} className="art-body-main">
-                                <div className="pe-xl-5">
-                                    <p className="lead mb-4 pb-2">
-                                        It’s official, bitcoin is not a currency. The Internal Revenue Service ruled in May 2014 that the Bitcoin and its rivals will be treated as property, not cash, for tax purposes.
-                                    </p>
-                                    <p>
-                                        The ruling had been expected and marked another step in the wider attempt to make bitcoin mainstream. In its notice, the IRS said bitcoin would be treated like stock or other intangible property.
-                                    </p>
-                                    <p>
-                                        "The notice provides that virtual currency is treated as property for US federal tax purposes. General tax principles that apply to property transactions apply to transactions using virtual currency," according to an IRS news release.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
-                                    <p>
-                                        The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
-                                    </p>
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                                y: 100
+                            }}
+                            animate={{
+                                opacity: 1,
+                                y: 0
+                            }}
+                            transition={{
+                                delay: 0,
+                                duration: .5,
+                                ease: "easeOut"
+                            }}
+                        >
+                            <Row className="art-body position-relative">
+                                <Col xs={12} lg={7} className="art-body-main">
+                                    <div className="pe-xl-5">
+                                        <p className="lead mb-4 pb-2">
+                                            It’s official, bitcoin is not a currency. The Internal Revenue Service ruled in May 2014 that the Bitcoin and its rivals will be treated as property, not cash, for tax purposes.
+                                        </p>
+                                        <p>
+                                            The ruling had been expected and marked another step in the wider attempt to make bitcoin mainstream. In its notice, the IRS said bitcoin would be treated like stock or other intangible property.
+                                        </p>
+                                        <p>
+                                            "The notice provides that virtual currency is treated as property for US federal tax purposes. General tax principles that apply to property transactions apply to transactions using virtual currency," according to an IRS news release.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
+                                        <p>
+                                            The ruling means gains in value will be treated as capital gains and as such could be subject to lower tax rates than income. The top long-term capital gains tax rate is 20%, while the top ordinary income tax rate is 39.6%.
+                                        </p>
 
-                                </div>
-                            </Col>
-                            <Col xs={12} lg={{ span: 12, order: 3 }}>
-                                <Row className="art-actions g-4 mt-4">
-                                    <Col xs={12} sm={6}>
-                                        <Button variant="outline-primary" className="bit-btn icon-btn d-block d-lg-inline-block" href="#">
-                                            <DeepDiveIcon />
-                                            Deep Dive
-                                        </Button>
-                                    </Col>
-                                    <Col xs={12} sm={6} lg={{ span: 5, offset: 1 }} className="ps-xl-5 px-xxl-5">
-                                        <div className="btn-holder w-100 d-lg-block ps-xl-5 px-xxl-5">
-                                            <Button variant="outline-primary" className="bit-btn icon-btn w-100" href="#">
-                                                <AnimatedArrow />
-                                                Share This
+                                    </div>
+                                </Col>
+                                <Col xs={12} lg={{ span: 12, order: 3 }}>
+                                    <Row className="art-actions g-4 mt-4">
+                                        <Col xs={12} sm={6}>
+                                            <Button variant="outline-primary" className="bit-btn icon-btn d-block d-lg-inline-block" href="#">
+                                                <DeepDiveIcon />
+                                                Deep Dive
                                             </Button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
+                                        </Col>
+                                        <Col xs={12} sm={6} lg={{ span: 5, offset: 1 }} className="ps-xl-5 px-xxl-5">
+                                            <div className="btn-holder w-100 d-lg-block ps-xl-5 px-xxl-5">
+                                                <Button variant="outline-primary" className="bit-btn icon-btn w-100" href="#">
+                                                    <AnimatedArrow />
+                                                    Share This
+                                                </Button>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
 
 
-                                <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                                    <motion.div className="art-wrapper art-tease mb-lg-5">
-                                        <div className="art-holder position-relative">
-                                            <motion.img className="art-img" src={honeybadger} alt=""></motion.img>
-                                            <FullScreenIcon />
-                                        </div>
-                                        <div className="small text-uppercase font-aeonik text-center d-lg-none">
-                                            Expand
-                                        </div>
-                                    </motion.div>
-                                    <h2 className="small font-aeonik text-light-70 text-uppercase">
-                                        Credits
-                                    </h2>
-                                    <div className="art-credits py-3 my-3">
-                                        <div className="art-credit py-1 my-1">
-                                            <h3 className="small font-aeonik text-light-70">Artist</h3>
-                                            <h4 className="p">Illtopia</h4>
-                                        </div>
-                                        <div className="art-credit py-1 my-1">
-                                            <h3 className="small font-aeonik text-light-70">Label</h3>
-                                            <h4 className="small font-aeonik text-light-70">AR Enchanced</h4>
-                                        </div>
-                                        <div className="art-credit py-1 my-1">
-                                            <h3 className="small font-aeonik text-light-70">Audio</h3>
-                                            <h4 className="p">Dj Phantom</h4>
+                                    <div className="art-credits-holder ps-xl-5 px-xxl-5">
+                                        <motion.div className="art-wrapper art-tease mb-lg-5">
+                                            <div className="art-holder position-relative">
+                                                <motion.img className="art-img" src={honeybadger} alt=""></motion.img>
+                                                <FullScreenIcon />
+                                            </div>
+                                            <div className="small text-uppercase font-aeonik text-center d-lg-none">
+                                                Expand
+                                            </div>
+                                        </motion.div>
+                                        <h2 className="small font-aeonik text-light-70 text-uppercase">
+                                            Credits
+                                        </h2>
+                                        <div className="art-credits py-3 my-3">
+                                            <div className="art-credit py-1 my-1">
+                                                <h3 className="small font-aeonik text-light-70">Artist</h3>
+                                                <h4 className="p">Illtopia</h4>
+                                            </div>
+                                            <div className="art-credit py-1 my-1">
+                                                <h3 className="small font-aeonik text-light-70">Label</h3>
+                                                <h4 className="small font-aeonik text-light-70">AR Enchanced</h4>
+                                            </div>
+                                            <div className="art-credit py-1 my-1">
+                                                <h3 className="small font-aeonik text-light-70">Audio</h3>
+                                                <h4 className="p">Dj Phantom</h4>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Col>
-                            <Col xs={12}>
+                                </Col>
+                                <Col xs={12}>
 
-                            </Col>
+                                </Col>
 
-                        </Row>
+                            </Row>
+                        </motion.div>
                     </Container>
                 </section>
                 <section className="art-slider">
