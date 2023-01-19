@@ -160,9 +160,8 @@ const Art = () => {
                             <PlayIcon />
                             <PauseIcon />
                           </Button>
-                          <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen">
+                          <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen" onClick={() => setIsFullScreenBanner(true)}>
                             <FullScreenIcon />
-                            {/* <SmallScreenIcon /> */}
                           </Button>
                         </div>
                       </motion.div>
