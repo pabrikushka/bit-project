@@ -414,7 +414,7 @@
 
 // Art Tease 
 .art-tease {
-    transition: all .4s ease-out;
+    transition: all .3s ease-out;
     position: fixed;
     overflow: hidden;
     height: auto;
@@ -448,6 +448,16 @@
         }
     }
 
+
+    // Collapsed 
+    &.collapsed {
+        transform: translateX(120%) scale(.3);
+        // max-width: 0;
+        transform-origin: right center;
+        // opacity: 0;
+        pointer-events: none;
+    }
+
     @media(min-width: 390px) {
         .art-holder {
             .art-img {
@@ -475,6 +485,7 @@
         background: transparent;
         box-shadow: none;
         border: none;
+        max-height: 20rem;
 
         .art-holder {
             overflow: hidden;
@@ -494,6 +505,14 @@
                 opacity: 0;
                 transition: all .3s ease-out;
             }
+        }
+
+        // Collapsed 
+        &.collapsed {
+            transform: none;
+            max-height: 0rem;
+            transform-origin: right center;
+            padding-bottom: 0 !important;
         }
 
         &:hover {

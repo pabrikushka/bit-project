@@ -246,7 +246,7 @@ const Art = () => {
 
 
                                     <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                                        <motion.div className="art-wrapper art-tease mb-lg-5">
+                                        <motion.div className="art-wrapper art-tease collapsed pb-lg-5">
                                             <div className="art-holder position-relative">
                                                 <motion.img className="art-img" src={honeybadger} alt=""></motion.img>
                                                 <FullScreenIcon />
