@@ -213,7 +213,7 @@ const Art = () => {
                 </Col>
                 <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
                   <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                    <motion.div className="art-wrapper art-tease mb-lg-5">
+                    <motion.div className="art-wrapper art-tease collapsed pb-lg-5">
                       <div className="art-holder position-relative">
                         <motion.img className="art-img" src={honeybadger} alt=""></motion.img>
                         <FullScreenIcon />
