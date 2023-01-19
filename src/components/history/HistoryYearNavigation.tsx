@@ -27,7 +27,7 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
   }
 
   return (
-    <nav className="history-nav pt-5">
+    <nav className="history-nav pt-3">
       <div className="history-nav-content py-4 py-md-5 mt-xl-5">
         <div className="history-nav-items ps-3 ps-md-5 pe-md-3">
           <div

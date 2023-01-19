@@ -14,7 +14,7 @@ function App() {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <SiteAlert/>
+      {/* <SiteAlert/> */}
       <NavbarWidget />
       <BrowserRouter>
         <AnimatedRoutes />

@@ -10,7 +10,7 @@
     
     .animator-holder {
         transform-origin: center center;
-        margin-top: 29.8rem;
+        margin-top: 26rem;
         position: relative;
         .animator-img {
             width: 100%;
@@ -28,6 +28,12 @@
                 flex: 0 1 20%;
                 background: $bit-dark;
             }
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .animator-holder {
+            margin-top: 27rem;
         }
     }
 }

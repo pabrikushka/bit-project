@@ -27,11 +27,6 @@ const NavbarWidget = (props: any) => {
       setVisible(true);
     }
 
-    if (currentScrollPos > 100) {
-      setMinified(true);
-    } else {
-      setMinified(false);
-    }
 
     setPrevScrollPos(currentScrollPos);
   };
@@ -52,7 +47,7 @@ const NavbarWidget = (props: any) => {
   }, [isMenuOpened]);
 
   return (
-    <nav className={`bit-nav ${visible ? "" : "shifted"} ${minified ? "minified" : ""} ${isMenuOpened ? "opened" : "collapsed"}`}>
+    <nav className={`bit-nav ${isMenuOpened ? "opened" : "collapsed"}`}>
       <Container className="nav-container px-xl-5">
         <div className="nav-content">
           <a className="navbar-brand glow-svg-hover" href="#">

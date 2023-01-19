@@ -1,15 +1,30 @@
 // History Section Title
 .title-block {
     position: relative;
+    height: 18rem;
+    margin-top: 4rem;
+    .art-details {
+        position: absolute;
+        bottom: 1rem;
+        left: 0;
+        width: 100%;
+    }
+    &.section-title {
+        border-bottom: 1px solid $bit-light-100;
+        height: auto;
+        margin-top: 2rem;
+    }
+
+
+    @include media-breakpoint-up(sm) {
+        // height: 20rem;
+    }
 
     @include media-breakpoint-up(lg) {
         border-bottom: 1px solid transparent;
-        height: calc(6rem + 10.5vw);
+        // height: calc(6rem + 10.5vw);
 
-        &.section-title {
-            border-bottom: 1px solid $bit-light-100;
-        }
-
+       
         .art-title-holder {
             overflow: hidden;
 
@@ -18,16 +33,11 @@
             }
         }
 
-        .art-details {
-            position: absolute;
-            bottom: 1rem;
-            left: 0;
-            width: 100%;
-        }
+        
     }
 
     @include media-breakpoint-up(xl) {
-        height: 15rem;
+        // height: 15rem;
     }
 }
 
@@ -45,7 +55,7 @@
 
         .history-nav-content {
             position: sticky;
-            top: 2rem;
+            top: 4rem;
             left: 0;
         }
     }
@@ -53,7 +63,8 @@
 }
 
 .history-section {
-    padding-top: 4rem;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
 }
 
 // Histroy Nav
@@ -132,6 +143,7 @@
                 left: 0;
                 top: 0;
                 height: 100%;
+                pointer-events: none;
                 width: 20rem;
                 padding-top: 1rem;
                 padding-bottom: 1rem;
@@ -204,7 +216,6 @@
     @include media-breakpoint-up(lg) {
         min-height: 18rem;
 
-        .art-holder {}
     }
 
     @include media-breakpoint-up(xl) {
@@ -307,7 +318,7 @@
 
             .art-credits-holder {
                 position: sticky;
-                top: 1rem;
+                top: 5rem;
                 left: 0;
             }
         }
