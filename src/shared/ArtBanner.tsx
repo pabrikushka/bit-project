@@ -11,7 +11,6 @@ import PauseIcon from "../assets/icons/pauseIcon";
 interface ArtBannerProps {
   image: any;
   video: any;
-  ref: any;
   isFullScreenBanner: boolean;
   setIsFullScreenBanner: any;
 }
@@ -33,12 +32,12 @@ const animaTionSettings = {
 };
 
 const ArtBanner = (props: ArtBannerProps) => {
-  const { image, video, ref, isFullScreenBanner, setIsFullScreenBanner } = props;
+  const { image, video, isFullScreenBanner, setIsFullScreenBanner } = props;
   const title = isFullScreenBanner ? "Small Screen" : "Full Screen";
 
   return (
     <>
-      <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
+      <div className="art-banner position-relative row pb-3 pb-md-4">
         <motion.div className="art-wrapper position-relative h-100 top-0">
           <motion.div className="art-holder position-relative overflow-hidden">
             <motion.div className="art-frame">

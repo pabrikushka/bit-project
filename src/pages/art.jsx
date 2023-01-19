@@ -119,7 +119,6 @@ const Art = () => {
                 <ArtBanner
                   image={honeybadger}
                   video={honeybadgerLoop}
-                  ref={ref}
                   isFullScreenBanner={false}
                   setIsFullScreenBanner={setIsFullScreenBanner}
                 />
@@ -272,7 +271,6 @@ const Art = () => {
           <ArtBanner
             image={honeybadger}
             video={honeybadgerLoop}
-            ref={ref}
             isFullScreenBanner={true}
             setIsFullScreenBanner={setIsFullScreenBanner}
           />
