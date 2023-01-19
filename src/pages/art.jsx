@@ -22,6 +22,7 @@ import ArtBanner from '../shared/ArtBanner'
 
 
 const Art = () => {
+    const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
     useEffect(() => {
         //     // as optional scroll transition solution option 2
         //     // const interval = setInterval(() => {
@@ -157,7 +158,8 @@ const Art = () => {
                                                         <PlayIcon />
                                                         <PauseIcon />
                                                     </Button>
-                                                    <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen">
+                                                    <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen"
+                                                    onClick={() => setIsFullScreenBanner(!isFullScreenBanner)}>
                                                         <FullScreenIcon />
                                                         <SmallScreenIcon />
                                                     </Button>
@@ -310,9 +312,11 @@ const Art = () => {
                 </section>
             </main>
 
-            <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center">
-                <ArtBanner image={honeybadger} video={honeybadgerLoop} ref={ref}/>
-            </div>
+            {isFullScreenBanner ?                
+                <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center">
+                    <ArtBanner image={honeybadger} video={honeybadgerLoop} ref={ref} isFullScreenBanner={isFullScreenBanner} setIsFullScreenBanner={setIsFullScreenBanner}/>
+                </div>
+            : null}
         </>
     )
 }

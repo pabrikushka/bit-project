@@ -11,11 +11,13 @@ import PauseIcon from "../assets/icons/pauseIcon";
 interface ArtBannerProps {
   image: any,
   video: any,
-  ref: any
+  ref: any,
+  isFullScreenBanner: boolean,
+  setIsFullScreenBanner: any
 }
 
 const ArtBanner = (props: ArtBannerProps) => {
-  const { image, video, ref } = props;
+  const { image, video, ref, isFullScreenBanner, setIsFullScreenBanner } = props;
 
   return (
     <>
@@ -53,7 +55,7 @@ const ArtBanner = (props: ArtBannerProps) => {
                   <PlayIcon />
                   <PauseIcon />
                 </Button>
-                <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen">
+                <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen" onClick={() => setIsFullScreenBanner(!isFullScreenBanner)}>
                   <FullScreenIcon />
                   <SmallScreenIcon />
                 </Button>
