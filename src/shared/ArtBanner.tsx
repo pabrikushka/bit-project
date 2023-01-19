@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import FullScreenIcon from "../assets/icons/fullScreenIcon";
 import SmallScreenIcon from "../assets/icons/smallScreenIcon";
 import AudioOnIcon from "../assets/icons/audioOnIcon";
@@ -9,15 +9,32 @@ import PlayIcon from "../assets/icons/playIcon";
 import PauseIcon from "../assets/icons/pauseIcon";
 
 interface ArtBannerProps {
-  image: any,
-  video: any,
-  ref: any,
-  isFullScreenBanner: boolean,
-  setIsFullScreenBanner: any
+  image: any;
+  video: any;
+  ref: any;
+  isFullScreenBanner: boolean;
+  setIsFullScreenBanner: any;
 }
+
+const animaTionSettings = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+  transition: {
+    delay: 0.3,
+    duration: 0.5,
+    ease: "easeOut",
+  },
+};
 
 const ArtBanner = (props: ArtBannerProps) => {
   const { image, video, ref, isFullScreenBanner, setIsFullScreenBanner } = props;
+  const title = isFullScreenBanner ? "Small Screen" : "Full Screen";
 
   return (
     <>
@@ -32,19 +49,9 @@ const ArtBanner = (props: ArtBannerProps) => {
             </motion.div>
             <motion.div
               className="controls-holder fader fader-bottom"
-              initial={{
-                opacity: 0,
-                y: 100,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                delay: 0.3,
-                duration: 0.5,
-                ease: "easeOut",
-              }}
+              initial={isFullScreenBanner ? false : animaTionSettings.initial}
+              animate={isFullScreenBanner ? false : animaTionSettings.animate}
+              transition={isFullScreenBanner ? undefined : animaTionSettings.transition}
             >
               <div className="controls-content d-flex align-items-center px-2 py-1">
                 <Button variant="link" href="#" className="controls-btn p-2 glow-svg-hover" title="Mute">
@@ -55,9 +62,13 @@ const ArtBanner = (props: ArtBannerProps) => {
                   <PlayIcon />
                   <PauseIcon />
                 </Button>
-                <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen" onClick={() => setIsFullScreenBanner(!isFullScreenBanner)}>
-                  <FullScreenIcon />
-                  <SmallScreenIcon />
+                <Button
+                  variant="link"
+                  className="ms-auto controls-btn p-2 glow-svg-hover"
+                  title={title}
+                  onClick={() => setIsFullScreenBanner(!isFullScreenBanner)}
+                >
+                  {isFullScreenBanner ? <SmallScreenIcon /> : <FullScreenIcon />}
                 </Button>
               </div>
             </motion.div>
