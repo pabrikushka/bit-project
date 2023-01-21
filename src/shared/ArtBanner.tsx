@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Button from "react-bootstrap/Button";
 import FullScreenIcon from "../assets/icons/fullScreenIcon";
@@ -7,6 +7,8 @@ import AudioOnIcon from "../assets/icons/audioOnIcon";
 import AudioOffIcon from "../assets/icons/audioOffIcon";
 import PlayIcon from "../assets/icons/playIcon";
 import PauseIcon from "../assets/icons/pauseIcon";
+import useFullScreenStatus from "./useFullScreenStatus";
+import { toggleBrowserFullScreen, isBrowserInFullScreen } from "./fullScreenHelper";
 
 interface ArtBannerProps {
   image: any;
@@ -33,7 +35,44 @@ const animaTionSettings = {
 
 const ArtBanner = (props: ArtBannerProps) => {
   const { image, video, isFullScreenBanner, setIsFullScreenBanner } = props;
+  // work around for browser full screen delay
+  const [isBrowserFullScreenSwitchedOn, setIsBrowserFullScreenSwitchedOn] = useState<boolean | null>(null);
   const title = isFullScreenBanner ? "Small Screen" : "Full Screen";
+
+  const isBrowserStatusFullScreen = useFullScreenStatus();
+
+  React.useEffect(() => {
+    if (isFullScreenBanner) {
+      toggleBrowserFullScreen(true);
+    }
+
+    // TODO delete interval below if fullscreen works as expected
+    // const interval = setInterval(() => {
+    //   setCanCheckIfFullScreen(isFullScreenBanner);
+    // }, 500);
+
+    return () => {
+      // clearInterval(interval);
+      if (isBrowserInFullScreen()) {
+        toggleBrowserFullScreen(false);
+      }
+    };
+  }, []);
+
+  // We need apply fullscreen second time
+  // browser comes to fullscreen with delay and not all browsers support promise
+  React.useEffect(() => {
+    if (isBrowserFullScreenSwitchedOn !== null || isBrowserStatusFullScreen) {
+      setIsBrowserFullScreenSwitchedOn(isBrowserStatusFullScreen);
+    }
+  }, [isBrowserStatusFullScreen]);
+
+  React.useEffect(() => {
+    // if browser status really not fullscreen, but banner is => we should allign
+    if (isBrowserFullScreenSwitchedOn === false && isFullScreenBanner) {
+      setIsFullScreenBanner(false);
+    }
+  }, [isBrowserFullScreenSwitchedOn]);
 
   return (
     <>

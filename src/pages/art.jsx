@@ -1,24 +1,22 @@
 import { Link } from "react-router-dom";
-import { useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMeasure } from "react-use";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import dummy from "../assets/images/dummy.jpg";
 import honeybadger from "../assets/images/honeybadger.jpg";
 import honeybadgerLoop from "../assets/videos/Honey-Badger-Loop.mp4";
 import AnimatedArrow from "../assets/icons/animatedArrow";
 import DeepDiveIcon from "../assets/icons/deepDiveIcon";
 import FullScreenIcon from "../assets/icons/fullScreenIcon";
-import SmallScreenIcon from "../assets/icons/smallScreenIcon";
 import AudioOnIcon from "../assets/icons/audioOnIcon";
 import AudioOffIcon from "../assets/icons/audioOffIcon";
 import PlayIcon from "../assets/icons/playIcon";
 import PauseIcon from "../assets/icons/pauseIcon";
-import { animateScroll } from "react-scroll";
 import ArtBanner from "../shared/ArtBanner";
+
 
 const Art = () => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
@@ -31,12 +29,17 @@ const Art = () => {
     });
   }, []);
 
+  const toogleBannerFullScreen = (isFullScreen) =>{
+    setIsFullScreenBanner(isFullScreen);
+  }
+   
   useEffect(() => {
     if (isFullScreenBanner) {
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
     } else {
       document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
     }
+    return () => document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
   }, [isFullScreenBanner]);
 
   const transition = { duration: 1, delay: 3, ease: "easeInOut" };
@@ -116,12 +119,6 @@ const Art = () => {
                 </motion.header>
               </Col>
               <Col xs={12}>
-                {/* <ArtBanner
-                  image={honeybadger}
-                  video={honeybadgerLoop}
-                  isFullScreenBanner={false}
-                  setIsFullScreenBanner={setIsFullScreenBanner}
-                /> */}
                 <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
                   <motion.div
                     className="art-wrapper position-relative h-100 top-0"
@@ -160,7 +157,7 @@ const Art = () => {
                             <PlayIcon />
                             <PauseIcon />
                           </Button>
-                          <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen" onClick={() => setIsFullScreenBanner(true)}>
+                          <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen" onClick={() => toogleBannerFullScreen(true)}>
                             <FullScreenIcon />
                           </Button>
                         </div>
@@ -318,7 +315,7 @@ const Art = () => {
             image={honeybadger}
             video={honeybadgerLoop}
             isFullScreenBanner={true}
-            setIsFullScreenBanner={setIsFullScreenBanner}
+            setIsFullScreenBanner={toogleBannerFullScreen}
           />
         </div>
       ) : null}
