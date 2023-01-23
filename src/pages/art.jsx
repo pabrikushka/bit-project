@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useMeasure } from "react-use";
 import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
@@ -15,11 +15,28 @@ import AudioOnIcon from "../assets/icons/audioOnIcon";
 import AudioOffIcon from "../assets/icons/audioOffIcon";
 import PlayIcon from "../assets/icons/playIcon";
 import PauseIcon from "../assets/icons/pauseIcon";
-import ArtBanner from "../shared/ArtBanner";
+import ArtBanner from "../shared/artBanner/ArtBanner";
+import { preloadVideo } from "../shared/artBanner/helpers"
+import { VideoLoadingStatuses, VideoStatuses } from "../shared/artBanner/types"
 
 
 const Art = () => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
+  // TODO info about video should come outside
+  const [videoContainer, setVideoContainer] = useState({
+    videoLoadingStatus: VideoLoadingStatuses.loading,
+    video: null
+  });
+
+  const loadVideo = useCallback(async () => {
+    const data = await preloadVideo();
+    setVideoContainer(data);
+  }, [])
+
+  useEffect(() => {
+    loadVideo().catch(console.error);
+  }, [loadVideo]);
+
   useEffect(() => {
     //document.documentElement.scrollTop || document.body.scrollTop
     document.documentElement.scrollTo({
@@ -27,6 +44,7 @@ const Art = () => {
       left: 0,
       behavior: "instant", // Optional if you want to skip the scrolling animation
     });
+    loadVideo().catch(console.error);
   }, []);
 
   const toogleBannerFullScreen = (isFullScreen) =>{
@@ -119,6 +137,12 @@ const Art = () => {
                 </motion.header>
               </Col>
               <Col xs={12}>
+              {/* <ArtBanner
+                image={honeybadger}
+                videoContainer={videoContainer}
+                isFullScreenBanner={false}
+                setIsFullScreenBanner={toogleBannerFullScreen}
+              /> */}
                 <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
                   <motion.div
                     className="art-wrapper position-relative h-100 top-0"
@@ -313,7 +337,7 @@ const Art = () => {
         <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center justify-content-center">
           <ArtBanner
             image={honeybadger}
-            video={honeybadgerLoop}
+            videoContainer={videoContainer}
             isFullScreenBanner={true}
             setIsFullScreenBanner={toogleBannerFullScreen}
           />
