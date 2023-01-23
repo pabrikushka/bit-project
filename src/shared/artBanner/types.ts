@@ -1,15 +1,31 @@
 export enum VideoStatuses {
-    none,
-    loading,
-    playing,
-    onPause,
-  }
-  export enum VideoLoadingStatuses {
-    loading,
-    loaded
-  }  
+  none,
+  playing,
+  onPause,
+}
+
+export enum AudioStatuses {
+  none,
+  mute,
+  unmute
+}
+
+export enum VideoLoadingStatuses {
+  loading,
+  loaded,
+}
+
+export enum AudioLoadingStatuses {
+  loading,
+  loaded,
+}
 
 export interface VideoContainer {
-    videoLoadingStatus: VideoLoadingStatuses,
-    video: any
+  videoLoadingStatus: VideoLoadingStatuses;
+  video: any;
+}
+
+export interface AudioContainer {
+  audioLoadingStatus: AudioLoadingStatuses;
+  audio: any;
 }

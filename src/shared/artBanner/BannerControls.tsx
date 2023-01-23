@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Button from "react-bootstrap/Button";
 import FullScreenIcon from "../../assets/icons/fullScreenIcon";
@@ -7,14 +7,15 @@ import AudioOnIcon from "../../assets/icons/audioOnIcon";
 import AudioOffIcon from "../../assets/icons/audioOffIcon";
 import PlayIcon from "../../assets/icons/playIcon";
 import PauseIcon from "../../assets/icons/pauseIcon";
-import { VideoStatuses } from "./types";
-
+import { VideoStatuses, AudioStatuses } from "./types";
 
 interface BannerControlsProps {
   isFullScreenBanner: boolean;
   setIsFullScreenBanner: any;
   videoStatus: VideoStatuses;
+  audioStatus: AudioStatuses;
   toggleVideo: any;
+  toggleAudio: any;
 }
 
 const animaTionSettings = {
@@ -34,11 +35,17 @@ const animaTionSettings = {
 };
 
 const BannerControls = (props: BannerControlsProps) => {
-  const { isFullScreenBanner, setIsFullScreenBanner, videoStatus, toggleVideo } = props;
+  const { isFullScreenBanner, setIsFullScreenBanner, videoStatus, toggleVideo, audioStatus, toggleAudio } = props;
+
   const fullScreenTitle = isFullScreenBanner ? "Small Screen" : "Full Screen";
+
+  const showVideoControl = videoStatus !== VideoStatuses.none;
   const showPauseButton = videoStatus === VideoStatuses.playing;
-  const showPlayButton = videoStatus === VideoStatuses.onPause;
   const videoTitle = showPauseButton ? "Pause" : "Play";
+
+  const showAudioControl = audioStatus !== AudioStatuses.none;
+  const isItMutted = audioStatus === AudioStatuses.mute;
+  const audioTitle = isItMutted ? "Unmute" : "Mute";
 
   return (
     <motion.div
@@ -48,15 +55,14 @@ const BannerControls = (props: BannerControlsProps) => {
       transition={isFullScreenBanner ? undefined : animaTionSettings.transition}
     >
       <div className="controls-content d-flex align-items-center px-2 py-1">
-        <Button variant="link" href="#" className="controls-btn p-2 glow-svg-hover" title="Mute">
-          <AudioOnIcon />
-          <AudioOffIcon />
-        </Button>
-        {showPauseButton || showPlayButton ? (
-          <Button variant="link" 
-            className="controls-btn p-2 glow-svg-hover" 
-            title={videoTitle} 
-            onClick={() => toggleVideo()}>
+        {showAudioControl ? (
+          <Button variant="link" className="controls-btn p-2 glow-svg-hover" title={audioTitle} onClick={() => toggleAudio()}>
+            {isItMutted ? <AudioOffIcon /> : <AudioOnIcon />}
+          </Button>
+        ) : null}
+
+        {showVideoControl ? (
+          <Button variant="link" className="controls-btn p-2 glow-svg-hover" title={videoTitle} onClick={() => toggleVideo()}>
             {showPauseButton ? <PauseIcon /> : <PlayIcon />}
           </Button>
         ) : null}

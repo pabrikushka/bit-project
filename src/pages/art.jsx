@@ -16,8 +16,8 @@ import AudioOffIcon from "../assets/icons/audioOffIcon";
 import PlayIcon from "../assets/icons/playIcon";
 import PauseIcon from "../assets/icons/pauseIcon";
 import ArtBanner from "../shared/artBanner/ArtBanner";
-import { preloadVideo } from "../shared/artBanner/helpers"
-import { VideoLoadingStatuses, VideoStatuses } from "../shared/artBanner/types"
+import { preloadVideo, preloadAudio } from "../shared/artBanner/helpers"
+import { VideoLoadingStatuses, AudioLoadingStatuses } from "../shared/artBanner/types"
 
 
 const Art = () => {
@@ -28,14 +28,26 @@ const Art = () => {
     video: null
   });
 
+  const [audioContainer, setAudioContainer] = useState({
+    videoLoadingStatus: AudioLoadingStatuses.loading,
+    audio: null
+  });
+
   const loadVideo = useCallback(async () => {
     const data = await preloadVideo();
     setVideoContainer(data);
+  }, [])
+  const loadAudio = useCallback(async () => {
+    const data = await preloadAudio();
+    setAudioContainer(data);
   }, [])
 
   useEffect(() => {
     loadVideo().catch(console.error);
   }, [loadVideo]);
+  useEffect(() => {
+    loadAudio().catch(console.error);
+  }, [loadAudio]);
 
   useEffect(() => {
     //document.documentElement.scrollTop || document.body.scrollTop
@@ -338,6 +350,7 @@ const Art = () => {
           <ArtBanner
             image={honeybadger}
             videoContainer={videoContainer}
+            audioContainer={audioContainer}
             isFullScreenBanner={true}
             setIsFullScreenBanner={toogleBannerFullScreen}
           />
