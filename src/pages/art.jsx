@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useMeasure } from "react-use";
 import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
@@ -7,19 +7,63 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import honeybadger from "../assets/images/honeybadger.jpg";
-import honeybadgerLoop from "../assets/videos/Honey-Badger-Loop.mp4";
 import AnimatedArrow from "../assets/icons/animatedArrow";
 import DeepDiveIcon from "../assets/icons/deepDiveIcon";
 import FullScreenIcon from "../assets/icons/fullScreenIcon";
-import AudioOnIcon from "../assets/icons/audioOnIcon";
-import AudioOffIcon from "../assets/icons/audioOffIcon";
-import PlayIcon from "../assets/icons/playIcon";
-import PauseIcon from "../assets/icons/pauseIcon";
-import ArtBanner from "../shared/ArtBanner";
-
+import ArtBanner from "../shared/artBanner/ArtBanner";
+import { preloadVideo, preloadAudio, chooseVideoStatus, chooseAudioStatus } from "../shared/artBanner/helpers";
+import BannerVideo from "../shared/artBanner/BannerVideo";
+import BannerControls from "../shared/artBanner/BannerControls";
+import BannerAudio from "../shared/artBanner/BannerAudio";
+import { AudioLoadingStatuses, AudioStatuses, VideoLoadingStatuses, VideoStatuses } from "../shared/artBanner/types";
 
 const Art = () => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
+  // TODO info about video should come outside
+  const [videoContainer, setVideoContainer] = useState({
+    videoLoadingStatus: VideoLoadingStatuses.loading,
+    video: null,
+  });
+
+  const [audioContainer, setAudioContainer] = useState({
+    videoLoadingStatus: AudioLoadingStatuses.loading,
+    audio: null,
+  });
+
+  const [videoStatus, setVideoStatus] = useState(VideoStatuses.none);
+  const [audioStatus, setAudioStatus] = useState(AudioStatuses.none);
+
+  const showVideo = videoContainer && videoContainer.videoLoadingStatus === VideoLoadingStatuses.loaded;
+  const showAudio = audioContainer && audioContainer.audioLoadingStatus === AudioLoadingStatuses.loaded;
+
+  useEffect(() => {
+    if (videoContainer) {
+      setVideoStatus(chooseVideoStatus(videoContainer.videoLoadingStatus));
+    }
+  }, [videoContainer?.videoLoadingStatus]);
+
+  useEffect(() => {
+    if (videoContainer) {
+      setAudioStatus(chooseAudioStatus(audioContainer.audioLoadingStatus));
+    }
+  }, [audioContainer?.audioLoadingStatus]);
+
+  const loadVideo = useCallback(async () => {
+    const data = await preloadVideo();
+    setVideoContainer(data);
+  }, []);
+  const loadAudio = useCallback(async () => {
+    const data = await preloadAudio();
+    setAudioContainer(data);
+  }, []);
+
+  useEffect(() => {
+    loadVideo().catch(console.error);
+  }, [loadVideo]);
+  useEffect(() => {
+    loadAudio().catch(console.error);
+  }, [loadAudio]);
+
   useEffect(() => {
     //document.documentElement.scrollTop || document.body.scrollTop
     document.documentElement.scrollTo({
@@ -27,12 +71,13 @@ const Art = () => {
       left: 0,
       behavior: "instant", // Optional if you want to skip the scrolling animation
     });
+    loadVideo().catch(console.error);
   }, []);
 
-  const toogleBannerFullScreen = (isFullScreen) =>{
+  const toogleBannerFullScreen = (isFullScreen) => {
     setIsFullScreenBanner(isFullScreen);
-  }
-   
+  };
+
   useEffect(() => {
     if (isFullScreenBanner) {
       document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
@@ -120,48 +165,21 @@ const Art = () => {
               </Col>
               <Col xs={12}>
                 <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
-                  <motion.div
-                    className="art-wrapper position-relative h-100 top-0"
-                  >
-                    <motion.div className='art-holder position-relative overflow-hidden'>
+                  <motion.div className="art-wrapper position-relative h-100 top-0">
+                    <motion.div className="art-holder position-relative overflow-hidden">
                       <motion.div className="art-frame">
                         <motion.img src={honeybadger} alt="Dummy" className="art-img position-static w-100" />
                       </motion.div>
-                      <motion.div className="art-video-frame position-absolute top-0 left-0 w-100 h-100 d-none">
-                        <motion.video
-                          className='art-video w-100 h-100' src={honeybadgerLoop} loop muted autoPlay="true">
-                        </motion.video>
-                      </motion.div>
-                      <motion.div
-                        className="controls-holder fader fader-bottom"
-                        initial={{
-                          opacity: 0,
-                          y: 100
-                        }}
-                        animate={{
-                          opacity: 1,
-                          y: 0
-                        }}
-                        transition={{
-                          delay: .3,
-                          duration: .5,
-                          ease: "easeOut"
-                        }}
-                      >
-                        <div className="controls-content d-flex align-items-center px-2 py-1">
-                          <Button variant="link" href="#" className="controls-btn p-2 glow-svg-hover" title="Mute">
-                            <AudioOnIcon />
-                            <AudioOffIcon />
-                          </Button>
-                          <Button variant="link" href="#" className="controls-btn p-2 glow-svg-hover" title="Pause">
-                            <PlayIcon />
-                            <PauseIcon />
-                          </Button>
-                          <Button variant="link" href="#" className="ms-auto controls-btn p-2 glow-svg-hover" title="Full Screen" onClick={() => toogleBannerFullScreen(true)}>
-                            <FullScreenIcon />
-                          </Button>
-                        </div>
-                      </motion.div>
+                      {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} /> : null}
+                      {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
+                      <BannerControls
+                        isFullScreenBanner={false}
+                        setIsFullScreenBanner={setIsFullScreenBanner}
+                        videoStatus={videoStatus}
+                        audioStatus={audioStatus}
+                        toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
+                        toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
+                      />
                     </motion.div>
                   </motion.div>
                 </div>
@@ -313,7 +331,8 @@ const Art = () => {
         <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center justify-content-center">
           <ArtBanner
             image={honeybadger}
-            video={honeybadgerLoop}
+            videoContainer={videoContainer}
+            audioContainer={audioContainer}
             isFullScreenBanner={true}
             setIsFullScreenBanner={toogleBannerFullScreen}
           />
