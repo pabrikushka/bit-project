@@ -21,10 +21,10 @@ const ArtBanner = (props: ArtBannerProps) => {
   // work around for browser full screen delay
   const [isBrowserFullScreenSwitchedOn, setIsBrowserFullScreenSwitchedOn] = useState<boolean | null>(null);
 
+  const isBrowserStatusFullScreen = useFullScreenStatus();
+
   const [videoStatus, setVideoStatus] = useState<VideoStatuses>(VideoStatuses.none);
   const [audioStatus, setAudioStatus] = useState<AudioStatuses>(AudioStatuses.none);
-
-  const isBrowserStatusFullScreen = useFullScreenStatus();
 
   const showVideo = videoContainer && videoContainer.videoLoadingStatus === VideoLoadingStatuses.loaded;
   const showAudio = audioContainer && audioContainer.audioLoadingStatus === AudioLoadingStatuses.loaded;
@@ -34,13 +34,7 @@ const ArtBanner = (props: ArtBannerProps) => {
       toggleBrowserFullScreen(true);
     }
 
-    // TODO delete interval below if fullscreen works as expected
-    // const interval = setInterval(() => {
-    //   setCanCheckIfFullScreen(isFullScreenBanner);
-    // }, 500);
-
     return () => {
-      // clearInterval(interval);
       if (isBrowserInFullScreen()) {
         toggleBrowserFullScreen(false);
       }
