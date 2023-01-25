@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useMeasure } from "react-use";
 import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -10,11 +9,8 @@ import honeybadger from "../assets/images/honeybadger.jpg";
 import AnimatedArrow from "../assets/icons/animatedArrow";
 import DeepDiveIcon from "../assets/icons/deepDiveIcon";
 import ArtBanner from "../components/art/artBanner/ArtBanner";
-import { preloadVideo, preloadAudio, chooseVideoStatus, chooseAudioStatus } from "../components/art/artBanner/helpers";
-import BannerVideo from "../components/art/artBanner/BannerVideo";
-import BannerControls from "../components/art/artBanner/BannerControls";
-import BannerAudio from "../components/art/artBanner/BannerAudio";
-import { AudioLoadingStatuses, AudioStatuses, VideoLoadingStatuses, VideoStatuses } from "../components/art/artBanner/types";
+import { preloadVideo, preloadAudio } from "../components/art/artBanner/helpers";
+import { AudioLoadingStatuses, VideoLoadingStatuses } from "../components/art/artBanner/types";
 import ArtBannerMini from "../components/art/ArtBannerMini";
 import useOnScreen from "../shared/useOnScreen"
 
@@ -31,24 +27,6 @@ const Art = () => {
     videoLoadingStatus: AudioLoadingStatuses.loading,
     audio: null,
   });
-
-  // const [videoStatus, setVideoStatus] = useState(VideoStatuses.none);
-  // const [audioStatus, setAudioStatus] = useState(AudioStatuses.none);
-
-  // const showVideo = videoContainer && videoContainer.videoLoadingStatus === VideoLoadingStatuses.loaded;
-  // const showAudio = audioContainer && audioContainer.audioLoadingStatus === AudioLoadingStatuses.loaded;
-
-  // useEffect(() => {
-  //   if (videoContainer) {
-  //     setVideoStatus(chooseVideoStatus(videoContainer.videoLoadingStatus));
-  //   }
-  // }, [videoContainer?.videoLoadingStatus]);
-
-  // useEffect(() => {
-  //   if (videoContainer) {
-  //     setAudioStatus(chooseAudioStatus(audioContainer.audioLoadingStatus));
-  //   }
-  // }, [audioContainer?.audioLoadingStatus]);
 
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
 
@@ -92,7 +70,6 @@ const Art = () => {
   }, [isFullScreenBanner]);
 
   const transition = { duration: 1, delay: 3, ease: "easeInOut" };
-  // const [ref, { width }] = useMeasure();
   const line1 = "IRS declares bitcoin ";
   const line2 = "be taxed as property";
   const sentence = {
@@ -177,25 +154,6 @@ const Art = () => {
                   setIsFullScreenBanner={toogleBannerFullScreen}
                 />
               </div>
-                {/* <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
-                  <motion.div className="art-wrapper position-relative h-100 top-0">
-                    <motion.div className="art-holder position-relative overflow-hidden">
-                      <motion.div className="art-frame">
-                        <motion.img src={honeybadger} alt="Dummy" className="art-img position-static w-100" />
-                      </motion.div>
-                      {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} /> : null}
-                      {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
-                      <BannerControls
-                        isFullScreenBanner={false}
-                        setIsFullScreenBanner={setIsFullScreenBanner}
-                        videoStatus={videoStatus}
-                        audioStatus={audioStatus}
-                        toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
-                        toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </div> */}
               </Col>
             </Row>
             <motion.div

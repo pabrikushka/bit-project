@@ -1,4 +1,4 @@
-import React, {  } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import FullScreenIcon from "../../assets/icons/fullScreenIcon";
 
@@ -9,17 +9,17 @@ interface ArtBannerMiniProps {
 }
 
 const ArtBannerMini = (props: ArtBannerMiniProps) => {
-  const { image, isVisible, setIsFullScreenBanner} = props;
-  const rootClass = `art-wrapper art-tease ${isVisible? '': 'collapsed'} pb-lg-5`;
+  const { image, isVisible, setIsFullScreenBanner } = props;
+  const rootClass = `art-wrapper art-tease ${isVisible ? "" : "collapsed"} pb-lg-5`;
 
   return (
     <motion.div className={rootClass}>
-    <div className="art-holder position-relative">
-      <motion.img className="art-img" src={image} alt=""></motion.img>
-      <div onClick={() => setIsFullScreenBanner()}> <FullScreenIcon /></div>
-    </div>
-    <div className="small text-uppercase font-aeonik text-center d-lg-none">Expand</div>
-  </motion.div>
+      <div className="art-holder position-relative" onClick={() => setIsFullScreenBanner()}>
+        <motion.img className="art-img" src={image} alt=""></motion.img>
+        <FullScreenIcon />
+      </div>
+      <div className="small text-uppercase font-aeonik text-center d-lg-none">Expand</div>
+    </motion.div>
   );
 };
 
