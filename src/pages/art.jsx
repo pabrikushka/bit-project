@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
-import { useMeasure } from "react-use";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -9,16 +8,15 @@ import Button from "react-bootstrap/Button";
 import honeybadger from "../assets/images/honeybadger.jpg";
 import AnimatedArrow from "../assets/icons/animatedArrow";
 import DeepDiveIcon from "../assets/icons/deepDiveIcon";
-import FullScreenIcon from "../assets/icons/fullScreenIcon";
-import ArtBanner from "../shared/artBanner/ArtBanner";
-import { preloadVideo, preloadAudio, chooseVideoStatus, chooseAudioStatus } from "../shared/artBanner/helpers";
-import BannerVideo from "../shared/artBanner/BannerVideo";
-import BannerControls from "../shared/artBanner/BannerControls";
-import BannerAudio from "../shared/artBanner/BannerAudio";
-import { AudioLoadingStatuses, AudioStatuses, VideoLoadingStatuses, VideoStatuses } from "../shared/artBanner/types";
+import ArtBanner from "../components/art/artBanner/ArtBanner";
+import { preloadVideo, preloadAudio } from "../components/art/artBanner/helpers";
+import { AudioLoadingStatuses, VideoLoadingStatuses } from "../components/art/artBanner/types";
+import ArtBannerMini from "../components/art/ArtBannerMini";
+import useOnScreen from "../shared/useOnScreen"
 
 const Art = () => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
+  const refToPageArtBanner = useRef(null);
   // TODO info about video should come outside
   const [videoContainer, setVideoContainer] = useState({
     videoLoadingStatus: VideoLoadingStatuses.loading,
@@ -30,23 +28,7 @@ const Art = () => {
     audio: null,
   });
 
-  const [videoStatus, setVideoStatus] = useState(VideoStatuses.none);
-  const [audioStatus, setAudioStatus] = useState(AudioStatuses.none);
-
-  const showVideo = videoContainer && videoContainer.videoLoadingStatus === VideoLoadingStatuses.loaded;
-  const showAudio = audioContainer && audioContainer.audioLoadingStatus === AudioLoadingStatuses.loaded;
-
-  useEffect(() => {
-    if (videoContainer) {
-      setVideoStatus(chooseVideoStatus(videoContainer.videoLoadingStatus));
-    }
-  }, [videoContainer?.videoLoadingStatus]);
-
-  useEffect(() => {
-    if (videoContainer) {
-      setAudioStatus(chooseAudioStatus(audioContainer.audioLoadingStatus));
-    }
-  }, [audioContainer?.audioLoadingStatus]);
+  const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
 
   const loadVideo = useCallback(async () => {
     const data = await preloadVideo();
@@ -88,7 +70,6 @@ const Art = () => {
   }, [isFullScreenBanner]);
 
   const transition = { duration: 1, delay: 3, ease: "easeInOut" };
-  const [ref, { width }] = useMeasure();
   const line1 = "IRS declares bitcoin ";
   const line2 = "be taxed as property";
   const sentence = {
@@ -164,25 +145,15 @@ const Art = () => {
                 </motion.header>
               </Col>
               <Col xs={12}>
-                <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
-                  <motion.div className="art-wrapper position-relative h-100 top-0">
-                    <motion.div className="art-holder position-relative overflow-hidden">
-                      <motion.div className="art-frame">
-                        <motion.img src={honeybadger} alt="Dummy" className="art-img position-static w-100" />
-                      </motion.div>
-                      {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} /> : null}
-                      {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
-                      <BannerControls
-                        isFullScreenBanner={false}
-                        setIsFullScreenBanner={setIsFullScreenBanner}
-                        videoStatus={videoStatus}
-                        audioStatus={audioStatus}
-                        toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
-                        toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </div>
+              <div ref={refToPageArtBanner}>
+                <ArtBanner
+                  image={honeybadger}
+                  videoContainer={videoContainer}
+                  audioContainer={audioContainer}
+                  isFullScreenBanner={false}
+                  setIsFullScreenBanner={toogleBannerFullScreen}
+                />
+              </div>
               </Col>
             </Row>
             <motion.div
@@ -273,13 +244,11 @@ const Art = () => {
                 </Col>
                 <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
                   <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                    <motion.div className="art-wrapper art-tease collapsed pb-lg-5">
-                      <div className="art-holder position-relative">
-                        <motion.img className="art-img" src={honeybadger} alt=""></motion.img>
-                        <FullScreenIcon />
-                      </div>
-                      <div className="small text-uppercase font-aeonik text-center d-lg-none">Expand</div>
-                    </motion.div>
+                    <ArtBannerMini 
+                      image={honeybadger} 
+                      isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
+                      setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
+                    />
                     <h2 className="small font-aeonik text-light-70 text-uppercase">Credits</h2>
                     <div className="art-credits py-3 my-3">
                       <div className="art-credit py-1 my-1">
