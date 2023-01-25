@@ -1,6 +1,6 @@
 import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "./types";
-import honeybadgerLoop from "../../assets/videos/Honey-Badger-Loop.mp4";
-import test500kb from "../../assets/audio/test500kb.mp3";
+import honeybadgerLoop from "../../../assets/videos/Honey-Badger-Loop.mp4";
+import test500kb from "../../../assets/audio/test500kb.mp3";
 
 
 const preloadVideo = async (): Promise<VideoContainer> =>{

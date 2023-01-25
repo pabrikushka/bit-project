@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import useFullScreenStatus from "../useFullScreenStatus";
-import { toggleBrowserFullScreen, isBrowserInFullScreen } from "../fullScreenHelper";
+import useFullScreenStatus from "../../../shared/useFullScreenStatus";
+import { toggleBrowserFullScreen, isBrowserInFullScreen } from "../../../shared/fullScreenHelper";
 import BannerVideo from "./BannerVideo";
 import BannerControls from "./BannerControls";
 import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "./types";
 import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
+import { useMeasure } from "react-use";
 
 interface ArtBannerProps {
   image: any;
@@ -68,9 +69,13 @@ const ArtBanner = (props: ArtBannerProps) => {
     }
   }, [audioContainer?.audioLoadingStatus]);
 
+  const [ref] = useMeasure();
+
   return (
     <>
-      <div className="art-banner position-relative row pb-3 pb-md-4">
+    {/* 
+      // @ts-ignore */}
+      <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
         <motion.div className="art-wrapper position-relative h-100 top-0">
           <motion.div className="art-holder position-relative overflow-hidden">
             <motion.div className="art-frame">

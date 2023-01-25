@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Button from "react-bootstrap/Button";
-import FullScreenIcon from "../../assets/icons/fullScreenIcon";
-import SmallScreenIcon from "../../assets/icons/smallScreenIcon";
-import AudioOnIcon from "../../assets/icons/audioOnIcon";
-import AudioOffIcon from "../../assets/icons/audioOffIcon";
-import PlayIcon from "../../assets/icons/playIcon";
-import PauseIcon from "../../assets/icons/pauseIcon";
+import FullScreenIcon from "../../../assets/icons/fullScreenIcon";
+import SmallScreenIcon from "../../../assets/icons/smallScreenIcon";
+import AudioOnIcon from "../../../assets/icons/audioOnIcon";
+import AudioOffIcon from "../../../assets/icons/audioOffIcon";
+import PlayIcon from "../../../assets/icons/playIcon";
+import PauseIcon from "../../../assets/icons/pauseIcon";
 import { VideoStatuses, AudioStatuses } from "./types";
 
 interface BannerControlsProps {
