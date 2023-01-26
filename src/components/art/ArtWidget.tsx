@@ -16,7 +16,7 @@ import ArtBannerMini from "./ArtBannerMini";
 import ArtHeader from "./ArtHeader";
 import ArtBody from "./ArtBody";
 import ArtCredits from "./ArtCredits";
-import ArtSlider from "./ArtSlider";
+import ArtSlider from "./artSlider/ArtSlider";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);

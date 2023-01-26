@@ -1,9 +1,11 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import honeybadger from "../../assets/images/honeybadger.jpg";
 import { Link } from "react-router-dom";
+import ArtSlide from "./ArtSlide";
 
 interface ArtSliderProps {}
 
@@ -12,6 +14,19 @@ const ArtSlider = (props: ArtSliderProps) => {
     <section className="art-slider">
       <Container className="px-xl-5">
         <Row className="g-0">
+          <Swiper
+            className="mySwiper"
+            // spaceBetween={50}
+            // slidesPerView={3}
+            // onSlideChange={() => console.log('slide change')}
+            // onSwiper={(swiper) => console.log(swiper)}
+          >
+            <ArtSlide />
+            <ArtSlide />
+            <ArtSlide />
+          </Swiper>
+        </Row>
+        {/* <Row className="g-0">
           <Col xs={12} lg={6}>
             <Link className="art-card slider-card" to={""}>
               <div className="art-card-content d-sm-flex">
@@ -30,7 +45,7 @@ const ArtSlider = (props: ArtSliderProps) => {
               </div>
             </Link>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </section>
   );
