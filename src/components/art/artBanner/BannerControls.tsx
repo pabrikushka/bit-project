@@ -7,7 +7,7 @@ import AudioOnIcon from "../../../assets/icons/audioOnIcon";
 import AudioOffIcon from "../../../assets/icons/audioOffIcon";
 import PlayIcon from "../../../assets/icons/playIcon";
 import PauseIcon from "../../../assets/icons/pauseIcon";
-import { VideoStatuses, AudioStatuses } from "./types";
+import { VideoStatuses, AudioStatuses } from "../types";
 
 interface BannerControlsProps {
   isFullScreenBanner: boolean;

@@ -4,7 +4,7 @@ import useFullScreenStatus from "../../../shared/useFullScreenStatus";
 import { toggleBrowserFullScreen, isBrowserInFullScreen } from "../../../shared/fullScreenHelper";
 import BannerVideo from "./BannerVideo";
 import BannerControls from "./BannerControls";
-import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "./types";
+import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "../types";
 import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";

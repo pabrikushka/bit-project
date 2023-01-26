@@ -8,7 +8,7 @@ import AudioOffIcon from "../../../assets/icons/audioOffIcon";
 import PlayIcon from "../../../assets/icons/playIcon";
 import PauseIcon from "../../../assets/icons/pauseIcon";
 import useFullScreenStatus from "../../../shared/useFullScreenStatus";
-import { VideoStatuses } from "./types";
+import { VideoStatuses } from "../types";
 
 interface BannerVideoProps {
   video: any;

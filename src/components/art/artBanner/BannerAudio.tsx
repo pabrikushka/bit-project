@@ -1,6 +1,6 @@
 import React, {  } from "react";
 import { motion } from "framer-motion";
-import { AudioStatuses } from "./types";
+import { AudioStatuses } from "../types";
 
 interface BannerAudioProps {
   audio: any;
