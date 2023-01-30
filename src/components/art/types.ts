@@ -29,3 +29,11 @@ export interface AudioContainer {
   audioLoadingStatus: AudioLoadingStatuses;
   audio: any;
 }
+
+export interface ArtSlideData {
+    id: string,
+    image: any,
+    description: string,
+    dateStr: string,
+    priceStr: string
+}
