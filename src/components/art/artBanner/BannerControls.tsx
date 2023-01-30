@@ -18,7 +18,7 @@ interface BannerControlsProps {
   toggleAudio: any;
 }
 
-const animaTionSettings = {
+const animationSettings = {
   initial: {
     opacity: 0,
     y: 100,
@@ -50,9 +50,9 @@ const BannerControls = (props: BannerControlsProps) => {
   return (
     <motion.div
       className="controls-holder fader fader-bottom"
-      initial={isFullScreenBanner ? false : animaTionSettings.initial}
-      animate={isFullScreenBanner ? false : animaTionSettings.animate}
-      transition={isFullScreenBanner ? undefined : animaTionSettings.transition}
+      initial={isFullScreenBanner ? false : animationSettings.initial}
+      animate={isFullScreenBanner ? false : animationSettings.animate}
+      transition={isFullScreenBanner ? undefined : animationSettings.transition}
     >
       <div className="controls-content d-flex align-items-center px-2 py-1">
         {showAudioControl ? (

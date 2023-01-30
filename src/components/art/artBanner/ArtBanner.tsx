@@ -73,7 +73,7 @@ const ArtBanner = (props: ArtBannerProps) => {
 
   return (
     <>
-    {/* 
+      {/* 
       // @ts-ignore */}
       <div className="art-banner position-relative row pb-3 pb-md-4" ref={ref}>
         <motion.div className="art-wrapper position-relative h-100 top-0">
@@ -81,7 +81,7 @@ const ArtBanner = (props: ArtBannerProps) => {
             <motion.div className="art-frame">
               <motion.img src={image} alt="Dummy" className="art-img position-static w-100" />
             </motion.div>
-            {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} /> : null}
+            {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} /> : null}
             {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
             <BannerControls
               isFullScreenBanner={isFullScreenBanner}
