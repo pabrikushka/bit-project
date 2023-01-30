@@ -1,5 +1,6 @@
-import { AudioContainer, AudioLoadingStatuses, VideoContainer, VideoLoadingStatuses } from "./types";
+import { ArtSlideData, AudioContainer, AudioLoadingStatuses, VideoContainer, VideoLoadingStatuses } from "./types";
 import honeybadgerLoop from "../../assets/videos/Honey-Badger-Loop.mp4";
+import honeybadger from "../../assets/images/honeybadger.jpg";
 import test500kb from "../../assets/audio/test500kb.mp3";
 
 const artBodyAnimationSettings = {
@@ -34,4 +35,30 @@ const preloadAudio = async (): Promise<AudioContainer> => {
   };
 };
 
-export { preloadVideo, preloadAudio, artBodyAnimationSettings };
+const prepareArtSlides = (): ArtSlideData[] => {
+  return [
+    {
+      id: "1",
+      image: honeybadger,
+      description: "IRS declares bitcoin be taxed as property",
+      dateStr: "March 25, 2014",
+      priceStr: "1BTC:$438.89",
+    },
+    {
+      id: "2",
+      image: honeybadger,
+      description: "Second slide",
+      dateStr: "March 25, 2015",
+      priceStr: "1BTC:$538.89",
+    },
+    {
+      id: "3",
+      image: honeybadger,
+      description: "One more slide",
+      dateStr: "March 30, 2014",
+      priceStr: "1BTC:$638.89",
+    },
+  ];
+};
+
+export { preloadVideo, preloadAudio, artBodyAnimationSettings, prepareArtSlides };

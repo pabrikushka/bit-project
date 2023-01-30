@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import honeybadger from "../../assets/images/honeybadger.jpg";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
 import Button from "react-bootstrap/Button";
-import { artBodyAnimationSettings, preloadAudio, preloadVideo } from "./helpers";
+import { artBodyAnimationSettings, preloadAudio, preloadVideo, prepareArtSlides } from "./helpers";
 import useOnScreen from "../../shared/useOnScreen";
 import { AudioContainer, AudioLoadingStatuses, VideoContainer, VideoLoadingStatuses } from "./types";
 import ArtBanner from "./artBanner/ArtBanner";
@@ -16,7 +16,7 @@ import ArtBannerMini from "./ArtBannerMini";
 import ArtHeader from "./ArtHeader";
 import ArtBody from "./ArtBody";
 import ArtCredits from "./ArtCredits";
-import ArtSlider from "./ArtSlider";
+import ArtSlider from "./artSlider/ArtSlider";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
@@ -73,7 +73,6 @@ const ArtWidget = (props: any) => {
     }
     return () => document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
   }, [isFullScreenBanner]);
-
   return (
     <>
       <main>
@@ -137,7 +136,7 @@ const ArtWidget = (props: any) => {
             </motion.div>
           </Container>
         </section>
-        <ArtSlider />
+        <ArtSlider slides={prepareArtSlides()}/>
       </main>
       {isFullScreenBanner ? (
         <div className="full-screen position-fixed w-100 top-0 left-0 d-flex align-items-center justify-content-center">
