@@ -2,7 +2,7 @@ const FullScreenIcon = () => {
 
     return (
         <svg version="1.1" className="icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 30 30" enable-background="new 0 0 30 30" xmlSpace="preserve">
+            viewBox="0 0 30 30" enableBackground="new 0 0 30 30" xmlSpace="preserve">
             <g>
                 <polygon fill="#FFFFFF" points="5.8,10 4.2,10 4.2,4.2 10,4.2 10,5.8 5.8,5.8 	" />
             </g>

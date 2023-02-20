@@ -1,6 +1,7 @@
 body {
     background: $bit-dark;
     color: $bit-light-100;
+    // overflow: hidden;
 }
 
 main {
@@ -16,4 +17,10 @@ main {
 .overview-section {
     position: relative;
     z-index: 5;
+}
+
+.separator {
+    width: 6rem;
+    height: 2px;
+    background: $bit-light-100;
 }
