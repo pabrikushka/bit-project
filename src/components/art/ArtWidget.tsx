@@ -328,7 +328,7 @@ const ArtWidget = (props: any) => {
                     <Col xs={12} sm={6}>
                       <Button variant="outline-primary" className="bit-btn icon-btn d-block d-lg-inline-block" href="#">
                         <DeepDiveIcon />
-                        Deep Dive
+                        Read More
                       </Button>
                     </Col>
                     <Col xs={12} sm={6} lg={{ span: 5, offset: 1 }} className="ps-xl-5 px-xxl-5">
