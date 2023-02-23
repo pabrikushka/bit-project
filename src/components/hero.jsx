@@ -52,7 +52,7 @@ const Hero = () => {
                         // x: moveX,
                         // y: moveY,
                     }}
-                    className='hero-video' src={Mona} loop muted autoPlay="true">
+                    className='hero-video' src={Mona} loop muted autoPlay={true}>
 
                     </motion.video>
             </motion.div>

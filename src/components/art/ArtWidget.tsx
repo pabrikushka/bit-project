@@ -5,13 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import honeybadger from "../../assets/images/honeybadger.jpg";
-import fellas from "../../assets/images/fellas.jpg";
-import avatar from "../../assets/images/avatar.jpg";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
-import SoundcloudIcon from "../../assets/icons/soundcloud";
-import ApplemusicIcon from "../../assets/icons/applemusic";
-import SpotifyIcon from "../../assets/icons/spotify";
-import CloseIcon from "../../assets/icons/close";
 import Button from "react-bootstrap/Button";
 import { artBodyAnimationSettings, preloadAudio, preloadVideo, prepareArtSlides } from "./helpers";
 import useOnScreen from "../../shared/useOnScreen";
@@ -23,7 +17,6 @@ import ArtHeader from "./ArtHeader";
 import ArtBody from "./ArtBody";
 import ArtCredits from "./ArtCredits";
 import ArtSlider from "./artSlider/ArtSlider";
-import useMouse from "@react-hook/mouse-position";
 import ArtistModal from "./artistModal/ArtistModal";
 
 const ArtWidget = (props: any) => {
@@ -82,7 +75,6 @@ const ArtWidget = (props: any) => {
     }
     return () => document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
   }, [isFullScreenBanner, isModal]);
-
 
   return (
     <>
@@ -160,7 +152,6 @@ const ArtWidget = (props: any) => {
           />
         </div>
       ) : null}
-
       <AnimatePresence mode="wait">{isModal ? <ArtistModal closeModal={() => setIsModal(false)} /> : null}</AnimatePresence>
     </>
   );
