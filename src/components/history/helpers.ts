@@ -1,8 +1,60 @@
 import { AnimationControls } from "framer-motion";
-import { IHistoryData, IHistoryEvent, IHistoryGroup, IHistoryItem } from "./types";
+import { IHistoryEvent, IHistoryGroup, IHistoryItem, IMediaAsset } from "./types";
 import dummy2 from '../../assets/images/dummy2.jpg';
 import honeybadger from '../../assets/images/honeybadger.jpg';
+import _ from "lodash";
 
+// TODO del me
+const mockHistory = [
+    {
+        id: '1500',
+        year: 2015,
+        events: [
+            {
+                imageSrc: honeybadger  
+            },
+            {
+                imageSrc: honeybadger   
+            }
+        ]
+    },
+    {
+        id: '16',
+        year: 2016,
+        events: [
+            {
+                imageSrc: honeybadger  
+            },
+            {
+                imageSrc: honeybadger   
+            }
+        ]
+    },
+    {
+        id: '1717',
+        year: 2017,
+        events: [
+            {
+                imageSrc: honeybadger  
+            },
+            {
+                imageSrc: honeybadger   
+            }
+        ]
+    },
+    {
+        id: '18',
+        year: 2018,
+        events: [
+            {
+                imageSrc: honeybadger  
+            },
+            {
+                imageSrc: dummy2  
+            }
+        ]
+    }
+];
 
 const createDetailsMotion = (isMobile: boolean): any => {
     if (isMobile) return {};
@@ -153,7 +205,7 @@ const prepareHistoryItemData = (
     artHolderAnimation: AnimationControls,
     artImgAnimation: AnimationControls,
     isMobile: boolean,
-    imageSrc: any
+    historyEvent: IHistoryEvent
 ): IHistoryItem => {
     return {
         fadeOut: createFadeOut(isMobile),
@@ -165,14 +217,14 @@ const prepareHistoryItemData = (
         artHolderMotion: createArtHolderMotion(isMobile),
         ctaMotion: createCTAMotion(isMobile),
         hideBorder: createHideBorder(isMobile),
-        imageSrc: imageSrc,
+        historyEvent: historyEvent,
         isMobile: isMobile
     }
 }
 
 
 const prepareHistoryGroupData = (
-    id: number,
+    id: string,
     year: number,
     historyEvents: IHistoryEvent[],
     artHolderAnimation: AnimationControls,
@@ -181,11 +233,11 @@ const prepareHistoryGroupData = (
     ): IHistoryGroup =>{
         const groupFadeOut = createFadeOut(isMobile);
         const historyItems = historyEvents.map(
-            (data: any) => prepareHistoryItemData(
+            (historyEvent: IHistoryEvent) => prepareHistoryItemData(
                 artHolderAnimation,
                 artImgAnimation,
                 isMobile,
-                data.imageSrc
+                historyEvent
             )
         )
         return {
@@ -196,59 +248,68 @@ const prepareHistoryGroupData = (
         }  
 }
 
-const getDataForHistory = (): IHistoryData[] =>{
-    return [
-        {
-            id: 15,
-            year: 2015,
-            events: [
-                {
-                    imageSrc: honeybadger  
-                },
-                {
-                    imageSrc: honeybadger   
-                }
-            ]
-        },
-        {
-            id: 16,
-            year: 2016,
-            events: [
-                {
-                    imageSrc: honeybadger  
-                },
-                {
-                    imageSrc: honeybadger   
-                }
-            ]
-        },
-        {
-            id: 17,
-            year: 2017,
-            events: [
-                {
-                    imageSrc: honeybadger  
-                },
-                {
-                    imageSrc: honeybadger   
-                }
-            ]
-        },
-        {
-            id: 18,
-            year: 2018,
-            events: [
-                {
-                    imageSrc: honeybadger  
-                },
-                {
-                    imageSrc: dummy2  
-                }
-            ]
-        }
-    ]
+// const artItemToIHistoryData = (artItem: any): IHistoryData =>{
+//     return {
+//         id: artItem.sys.id,
+//         year: 2013,
+//         events:[]
+//     }
+// }
+
+const toMediaAsset = (mediaData: any): IMediaAsset | null  => {
+    return  mediaData?
+    {
+        title: mediaData.title,
+        url: mediaData.url
+    }: null;
 }
 
+const artItemToIHistoryEvent = (artItem: any): IHistoryEvent =>{
+    const eventDate = new Date(artItem.eventDate);
+    const {title, btcPrice, overview} = artItem;
+    return {
+        id: artItem.sys.id,
+        year: eventDate.getFullYear(),
+        title, btcPrice, overview,
+        eventDate,
+        mainImage: toMediaAsset(artItem.mainImage),
+        thumbnail: toMediaAsset(artItem.thumbnail),
+        audio: toMediaAsset(artItem.mainImage),
+        video: toMediaAsset(artItem.mainImage)
+    }
+}
+
+const getDataForHistory = (
+    queryData: any,
+    artHolderAnimation: AnimationControls,
+    artImgAnimation: AnimationControls,
+    isMobile: boolean,
+    ): IHistoryGroup[] =>{
+    // if(!queryData) return mockHistory;
+    const historyEvents = queryData.artsCollection.items.map(artItemToIHistoryEvent);
+    const groupedHistoryEvents = _.groupBy(historyEvents, "year");
+    console.log('groupedHistoryEvents', groupedHistoryEvents);
+    // const historyGroupData: IHistoryGroup[] = [];
+
+    const historyGroupData = _.toPairs<[string, IHistoryEvent[]][]>(groupedHistoryEvents)
+    .map(
+        (pair) => { 
+            return prepareHistoryGroupData(
+                        `gp${pair[0]}`,
+                        Number(pair[0]),
+                        pair[1] as unknown as IHistoryEvent[],
+                        artHolderAnimation,
+                        artImgAnimation,
+                        isMobile,
+                        );
+                    }
+    );
+
+    return historyGroupData;//[...artItems, ...mockHistory]
+}
+
+const yearToShortYear = (year: number): string =>
+    year.toString().slice(-2).padStart(2, "0");
 
 
-export { prepareHistoryGroupData, getDataForHistory, createCenterArt };
+export { prepareHistoryGroupData, getDataForHistory, createCenterArt, yearToShortYear };

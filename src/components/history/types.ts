@@ -1,3 +1,4 @@
+import { Serializable } from "child_process";
 import { AnimationControls } from "framer-motion";
 
 export interface IHistoryItem {
@@ -10,24 +11,38 @@ export interface IHistoryItem {
   artHolderMotion: any;
   ctaMotion: any;
   hideBorder: any;
-  imageSrc: any;
+  historyEvent: IHistoryEvent;
   isMobile: boolean;
 }
 
 export interface IHistoryGroup {
-  id: number,
+  id: string,
   year: number,
   historyItems: IHistoryItem[],
   groupFadeOut: any,
 }
 
 export interface IHistoryEvent {
-  imageSrc: any
+  id: string,
+  title: string,
+  year: number,
+  eventDate: Date,
+  overview: string,
+  btcPrice: number,
+  mainImage: IMediaAsset | null,
+  thumbnail: IMediaAsset | null,
+  audio: IMediaAsset | null,
+  video: IMediaAsset | null
 }
 
-export interface IHistoryData {
-  id: number,
-  year: number,
-  events: IHistoryEvent[]
+export interface IMediaAsset {
+  title: string,
+  url: string
 }
+
+// export interface IHistoryData {
+//   id: string,
+//   year: number,
+//   events: IHistoryEvent[]
+// }
 
