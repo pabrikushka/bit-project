@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import useWindowParams from "../../shared/useWindowParams";
 import HistoryGroup from "./HistoryGroup";
 import { IHistoryGroup } from "./types";
-import { getDataForHistory, prepareHistoryGroupData } from "./helpers";
+import { createHistoryGroups } from "./helpers";
 import HistoryYearNavigation from "./HistoryYearNavigation";
 import honeybadger from "../../assets/images/honeybadger.jpg";
 import TransitAnimator from "../../shared/TransitAnimator";
@@ -46,21 +46,10 @@ const HistoryWidget = (props: any) => {
   };
 
   useEffect(() => {
-    console.log(queryData);
     if(queryData){
-      const newHistoryGroups = getDataForHistory(queryData, artHolderAnimation, artImgAnimation, isMobile);
-      // dataForHistory.map(
-      //   (data: IHistoryData) => prepareHistoryGroupData(
-      //     data.id,
-      //     data.year,
-      //     data.events,
-      //     artHolderAnimation,
-      //     artImgAnimation,
-      //     isMobile,
-      //   )
-      // )
+      console.log('queryData', queryData);
+      const newHistoryGroups = createHistoryGroups(queryData, artHolderAnimation, artImgAnimation, isMobile);
       setHistoryGroups(newHistoryGroups);
-      console.log("newHistoryGroups", newHistoryGroups);
     }
   }, [isMobile, queryData]);
 
@@ -90,8 +79,8 @@ const HistoryWidget = (props: any) => {
           <Row>
             <Col xs={12} className="history-wrapper">
               <div className="history-holder overflow-hidden">
-                {historyGroups.map((groupData: IHistoryGroup) => (
-                  <HistoryGroup groupData={groupData} key={`historuGroupId${groupData.id}`} />
+                {historyGroups.map((group: IHistoryGroup) => (
+                  <HistoryGroup groupData={group} key={group.id} />
                 ))}
               </div>
               <HistoryYearNavigation historyGroups={historyGroups} />

@@ -10,8 +10,6 @@ interface HistoryItemPictureProps {
 const HistoryItemPicture = (props: HistoryItemPictureProps) => {
   const { resetArt, fadeOut, artHolderAnimation, artImgAnimation, artHolderMotion, historyEvent, isMobile } = props.itemData;
 
-  
-
   const pictureContainerRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const isInView = useInView(pictureContainerRef);
 
@@ -29,28 +27,29 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
     }
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isInView, isMobile]);
-  if(!historyEvent.mainImage) return <div></div>;
+  if (!historyEvent.mainImage) return <div></div>;
   return (
     <motion.div
       ref={pictureContainerRef}
       // exit={fadeOut}
-      className="art-wrapper col-xs-12 col-lg-4 order-md-3 col-xl-5">
+      className="art-wrapper col-xs-12 col-lg-4 order-md-3 col-xl-5"
+    >
       <motion.div
         // exit={resetArt}
         className="art-holder"
-      // animate={artHolderAnimation}
+        // animate={artHolderAnimation}
       >
         <motion.div
           // exit={resetArt}
           className="art-frame"
-        // variants={artHolderMotion}
+          // variants={artHolderMotion}
         >
           <motion.img
             // exit={resetArt}
             src={historyEvent.mainImage.url}
             alt={historyEvent.mainImage.title}
             className="art-img"
-          // animate={artImgAnimation}
+            // animate={artImgAnimation}
           />
         </motion.div>
       </motion.div>
