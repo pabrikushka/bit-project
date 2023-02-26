@@ -4,7 +4,7 @@ import FullScreenIcon from "../../assets/icons/fullScreenIcon";
 import { IMediaAsset } from "../../shared/types";
 
 interface ArtBannerMiniProps {
-  image: IMediaAsset | null;
+  image: IMediaAsset | null | undefined;
   isVisible: boolean;
   setIsFullScreenBanner: any;
 }

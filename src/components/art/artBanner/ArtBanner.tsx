@@ -4,14 +4,14 @@ import useFullScreenStatus from "../../../shared/useFullScreenStatus";
 import { toggleBrowserFullScreen, isBrowserInFullScreen } from "../../../shared/fullScreenHelper";
 import BannerVideo from "./BannerVideo";
 import BannerControls from "./BannerControls";
-import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "../types";
+import { AudioContainer, AudioStatuses, VideoContainer, VideoStatuses } from "../types";
 import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";
 import { IMediaAsset } from "../../../shared/types";
 
 interface ArtBannerProps {
-  image: IMediaAsset | null;
+  image: IMediaAsset | null | undefined;
   videoContainerState:  [VideoContainer, React.Dispatch<React.SetStateAction<VideoContainer>>];
   audioContainerState: [AudioContainer, React.Dispatch<React.SetStateAction<AudioContainer>>];
   isFullScreenBanner: boolean;
