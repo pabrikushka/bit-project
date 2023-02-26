@@ -9,6 +9,7 @@ import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";
 import { IMediaAsset } from "../../../shared/types";
+// import honeybadger from "../../../assets/images/honeybadger.jpg";
 
 interface ArtBannerProps {
   image: IMediaAsset | null | undefined;
@@ -67,8 +68,6 @@ const ArtBanner = (props: ArtBannerProps) => {
   }, [audioContainer.audioLoadingStatus]);
 
   const [ref] = useMeasure();
-
-  if(!image) return null;
 
   return (
     <>
