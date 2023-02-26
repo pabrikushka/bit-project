@@ -24,12 +24,12 @@ export enum AudioLoadingStatuses {
 
 export interface VideoContainer {
   videoLoadingStatus: VideoLoadingStatuses;
-  video: any;
+  video: IMediaAsset | null;
 }
 
 export interface AudioContainer {
   audioLoadingStatus: AudioLoadingStatuses;
-  audio: any;
+  audio: IMediaAsset | null;
 }
 
 export interface ArtSlideData {

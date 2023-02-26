@@ -12,14 +12,14 @@ import { IMediaAsset } from "../../../shared/types";
 
 interface ArtBannerProps {
   image: IMediaAsset | null;
-  videoContainer: VideoContainer;
-  audioContainer: AudioContainer;
+  videoContainerState:  [VideoContainer, React.Dispatch<React.SetStateAction<VideoContainer>>];
+  audioContainerState: [AudioContainer, React.Dispatch<React.SetStateAction<AudioContainer>>];
   isFullScreenBanner: boolean;
   setIsFullScreenBanner: any;
 }
 
 const ArtBanner = (props: ArtBannerProps) => {
-  const { image, videoContainer, isFullScreenBanner, setIsFullScreenBanner, audioContainer } = props;
+  const { image, videoContainerState, isFullScreenBanner, setIsFullScreenBanner, audioContainerState } = props;
   // work around for browser full screen delay
   const [isBrowserFullScreenSwitchedOn, setIsBrowserFullScreenSwitchedOn] = useState<boolean | null>(null);
 
@@ -28,8 +28,8 @@ const ArtBanner = (props: ArtBannerProps) => {
   const [videoStatus, setVideoStatus] = useState<VideoStatuses>(VideoStatuses.none);
   const [audioStatus, setAudioStatus] = useState<AudioStatuses>(AudioStatuses.none);
 
-  const showVideo = videoContainer && videoContainer.videoLoadingStatus === VideoLoadingStatuses.loaded;
-  const showAudio = audioContainer && audioContainer.audioLoadingStatus === AudioLoadingStatuses.loaded;
+  const [videoContainer] = videoContainerState;
+  const [audioContainer] = audioContainerState;
 
   React.useEffect(() => {
     if (isFullScreenBanner) {
@@ -59,16 +59,12 @@ const ArtBanner = (props: ArtBannerProps) => {
   }, [isBrowserFullScreenSwitchedOn]);
 
   React.useEffect(() => {
-    if (videoContainer) {
-      setVideoStatus(chooseVideoStatus(videoContainer!.videoLoadingStatus));
-    }
-  }, [videoContainer?.videoLoadingStatus]);
+      setVideoStatus(chooseVideoStatus(videoContainer.videoLoadingStatus));
+  }, [videoContainer.videoLoadingStatus]);
 
   React.useEffect(() => {
-    if (videoContainer) {
-      setAudioStatus(chooseAudioStatus(audioContainer!.audioLoadingStatus));
-    }
-  }, [audioContainer?.audioLoadingStatus]);
+      setAudioStatus(chooseAudioStatus(audioContainer.audioLoadingStatus));
+  }, [audioContainer.audioLoadingStatus]);
 
   const [ref] = useMeasure();
 
@@ -84,8 +80,8 @@ const ArtBanner = (props: ArtBannerProps) => {
             <motion.div className="art-frame">
               <motion.img src={image?.url} alt={image?.title} className="art-img position-static w-100" />
             </motion.div>
-            {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} /> : null}
-            {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
+            <BannerVideo videoContainerState={videoContainerState} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} />
+            <BannerAudio audioContainerState={audioContainerState} audioStatus={audioStatus} />
             <BannerControls
               isFullScreenBanner={isFullScreenBanner}
               setIsFullScreenBanner={setIsFullScreenBanner}

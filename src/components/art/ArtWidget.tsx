@@ -1,13 +1,12 @@
 import React from "react";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import honeybadger from "../../assets/images/honeybadger.jpg";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
 import Button from "react-bootstrap/Button";
-import { artBodyAnimationSettings, artItemToIArtPiece, preloadAudio, preloadVideo, prepareArtSlides } from "./helpers";
+import { artBodyAnimationSettings, artItemToIArtPiece, prepareArtSlides } from "./helpers";
 import useOnScreen from "../../shared/useOnScreen";
 import { AudioContainer, AudioLoadingStatuses, IArtPiece, VideoContainer, VideoLoadingStatuses } from "./types";
 import ArtBanner from "./artBanner/ArtBanner";
@@ -28,34 +27,24 @@ const ArtWidget = (props: any) => {
   const refToPageArtBanner = useRef(null);
 
   const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(undefined);
+  
+  const videoContainerState = useState<VideoContainer>({
+    videoLoadingStatus: VideoLoadingStatuses.loading,
+    video: null,
+  });
+  const [videoContainer, setVideoContainer] = videoContainerState;
+
+  const audioContainerState = useState<AudioContainer>({
+    audioLoadingStatus: AudioLoadingStatuses.loading,
+    audio: null,
+  });
+  const [audioContainer, setAudioContainer] = audioContainerState;
 
   const params = useParams();
   const { loading, error, data: artQueryData } = useQuery(GET_ART, {variables: {
     id: params.artId
   }});
-
-  // TODO info about video should come outside
-  const [videoContainer, setVideoContainer] = useState<VideoContainer>({
-    videoLoadingStatus: VideoLoadingStatuses.loading,
-    video: null,
-  });
-
-  const [audioContainer, setAudioContainer] = useState<AudioContainer>({
-    audioLoadingStatus: AudioLoadingStatuses.loading,
-    audio: null,
-  });
-
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
-
-  const loadVideo = useCallback(async () => {
-    const data = await preloadVideo();
-    setVideoContainer(data);
-  }, []);
-  const loadAudio = useCallback(async () => {
-    const data = await preloadAudio();
-    setAudioContainer(data);
-  }, []);
-
 
   useEffect(() => {
     //document.documentElement.scrollTop || document.body.scrollTop
@@ -65,24 +54,31 @@ const ArtWidget = (props: any) => {
       // @ts-ignore
       behavior: "instant", // Optional if you want to skip the scrolling animation
     });
-    loadVideo().catch(console.error);
+    // loadVideo().catch(console.error);
   }, []);
 
 
   useEffect(() => {
     if(artQueryData){
-      setArtPiece(artItemToIArtPiece(artQueryData.arts));
+      const newArtPiece = artItemToIArtPiece(artQueryData.arts);
+      setArtPiece(newArtPiece);
+
+      setVideoContainer(
+        {
+          ...videoContainer,
+          video: newArtPiece.video
+        }
+      );
+
+      setAudioContainer(
+        {
+          ...audioContainer,
+          audio: newArtPiece.audio
+        }
+      );
+    
     }
-
   }, [artQueryData]);
-
-
-  useEffect(() => {
-    loadVideo().catch(console.error);
-  }, [loadVideo]);
-  useEffect(() => {
-    loadAudio().catch(console.error);
-  }, [loadAudio]);
 
 
   const toogleBannerFullScreen = (isFullScreen: boolean) => {
@@ -111,8 +107,8 @@ const ArtWidget = (props: any) => {
                 <div ref={refToPageArtBanner}>
                   <ArtBanner
                     image={artPiece?.mainImage ?? null}
-                    videoContainer={videoContainer}
-                    audioContainer={audioContainer}
+                    videoContainerState={videoContainerState}
+                    audioContainerState={audioContainerState}
                     isFullScreenBanner={false}
                     setIsFullScreenBanner={toogleBannerFullScreen}
                   />
@@ -167,8 +163,8 @@ const ArtWidget = (props: any) => {
         <div className="full-screen position-fixed w-100 vh-100 top-0 left-0 d-flex align-items-center justify-content-center">
           <ArtBanner
             image={artPiece?.mainImage ?? null}
-            videoContainer={videoContainer}
-            audioContainer={audioContainer}
+            videoContainerState={videoContainerState}
+            audioContainerState={audioContainerState}
             isFullScreenBanner={true}
             setIsFullScreenBanner={toogleBannerFullScreen}
           />
