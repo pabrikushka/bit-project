@@ -1,6 +1,7 @@
 import { AnimationControls } from "framer-motion";
-import { IHistoryEvent, IHistoryGroup, IHistoryItem, IMediaAsset } from "./types";
+import { IHistoryEvent, IHistoryGroup, IHistoryItem } from "./types";
 import _ from "lodash";
+import { artItemToIArtBase } from "../../services/graphql/mappingHelpers";
 
 const createDetailsMotion = (isMobile: boolean): any => {
   if (isMobile) return {};
@@ -148,24 +149,6 @@ const createHideBorder = (isMobile: boolean): any => {
 
 const yearToShortYear = (year: number): string => year.toString().slice(-2).padStart(2, "0");
 
-const forrmatEventDate = (eventDate: Date): string => {
-    const options: Intl.DateTimeFormatOptions = { 
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      };
-      return eventDate.toLocaleDateString('en-US', options);
-} 
-
-const toMediaAsset = (mediaData: any): IMediaAsset | null => {
-    return mediaData
-      ? {
-          title: mediaData.title,
-          url: mediaData.url,
-        }
-      : null;
-  };  
-
 const prepareHistoryItemData = (
   artHolderAnimation: AnimationControls,
   artImgAnimation: AnimationControls,
@@ -188,19 +171,8 @@ const prepareHistoryItemData = (
 };
 
 const artItemToIHistoryEvent = (artItem: any): IHistoryEvent => {
-  const eventDate = new Date(artItem.eventDate);
-  const { title, btcPrice, overview } = artItem;
   return {
-    id: artItem.sys.id,
-    year: eventDate.getFullYear(),
-    title,
-    btcPrice,
-    overview,
-    eventDate,
-    mainImage: toMediaAsset(artItem.mainImage),
-    thumbnail: toMediaAsset(artItem.thumbnail),
-    audio: toMediaAsset(artItem.mainImage),
-    video: toMediaAsset(artItem.mainImage),
+    ...artItemToIArtBase(artItem)
   };
 };
 
@@ -248,4 +220,4 @@ const createHistoryGroups = (
   return historyGroups;
 };
 
-export { createHistoryGroups, createCenterArt, yearToShortYear, forrmatEventDate };
+export { createHistoryGroups, createCenterArt, yearToShortYear };

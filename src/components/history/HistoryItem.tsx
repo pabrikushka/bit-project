@@ -5,7 +5,7 @@ import AnimatedArrow from "../../assets/icons/animatedArrow";
 import { IHistoryItem } from "./types";
 import ArtLink from "./ArtLink";
 import HistoryItemPicture from "./HistoryItemPicture";
-import { forrmatEventDate } from "./helpers";
+import { createBTCLebel, formatEventDate } from "../../shared/artHelpers";
 
 interface HistoryItemProps {
   itemData: IHistoryItem;
@@ -17,12 +17,12 @@ const HistoryItem = (props: HistoryItemProps) => {
   const MotionArtLink = motion(ArtLink, { forwardMotionProps: true });
 
   return (
-    <MotionArtLink initial="rest" whileHover="hover" whileFocus="hover" animate="rest">
+    <MotionArtLink initial="rest" whileHover="hover" whileFocus="hover" animate="rest" artId={historyEvent.id}>
       <motion.div className="art-card-content row py-4 py-md-4">
         <Col xs={12} lg={{ span: 3, order: 2 }} xl>
           <motion.div className="art-details d-flex align-items-end justify-content-between d-sm-block mb-4 ms-lg-4 ms-xl-5">
-            <h4 className="h3 font-aeonik text-light-70">{forrmatEventDate(historyEvent.eventDate)}</h4>
-            <h5 className="font-aeonik small text-light-70">1BTC:${historyEvent.btcPrice.toFixed(2)}</h5>
+            <h4 className="h3 font-aeonik text-light-70">{formatEventDate(historyEvent.eventDate)}</h4>
+            <h5 className="font-aeonik small text-light-70">{createBTCLebel(historyEvent.btcPrice)}</h5>
           </motion.div>
         </Col>
         <HistoryItemPicture itemData={props.itemData} />

@@ -1,7 +1,8 @@
-import { ArtSlideData, AudioContainer, AudioLoadingStatuses, VideoContainer, VideoLoadingStatuses } from "./types";
+import { ArtSlideData, AudioContainer, AudioLoadingStatuses, IArtPiece, VideoContainer, VideoLoadingStatuses } from "./types";
 import honeybadgerLoop from "../../assets/videos/Honey-Badger-Loop.mp4";
 import honeybadger from "../../assets/images/honeybadger.jpg";
 import test500kb from "../../assets/audio/test500kb.mp3";
+import { artItemToIArtBase, toMediaAsset } from "../../services/graphql/mappingHelpers";
 
 const artBodyAnimationSettings = {
   initial: {
@@ -61,4 +62,15 @@ const prepareArtSlides = (): ArtSlideData[] => {
   ];
 };
 
-export { preloadVideo, preloadAudio, artBodyAnimationSettings, prepareArtSlides };
+const artItemToIArtPiece = (artItem: any): IArtPiece => {
+  return {
+    ...artItemToIArtBase(artItem),
+    audio: toMediaAsset(artItem.mainImage),
+    video: toMediaAsset(artItem.mainImage),
+    content: artItem.content,
+    audioArtistId: artItem.audioArtist?.sys.id,
+    visualArtistId: artItem.visualArtist?.sys.id
+  };
+};
+
+export { preloadVideo, preloadAudio, artBodyAnimationSettings, prepareArtSlides, artItemToIArtPiece };

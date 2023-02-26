@@ -1,5 +1,5 @@
-import { Serializable } from "child_process";
 import { AnimationControls } from "framer-motion";
+import { IArtBase } from "../../shared/types";
 
 export interface IHistoryItem {
   fadeOut: any;
@@ -22,27 +22,6 @@ export interface IHistoryGroup {
   groupFadeOut: any,
 }
 
-export interface IHistoryEvent {
-  id: string,
-  title: string,
-  year: number,
-  eventDate: Date,
-  overview: string,
-  btcPrice: number,
-  mainImage: IMediaAsset | null,
-  thumbnail: IMediaAsset | null,
-  audio: IMediaAsset | null,
-  video: IMediaAsset | null
+export interface IHistoryEvent extends IArtBase {
 }
-
-export interface IMediaAsset {
-  title: string,
-  url: string
-}
-
-// export interface IHistoryData {
-//   id: string,
-//   year: number,
-//   events: IHistoryEvent[]
-// }
 

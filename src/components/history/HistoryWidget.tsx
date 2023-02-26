@@ -47,7 +47,6 @@ const HistoryWidget = (props: any) => {
 
   useEffect(() => {
     if(queryData){
-      console.log('queryData', queryData);
       const newHistoryGroups = createHistoryGroups(queryData, artHolderAnimation, artImgAnimation, isMobile);
       setHistoryGroups(newHistoryGroups);
     }

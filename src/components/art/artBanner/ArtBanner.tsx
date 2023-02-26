@@ -8,9 +8,10 @@ import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, Vi
 import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";
+import { IMediaAsset } from "../../../shared/types";
 
 interface ArtBannerProps {
-  image: any;
+  image: IMediaAsset | null;
   videoContainer: VideoContainer;
   audioContainer: AudioContainer;
   isFullScreenBanner: boolean;
@@ -71,6 +72,8 @@ const ArtBanner = (props: ArtBannerProps) => {
 
   const [ref] = useMeasure();
 
+  if(!image) return null;
+
   return (
     <>
       {/* 
@@ -79,7 +82,7 @@ const ArtBanner = (props: ArtBannerProps) => {
         <motion.div className="art-wrapper position-relative h-100 top-0">
           <motion.div className="art-holder position-relative overflow-hidden">
             <motion.div className="art-frame">
-              <motion.img src={image} alt="Dummy" className="art-img position-static w-100" />
+              <motion.img src={image?.url} alt={image?.title} className="art-img position-static w-100" />
             </motion.div>
             {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} /> : null}
             {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
