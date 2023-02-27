@@ -16,7 +16,11 @@ const AnimatedRoutes = () => {
             <Routes location={location} key={location.pathname}>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/history" exact element={<HistoryWidget />} />
-                <Route path="/art/:artId" exact element={<ArtWidget />} />
+                <Route path="/art/:artId" exact 
+                element={
+                    // kind of workaround to provide art object for a very first rendering 
+                    <ArtWidget initialArt={location?.state?.id ? location?.state: undefined}/>
+                } />
                 <Route path="/events" exact element={<Events />} />
             </Routes>
         </AnimatePresence>

@@ -26,7 +26,7 @@ const ArtWidget = (props: any) => {
   const [isModal, setIsModal] = useState(false);
   const refToPageArtBanner = useRef(null);
 
-  const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(undefined);
+  const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(props.initialArt);
 
   const videoContainerState = useState<VideoContainer>({
     videoLoadingStatus: VideoLoadingStatuses.loading,
