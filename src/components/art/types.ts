@@ -1,3 +1,5 @@
+import { IArtBase, IMediaAsset } from "../../shared/types";
+
 export enum VideoStatuses {
   none,
   playing,
@@ -22,12 +24,12 @@ export enum AudioLoadingStatuses {
 
 export interface VideoContainer {
   videoLoadingStatus: VideoLoadingStatuses;
-  video: any;
+  video: IMediaAsset | null;
 }
 
 export interface AudioContainer {
   audioLoadingStatus: AudioLoadingStatuses;
-  audio: any;
+  audio: IMediaAsset | null;
 }
 
 export interface ArtSlideData {
@@ -36,4 +38,13 @@ export interface ArtSlideData {
     description: string,
     dateStr: string,
     priceStr: string
+}
+
+
+export interface IArtPiece extends IArtBase {
+  audio: IMediaAsset | null,
+  video: IMediaAsset | null,
+  content: any,
+  audioArtistId: string | null,
+  visualArtistId: string | null,
 }

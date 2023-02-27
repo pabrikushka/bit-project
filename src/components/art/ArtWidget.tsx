@@ -1,15 +1,14 @@
 import React from "react";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import honeybadger from "../../assets/images/honeybadger.jpg";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
 import Button from "react-bootstrap/Button";
-import { artBodyAnimationSettings, preloadAudio, preloadVideo, prepareArtSlides } from "./helpers";
+import { artBodyAnimationSettings, artItemToIArtPiece, prepareArtSlides } from "./helpers";
 import useOnScreen from "../../shared/useOnScreen";
-import { AudioContainer, AudioLoadingStatuses, VideoContainer, VideoLoadingStatuses } from "./types";
+import { AudioContainer, AudioLoadingStatuses, IArtPiece, VideoContainer, VideoLoadingStatuses } from "./types";
 import ArtBanner from "./artBanner/ArtBanner";
 import DeepDiveIcon from "../../assets/icons/deepDiveIcon";
 import ArtBannerMini from "./ArtBannerMini";
@@ -18,39 +17,42 @@ import ArtBody from "./ArtBody";
 import ArtCredits from "./ArtCredits";
 import ArtSlider from "./artSlider/ArtSlider";
 import ArtistModal from "./artistModal/ArtistModal";
+import { useQuery } from "@apollo/client";
+import { GET_ART } from "../../services/graphql/artQuery";
+import { useParams } from "react-router-dom";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const refToPageArtBanner = useRef(null);
-  // TODO info about video should come outside
-  const [videoContainer, setVideoContainer] = useState<VideoContainer>({
+
+  const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(undefined);
+
+  const videoContainerState = useState<VideoContainer>({
     videoLoadingStatus: VideoLoadingStatuses.loading,
     video: null,
   });
+  const [videoContainer, setVideoContainer] = videoContainerState;
 
-  const [audioContainer, setAudioContainer] = useState<AudioContainer>({
+  const audioContainerState = useState<AudioContainer>({
     audioLoadingStatus: AudioLoadingStatuses.loading,
     audio: null,
   });
+  const [audioContainer, setAudioContainer] = audioContainerState;
 
+  const params = useParams();
+  
+  const {
+    loading,
+    error,
+    data: artQueryData,
+  } = useQuery(GET_ART, {
+    variables: {
+      id: params.artId,
+    },
+  });
+  
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
-
-  const loadVideo = useCallback(async () => {
-    const data = await preloadVideo();
-    setVideoContainer(data);
-  }, []);
-  const loadAudio = useCallback(async () => {
-    const data = await preloadAudio();
-    setAudioContainer(data);
-  }, []);
-
-  useEffect(() => {
-    loadVideo().catch(console.error);
-  }, [loadVideo]);
-  useEffect(() => {
-    loadAudio().catch(console.error);
-  }, [loadAudio]);
 
   useEffect(() => {
     //document.documentElement.scrollTop || document.body.scrollTop
@@ -60,8 +62,24 @@ const ArtWidget = (props: any) => {
       // @ts-ignore
       behavior: "instant", // Optional if you want to skip the scrolling animation
     });
-    loadVideo().catch(console.error);
   }, []);
+
+  useEffect(() => {
+    if (artQueryData) {
+      const newArtPiece = artItemToIArtPiece(artQueryData.arts);
+      setArtPiece(newArtPiece);
+
+      setVideoContainer({
+        ...videoContainer,
+        video: newArtPiece.video,
+      });
+
+      setAudioContainer({
+        ...audioContainer,
+        audio: newArtPiece.audio,
+      });
+    }
+  }, [artQueryData]);
 
   const toogleBannerFullScreen = (isFullScreen: boolean) => {
     setIsFullScreenBanner(isFullScreen);
@@ -83,14 +101,14 @@ const ArtWidget = (props: any) => {
           <Container className="px-xl-5">
             <Row>
               <Col xs={12}>
-                <ArtHeader headerText="IRS declares bitcoin be taxed as property" />
+                <ArtHeader artPiece={artPiece} />
               </Col>
               <Col xs={12}>
                 <div ref={refToPageArtBanner}>
                   <ArtBanner
-                    image={honeybadger}
-                    videoContainer={videoContainer}
-                    audioContainer={audioContainer}
+                    image={artPiece?.mainImage}
+                    videoContainerState={videoContainerState}
+                    audioContainerState={audioContainerState}
                     isFullScreenBanner={false}
                     setIsFullScreenBanner={toogleBannerFullScreen}
                   />
@@ -104,7 +122,7 @@ const ArtWidget = (props: any) => {
             >
               <Row className="art-body position-relative">
                 <Col xs={12} lg={7} className="art-body-main">
-                  <ArtBody />
+                  <ArtBody content={artPiece?.content} />
                 </Col>
                 <Col xs={12} lg={{ span: 12, order: 3 }}>
                   <Row className="art-actions g-4 mt-4">
@@ -127,7 +145,7 @@ const ArtWidget = (props: any) => {
                 <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
                   <div className="art-credits-holder ps-xl-5 px-xxl-5">
                     <ArtBannerMini
-                      image={honeybadger}
+                      image={artPiece?.thumbnail}
                       isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
                       setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
                     />
@@ -144,9 +162,9 @@ const ArtWidget = (props: any) => {
       {isFullScreenBanner ? (
         <div className="full-screen position-fixed w-100 vh-100 top-0 left-0 d-flex align-items-center justify-content-center">
           <ArtBanner
-            image={honeybadger}
-            videoContainer={videoContainer}
-            audioContainer={audioContainer}
+            image={artPiece?.mainImage}
+            videoContainerState={videoContainerState}
+            audioContainerState={audioContainerState}
             isFullScreenBanner={true}
             setIsFullScreenBanner={toogleBannerFullScreen}
           />

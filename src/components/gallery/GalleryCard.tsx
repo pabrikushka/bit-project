@@ -35,7 +35,8 @@ const GalleryCard = (props: GalleryCardtProps) => {
   });
 
   const onClick = (e: any) => {
-    navigate("/art")
+    // TODO make it not hard coded
+    navigate("/art/6dl0Hjk34l6rcWjSYCw9n6")
   };
   const onHover = useCallback((e: any, value: boolean) => {
     setHovered(value);

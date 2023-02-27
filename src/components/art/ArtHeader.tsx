@@ -1,12 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { IArtPiece } from "./types";
+import { createBTCLebel, formatEventDate } from "../../shared/artHelpers";
 
 interface ArtHeaderProps {
-  headerText: string;
+  artPiece: IArtPiece | undefined;
 }
 
 const ArtHeader = (props: ArtHeaderProps) => {
-  const { headerText } = props;
+  const { artPiece } = props;
+
+  if(!artPiece) return null;
+
   return (
     <motion.header className="title-block art-title-block">
       <motion.div className="art-title-holder pb-4">
@@ -27,7 +32,7 @@ const ArtHeader = (props: ArtHeaderProps) => {
             },
           }}
         >
-          {headerText}
+          {artPiece.title}
         </motion.h1>
       </motion.div>
 
@@ -49,8 +54,8 @@ const ArtHeader = (props: ArtHeaderProps) => {
           },
         }}
       >
-        <h2 className="h3 font-aeonik text-light-70">March 25, 2014</h2>
-        <h3 className="h3 font-aeonik text-light-70">1BTC:$438.89</h3>
+        <h2 className="h3 font-aeonik text-light-70">{formatEventDate(artPiece.eventDate)}</h2>
+        <h3 className="h3 font-aeonik text-light-70">{createBTCLebel(artPiece.btcPrice)}</h3>
       </motion.div>
     </motion.header>
   );

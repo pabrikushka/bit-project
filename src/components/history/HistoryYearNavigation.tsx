@@ -1,13 +1,14 @@
 import * as React from "react";
 import { animateScroll, Link } from "react-scroll";
-import { IHistoryData } from "./types";
+import { yearToShortYear } from "./helpers";
+import { IHistoryGroup } from "./types";
 
 interface HistoryYearNavigationProps {
-  dataForHistory: IHistoryData[];
+  historyGroups: IHistoryGroup[];
 }
 
 const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
-  const { dataForHistory } = props;
+  const { historyGroups } = props;
 
   const [currentIndex, setCurrentIndex] = React.useState(0); 
   
@@ -20,7 +21,7 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
   // }, [dataForHistory]);
 
   const handleSetActive = (to: string, element: HTMLElement) =>{
-    const foundIndex = dataForHistory.findIndex(q => q.id.toString() === to);
+    const foundIndex = historyGroups.findIndex(q => q.id.toString() === to);
     if (foundIndex !== undefined) {
         setCurrentIndex(foundIndex);
     }
@@ -36,7 +37,7 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
               top: `${dotTopValue}rem`,
             }}
           ></div>
-          {dataForHistory.map((data: IHistoryData, index: number) => (
+          {historyGroups.map((data: IHistoryGroup, index: number) => (
             <li className="history-nav-item" key={`link${index}`}>
               <Link
                 className="nav-link small history-nav-link font-aeonik"
@@ -47,7 +48,7 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
                 smooth={false}
                 onSetActive = {handleSetActive}
               >
-                {data.id}
+                {yearToShortYear(data.year)}
               </Link>
             </li>
           ))}

@@ -15,8 +15,8 @@ const HistoryGroup = (props: HistoryGroupProps) => {
         <h2 className="h1">{year}</h2>
       </motion.header>
       <div className="history-row">
-        {historyItems.map((itemData: IHistoryItem, index) => (
-          <HistoryItem itemData={itemData} key={`historuItem${index}`}/>
+        {historyItems.map((itemData: IHistoryItem) => (
+          <HistoryItem itemData={itemData} key={`historyItem${itemData.historyEvent.id}`}/>
         ))}
       </div>
     </section>

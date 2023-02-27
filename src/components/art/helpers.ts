@@ -1,7 +1,6 @@
-import { ArtSlideData, AudioContainer, AudioLoadingStatuses, VideoContainer, VideoLoadingStatuses } from "./types";
-import honeybadgerLoop from "../../assets/videos/Honey-Badger-Loop.mp4";
+import { ArtSlideData, IArtPiece } from "./types";
 import honeybadger from "../../assets/images/honeybadger.jpg";
-import test500kb from "../../assets/audio/test500kb.mp3";
+import { artItemToIArtBase, toMediaAsset } from "../../services/graphql/mappingHelpers";
 
 const artBodyAnimationSettings = {
   initial: {
@@ -17,22 +16,6 @@ const artBodyAnimationSettings = {
     duration: 0.5,
     ease: "easeOut",
   },
-};
-
-const preloadVideo = async (): Promise<VideoContainer> => {
-  await new Promise((f) => setTimeout(f, 5000));
-  return {
-    video: honeybadgerLoop,
-    videoLoadingStatus: VideoLoadingStatuses.loaded,
-  };
-};
-
-const preloadAudio = async (): Promise<AudioContainer> => {
-  await new Promise((f) => setTimeout(f, 5000));
-  return {
-    audio: test500kb,
-    audioLoadingStatus: AudioLoadingStatuses.loaded,
-  };
 };
 
 const prepareArtSlides = (): ArtSlideData[] => {
@@ -61,4 +44,15 @@ const prepareArtSlides = (): ArtSlideData[] => {
   ];
 };
 
-export { preloadVideo, preloadAudio, artBodyAnimationSettings, prepareArtSlides };
+const artItemToIArtPiece = (artItem: any): IArtPiece => {
+  return {
+    ...artItemToIArtBase(artItem),
+    audio: toMediaAsset(artItem.audio),
+    video: toMediaAsset(artItem.video),
+    content: artItem.content,
+    audioArtistId: artItem.audioArtist?.sys.id,
+    visualArtistId: artItem.visualArtist?.sys.id
+  };
+};
+
+export { artBodyAnimationSettings, prepareArtSlides, artItemToIArtPiece };

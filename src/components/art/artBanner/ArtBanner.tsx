@@ -4,21 +4,23 @@ import useFullScreenStatus from "../../../shared/useFullScreenStatus";
 import { toggleBrowserFullScreen, isBrowserInFullScreen } from "../../../shared/fullScreenHelper";
 import BannerVideo from "./BannerVideo";
 import BannerControls from "./BannerControls";
-import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "../types";
+import { AudioContainer, AudioStatuses, VideoContainer, VideoStatuses } from "../types";
 import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";
+import { IMediaAsset } from "../../../shared/types";
+// import honeybadger from "../../../assets/images/honeybadger.jpg";
 
 interface ArtBannerProps {
-  image: any;
-  videoContainer: VideoContainer;
-  audioContainer: AudioContainer;
+  image: IMediaAsset | null | undefined;
+  videoContainerState:  [VideoContainer, React.Dispatch<React.SetStateAction<VideoContainer>>];
+  audioContainerState: [AudioContainer, React.Dispatch<React.SetStateAction<AudioContainer>>];
   isFullScreenBanner: boolean;
   setIsFullScreenBanner: any;
 }
 
 const ArtBanner = (props: ArtBannerProps) => {
-  const { image, videoContainer, isFullScreenBanner, setIsFullScreenBanner, audioContainer } = props;
+  const { image, videoContainerState, isFullScreenBanner, setIsFullScreenBanner, audioContainerState } = props;
   // work around for browser full screen delay
   const [isBrowserFullScreenSwitchedOn, setIsBrowserFullScreenSwitchedOn] = useState<boolean | null>(null);
 
@@ -27,8 +29,8 @@ const ArtBanner = (props: ArtBannerProps) => {
   const [videoStatus, setVideoStatus] = useState<VideoStatuses>(VideoStatuses.none);
   const [audioStatus, setAudioStatus] = useState<AudioStatuses>(AudioStatuses.none);
 
-  const showVideo = videoContainer && videoContainer.videoLoadingStatus === VideoLoadingStatuses.loaded;
-  const showAudio = audioContainer && audioContainer.audioLoadingStatus === AudioLoadingStatuses.loaded;
+  const [videoContainer] = videoContainerState;
+  const [audioContainer] = audioContainerState;
 
   React.useEffect(() => {
     if (isFullScreenBanner) {
@@ -58,16 +60,12 @@ const ArtBanner = (props: ArtBannerProps) => {
   }, [isBrowserFullScreenSwitchedOn]);
 
   React.useEffect(() => {
-    if (videoContainer) {
-      setVideoStatus(chooseVideoStatus(videoContainer!.videoLoadingStatus));
-    }
-  }, [videoContainer?.videoLoadingStatus]);
+      setVideoStatus(chooseVideoStatus(videoContainer.videoLoadingStatus));
+  }, [videoContainer.videoLoadingStatus]);
 
   React.useEffect(() => {
-    if (videoContainer) {
-      setAudioStatus(chooseAudioStatus(audioContainer!.audioLoadingStatus));
-    }
-  }, [audioContainer?.audioLoadingStatus]);
+      setAudioStatus(chooseAudioStatus(audioContainer.audioLoadingStatus));
+  }, [audioContainer.audioLoadingStatus]);
 
   const [ref] = useMeasure();
 
@@ -79,10 +77,10 @@ const ArtBanner = (props: ArtBannerProps) => {
         <motion.div className="art-wrapper position-relative h-100 top-0">
           <motion.div className="art-holder position-relative overflow-hidden">
             <motion.div className="art-frame">
-              <motion.img src={image} alt="Dummy" className="art-img position-static w-100" />
+              <motion.img src={image?.url} alt={image?.title} className="art-img position-static w-100" />
             </motion.div>
-            {showVideo ? <BannerVideo video={videoContainer.video} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} /> : null}
-            {showAudio ? <BannerAudio audio={audioContainer.audio} audioStatus={audioStatus} /> : null}
+            <BannerVideo videoContainerState={videoContainerState} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} />
+            <BannerAudio audioContainerState={audioContainerState} audioStatus={audioStatus} />
             <BannerControls
               isFullScreenBanner={isFullScreenBanner}
               setIsFullScreenBanner={setIsFullScreenBanner}

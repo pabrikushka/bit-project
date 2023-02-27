@@ -1,22 +1,23 @@
-import React, {  } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import {
-  createNavLinkVariants,
-} from "./helpers";
+import { createNavLinkVariants } from "./helpers";
+import { NavLink } from "react-router-dom";
 
 const NavbarListNavs = (props: any) => {
   return (
     <>
-        <li className="nav-item">
-          <motion.a variants={createNavLinkVariants()} href="" className="nav-link">
+      <li className="nav-item">
+        <motion.div variants={createNavLinkVariants()}>
+          <NavLink to="/history" className="nav-link">
             BTC History
-          </motion.a>
-        </li>
-        <li className="nav-item">
-          <motion.a variants={createNavLinkVariants()} href="" className="nav-link">
-            Book
-          </motion.a>
-        </li>
+          </NavLink>
+        </motion.div>
+      </li>
+      <li className="nav-item">
+        <motion.a variants={createNavLinkVariants()} href="/history" className="nav-link">
+          Book
+        </motion.a>
+      </li>
     </>
   );
 };

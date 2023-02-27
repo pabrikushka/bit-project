@@ -37,7 +37,6 @@ const isBrowserInFullScreen = (): boolean => {
 };
 
 const turnFullScreenOn = () => {
-  console.log("requestFullscreen", document.documentElement.requestFullscreen);
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen();
   } else if (document.documentElement.mozRequestFullScreen) {

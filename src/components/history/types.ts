@@ -1,4 +1,5 @@
 import { AnimationControls } from "framer-motion";
+import { IArtBase } from "../../shared/types";
 
 export interface IHistoryItem {
   fadeOut: any;
@@ -10,24 +11,17 @@ export interface IHistoryItem {
   artHolderMotion: any;
   ctaMotion: any;
   hideBorder: any;
-  imageSrc: any;
+  historyEvent: IHistoryEvent;
   isMobile: boolean;
 }
 
 export interface IHistoryGroup {
-  id: number,
+  id: string,
   year: number,
   historyItems: IHistoryItem[],
   groupFadeOut: any,
 }
 
-export interface IHistoryEvent {
-  imageSrc: any
-}
-
-export interface IHistoryData {
-  id: number,
-  year: number,
-  events: IHistoryEvent[]
+export interface IHistoryEvent extends IArtBase {
 }
 

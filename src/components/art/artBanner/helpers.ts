@@ -1,4 +1,4 @@
-import { AudioContainer, AudioLoadingStatuses, AudioStatuses, VideoContainer, VideoLoadingStatuses, VideoStatuses } from "../types";
+import { AudioLoadingStatuses, AudioStatuses, VideoLoadingStatuses, VideoStatuses } from "../types";
 
 const chooseVideoStatus = (videoLoadingStatus: VideoLoadingStatuses): VideoStatuses =>{
     switch (videoLoadingStatus) {
