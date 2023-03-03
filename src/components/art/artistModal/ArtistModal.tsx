@@ -1,14 +1,22 @@
 import React from "react";
 import { motion } from "framer-motion";
-import fellas from "../../../assets/images/fellas.jpg";
-import avatar from "../../../assets/images/avatar.jpg";
 import AnimatedArrow from "../../../assets/icons/animatedArrow";
 import CloseIcon from "../../../assets/icons/close";
 import useMouse from "@react-hook/mouse-position";
-import ArtistFooter from './ArtistFooter';
+import ArtistFooter from "./footer/ArtistFooter";
 import ArtistSounds from "./ArtistSounds";
 import ArtistGallery from "./ArtistGallery";
-import { backdropVariants, popContentVariants, bannerVariants, avatarVariants, avatarImgVariants, artistNameVariants, artistSubVariants, artistOverviewVariants, artistContentVariants } from "./helper";
+import {
+  backdropVariants,
+  popContentVariants,
+  bannerVariants,
+  avatarVariants,
+  avatarImgVariants,
+  artistNameVariants,
+  artistSubVariants,
+  artistOverviewVariants,
+  artistContentVariants,
+} from "./helper";
 import { IArtist } from "./types";
 
 interface ArtistModalProps {
@@ -16,9 +24,10 @@ interface ArtistModalProps {
   artist: IArtist;
 }
 
-
 const ArtistModal = (props: ArtistModalProps) => {
   const { closeModal, artist } = props;
+
+  const showArtistSounds = artist.spotify || artist.appleMusic || artist.soundcloud ? true : false;
 
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
@@ -71,8 +80,8 @@ const ArtistModal = (props: ArtistModalProps) => {
         >
           <div className="pop-head position-relative overflow-hidden">
             <motion.img
-              src={fellas}
-              alt=""
+              src={artist.banner?.url}
+              alt={artist.banner?.title}
               className="pop-head-img position-absolute w-100 h-100"
               variants={bannerVariants}
               initial="hidden"
@@ -90,8 +99,8 @@ const ArtistModal = (props: ArtistModalProps) => {
                 exit="hidden"
               >
                 <motion.img
-                  src={avatar}
-                  alt=""
+                  src={artist.avatar?.url}
+                  alt={artist.avatar?.title}
                   className="artist-img"
                   variants={avatarImgVariants}
                   initial="hidden"
@@ -104,34 +113,35 @@ const ArtistModal = (props: ArtistModalProps) => {
             y: ${mouse.y}
             <div className="overflow-hidden mt-4">
               <motion.h1 className=" h1-mini text-gradient" variants={artistNameVariants} initial="hidden" animate="visible" exit="hidden">
-                .illtopia
+                {artist.name}
               </motion.h1>
             </div>
             <div className="overflow-hidden mt-1">
               <motion.h2 className="h5 small font-aeonik text-light-70" variants={artistSubVariants} initial="hidden" animate="visible" exit="hidden">
-                Digital Artist
+                {artist.role}
               </motion.h2>
             </div>
             <div className="overflow-hidden mt-4 mt-sm-3">
               <motion.p variants={artistOverviewVariants} initial="hidden" animate="visible" exit="hidden">
-                Corrupting good ideas since 96. We will discuss this ASAP and come back on it today. Quick question, will there be a scheduling
-                feature on this so we can schedule the weeks art etc to go live as soon as possible.
+                {artist.description}
               </motion.p>
             </div>
             <motion.div variants={artistContentVariants} initial="hidden" animate="visible" exit="hidden">
               <div className="mt-4">
                 <a
                   target="_blank"
-                  href="#"
+                  href={artist.websiteUrl ?? "#"}
                   className="nav-link p-0 text-primary text-decoration-none glow-svg-hover  cta-arrow-holder mt-md-auto d-inline-flex"
                 >
                   <AnimatedArrow />
-                  <span className="font-aeonik h6 my-0">illtopia.art</span>
+                  <span className="font-aeonik h6 my-0">{artist.name}.art</span>
                 </a>
               </div>
-              <ArtistGallery />
-              <ArtistSounds />
-              <ArtistFooter />
+              {artist.visualArtistGalleryCollection?.length ? (
+                <ArtistGallery artistGalleryCollection={artist.visualArtistGalleryCollection!} />
+              ) : null}
+              {showArtistSounds ? <ArtistSounds artist={artist}/> : null }
+              <ArtistFooter artist={artist}/>
             </motion.div>
           </div>
         </motion.div>

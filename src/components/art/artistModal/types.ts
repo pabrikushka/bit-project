@@ -1,6 +1,7 @@
 import { IMediaAsset } from "../../../shared/types";
 
 export interface IVisualArtistGallery extends IMediaAsset {
+    id: string;
     description: string | null
 }
 

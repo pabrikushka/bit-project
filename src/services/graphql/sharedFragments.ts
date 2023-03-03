@@ -52,6 +52,9 @@ export const CORE_ARTISTS_FIELDS_FRAGMENT = gql`
     }
     visualArtistGalleryCollection {
       items {
+        sys{
+          id
+        }
         title
         url
         description
