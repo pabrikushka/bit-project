@@ -47,7 +47,7 @@ const prepareArtSlides = (): ArtSlideData[] => {
 
 const toVisualArtistGallery = (visualArtistGallery: any): IVisualArtistGallery[] => {
   if (!visualArtistGallery) return [];
-  return visualArtistGallery.items.map((item: any) => ({
+  return visualArtistGallery.items.filter((q: any) => q ? true: false).map((item: any) => ({
     id: item.sys.id,
     title: item.title,
     url: item.url,

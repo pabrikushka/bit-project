@@ -33,13 +33,13 @@ const ArtWidget = (props: any) => {
 
   const videoContainerState = useState<VideoContainer>({
     videoLoadingStatus: VideoLoadingStatuses.loading,
-    video: null,
+    video: props.initialArt ? props.initialArt.video : null,
   });
   const [videoContainer, setVideoContainer] = videoContainerState;
 
   const audioContainerState = useState<AudioContainer>({
     audioLoadingStatus: AudioLoadingStatuses.loading,
-    audio: null,
+    audio: props.initialArt ? props.initialArt.audio : null,
   });
   const [audioContainer, setAudioContainer] = audioContainerState;
 
@@ -53,9 +53,8 @@ const ArtWidget = (props: any) => {
     variables: {
       id: params.artId,
     },
+    errorPolicy: "all" 
   });
-
-  console.log(artPiece);
 
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
 
@@ -70,7 +69,9 @@ const ArtWidget = (props: any) => {
   }, []);
 
   useEffect(() => {
-    if (artQueryData) {
+    // for smooth transition animation do not update data if
+    // they provided initially 
+    if (artQueryData && artQueryData.arts && !props.initialArt) {
       const newArtPiece = artItemToIArtPiece(artQueryData.arts);
       setArtPiece(newArtPiece);
 
@@ -83,6 +84,8 @@ const ArtWidget = (props: any) => {
         ...audioContainer,
         audio: newArtPiece.audio,
       });
+    }else if(artQueryData && !artQueryData.arts){
+      // TODO show error page ???
     }
   }, [artQueryData]);
 

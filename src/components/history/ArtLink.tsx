@@ -11,6 +11,7 @@ const ArtLink = React.forwardRef((props: any, ref: any) => {
       variables: {
         id: props.artId,
       },
+      errorPolicy: "all"
     });
 
     const handleClick = async () => {
@@ -20,6 +21,14 @@ const ArtLink = React.forwardRef((props: any, ref: any) => {
       //     // TODO do we need conditional navigation?
       // }
       const initialArt = artItemToIArtPiece(artQuery.data.arts);
+
+      // cache image for next page
+      if(initialArt.mainImage){
+        const img = new Image();
+        img.src = initialArt.mainImage.url;
+        await img.decode();
+      }
+
       navigate(`/art/${props.artId}`, { state: initialArt })
     }
 

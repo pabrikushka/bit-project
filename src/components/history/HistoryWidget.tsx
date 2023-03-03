@@ -19,7 +19,7 @@ const HistoryWidget = (props: any) => {
 
   const [historyGroups, setHistoryGroups] = useState<IHistoryGroup[]>([]);
 
-  const { loading, error, data: queryData } = useQuery(GET_WHOLE_HISTORY);
+  const { loading, error, data: queryData } = useQuery(GET_WHOLE_HISTORY, {errorPolicy: "all"});
 
   const artHolderAnimation = useAnimation();
   const artImgAnimation = useAnimation();
