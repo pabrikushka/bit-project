@@ -20,13 +20,16 @@ import ArtistModal from "./artistModal/ArtistModal";
 import { useQuery } from "@apollo/client";
 import { GET_ART } from "../../services/graphql/artQuery";
 import { useParams } from "react-router-dom";
+import { IArtist } from "./artistModal/types";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
-  const [isModal, setIsModal] = useState(false);
+  const [artistForModalModal, setArtistForModalModal] = useState<IArtist | null>(null);
   const refToPageArtBanner = useRef(null);
 
   const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(props.initialArt);
+
+  const isModal = artistForModalModal ? true : false;
 
   const videoContainerState = useState<VideoContainer>({
     videoLoadingStatus: VideoLoadingStatuses.loading,
@@ -41,7 +44,7 @@ const ArtWidget = (props: any) => {
   const [audioContainer, setAudioContainer] = audioContainerState;
 
   const params = useParams();
-  
+
   const {
     loading,
     error,
@@ -51,7 +54,9 @@ const ArtWidget = (props: any) => {
       id: params.artId,
     },
   });
-  
+
+  console.log(artPiece);
+
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
 
   useEffect(() => {
@@ -149,7 +154,12 @@ const ArtWidget = (props: any) => {
                       isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
                       setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
                     />
-                    <ArtCredits isModal={false} setIsModal={setIsModal} />
+                    <ArtCredits
+                      setArtistForModalModal={setArtistForModalModal}
+                      arEnhanced={artPiece?.arEnhanced}
+                      audioArtist={artPiece?.audioArtist}
+                      visualArtist={artPiece?.visualArtist}
+                    />
                   </div>
                 </Col>
                 <Col xs={12}></Col>
@@ -170,7 +180,9 @@ const ArtWidget = (props: any) => {
           />
         </div>
       ) : null}
-      <AnimatePresence mode="wait">{isModal ? <ArtistModal closeModal={() => setIsModal(false)} /> : null}</AnimatePresence>
+      <AnimatePresence mode="wait">
+        {isModal ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
+      </AnimatePresence>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { ArtSlideData, IArtPiece } from "./types";
 import honeybadger from "../../assets/images/honeybadger.jpg";
 import { artItemToIArtBase, toMediaAsset } from "../../services/graphql/mappingHelpers";
+import { IArtist, IVisualArtistGallery } from "./artistModal/types";
 
 const artBodyAnimationSettings = {
   initial: {
@@ -44,14 +45,52 @@ const prepareArtSlides = (): ArtSlideData[] => {
   ];
 };
 
+const toVisualArtistGallery = (visualArtistGallery: any): IVisualArtistGallery[] => {
+  if (!visualArtistGallery) return [];
+  return visualArtistGallery.items.map((item: IVisualArtistGallery) => ({
+    title: item.title,
+    url: item.url,
+    description: item.description,
+  }));
+};
+
+const artistItemToIArtist = (artistItem: any): IArtist | null => {
+  if(!artistItem) return null;
+  const { name, role, description } = artistItem;
+  return {
+    id: artistItem.sys.id,
+    name,
+    role,
+    description,
+    website: artistItem.website,
+    websiteUrl: artistItem.websiteUrl,
+    spotify: artistItem.spotify,
+    appleMusic: artistItem.appleMusic,
+    soundcloud: artistItem.soundcloud,
+    discord: artistItem.discord,
+    instagram: artistItem.instagram,
+    youTube: artistItem.youTube,
+    mastodon: artistItem.mastodon,
+    bandcamp: artistItem.bandcamp,
+    openSea: artistItem.openSea,
+    foundation: artistItem.foundation,
+    superRare: artistItem.superRare,
+    rairable: artistItem.rairable,
+    avatar: toMediaAsset(artistItem.avatar),
+    banner: toMediaAsset(artistItem.banner),
+    visualArtistGalleryCollection: toVisualArtistGallery(artistItem.visualArtistGalleryCollection),
+  };
+};
+
 const artItemToIArtPiece = (artItem: any): IArtPiece => {
   return {
     ...artItemToIArtBase(artItem),
+    arEnhanced: artItem.arEnhanced,
     audio: toMediaAsset(artItem.audio),
     video: toMediaAsset(artItem.video),
     content: artItem.content,
-    audioArtistId: artItem.audioArtist?.sys.id,
-    visualArtistId: artItem.visualArtist?.sys.id
+    audioArtist: artistItemToIArtist(artItem.audioArtist),
+    visualArtist: artistItemToIArtist(artItem.visualArtist),
   };
 };
 

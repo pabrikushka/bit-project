@@ -46,8 +46,8 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
         >
           <motion.img
             // exit={resetArt}
-            src={historyEvent.mainImage.url}
-            alt={historyEvent.mainImage.title}
+            src={historyEvent.thumbnail?.url ?? ""}
+            alt={historyEvent.thumbnail?.title ?? ""}
             className="art-img"
             // animate={artImgAnimation}
           />

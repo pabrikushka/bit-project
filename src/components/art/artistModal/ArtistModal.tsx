@@ -9,14 +9,16 @@ import ArtistFooter from './ArtistFooter';
 import ArtistSounds from "./ArtistSounds";
 import ArtistGallery from "./ArtistGallery";
 import { backdropVariants, popContentVariants, bannerVariants, avatarVariants, avatarImgVariants, artistNameVariants, artistSubVariants, artistOverviewVariants, artistContentVariants } from "./helper";
+import { IArtist } from "./types";
 
 interface ArtistModalProps {
   closeModal: any;
+  artist: IArtist;
 }
 
 
 const ArtistModal = (props: ArtistModalProps) => {
-  const { closeModal } = props;
+  const { closeModal, artist } = props;
 
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {

@@ -1,4 +1,5 @@
 import { IArtBase, IMediaAsset } from "../../shared/types";
+import { IArtist } from "./artistModal/types";
 
 export enum VideoStatuses {
   none,
@@ -42,9 +43,10 @@ export interface ArtSlideData {
 
 
 export interface IArtPiece extends IArtBase {
+  arEnhanced: boolean | null,
   audio: IMediaAsset | null,
   video: IMediaAsset | null,
   content: any,
-  audioArtistId: string | null,
-  visualArtistId: string | null,
+  audioArtist: IArtist | null,
+  visualArtist: IArtist | null,
 }

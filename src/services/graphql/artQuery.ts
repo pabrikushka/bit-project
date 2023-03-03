@@ -1,10 +1,11 @@
 import { gql } from "@apollo/client";
-import { CORE_ARTS_FIELDS_FRAGMENT } from "./sharedFragments";
+import { CORE_ARTS_FIELDS_FRAGMENT, CORE_ARTISTS_FIELDS_FRAGMENT } from "./sharedFragments";
 
 export const GET_ART = gql`
   query getArt($id: String!) {
     arts(id: $id) {
       ...coreArtFileds
+      arEnhanced
       video {
         url
         title
@@ -17,16 +18,17 @@ export const GET_ART = gql`
         json
       }
       visualArtist {
-        sys {
-          id
+         ... on Artists {
+          ...coreArtitFileds
         }
       }
       audioArtist {
-        sys {
-          id
+         ... on Artists {
+          ...coreArtitFileds
         }
       }
     }
   }
   ${CORE_ARTS_FIELDS_FRAGMENT}
+  ${CORE_ARTISTS_FIELDS_FRAGMENT}
 `;
