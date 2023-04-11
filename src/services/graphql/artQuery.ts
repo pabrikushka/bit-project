@@ -6,10 +6,6 @@ export const GET_ART = gql`
     arts(id: $id) {
       ...coreArtFileds
       arEnhanced
-      video {
-        url
-        title
-      }
       audio {
         url
         title
