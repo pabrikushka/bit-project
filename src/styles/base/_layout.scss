@@ -1,3 +1,7 @@
+html {
+    overflow-x: hidden;
+}
+
 body {
     background: $bit-dark;
     color: $bit-light-100;
@@ -22,5 +26,22 @@ main {
 .separator {
     width: 6rem;
     height: 2px;
+    background: $bit-light-100;
+}
+
+/* Custom Scrollbar  */
+body::-webkit-scrollbar, .scrollbar-custom::-webkit-scrollbar {
+    width: 4px;
+}
+
+body::-webkit-scrollbar-track, .scrollbar-custom::-webkit-scrollbar-track {
+    background: black;
+}
+
+body::-webkit-scrollbar-thumb, .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: $bit-light-60;
+}
+
+body::-webkit-scrollbar-thumb:hover, .scrollbar-custom::-webkit-scrollbar-thumb:hover {
     background: $bit-light-100;
 }

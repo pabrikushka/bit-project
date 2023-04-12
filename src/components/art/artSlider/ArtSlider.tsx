@@ -16,13 +16,13 @@ const ArtSlider = (props: ArtSliderProps) => {
     <section className="art-slider">
       <Container className="px-xl-5">
         <Row className="g-0">
-          <Swiper slidesPerView={1}>
+          {/* <Swiper slidesPerView={1}>
             {slides.map((slide) => (
               <SwiperSlide key={slide.id}>
                 <ArtSlideContent slide={slide} />
               </SwiperSlide>
             ))}
-          </Swiper>
+          </Swiper> */}
         </Row>
       </Container>
     </section>

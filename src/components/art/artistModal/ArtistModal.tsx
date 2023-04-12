@@ -57,7 +57,7 @@ const ArtistModal = (props: ArtistModalProps) => {
   };
 
   return (
-    <div className="pop position-fixed w-100 vh-100 top-0 left-0 d-flex justify-content-center" ref={ref}>
+    <div className="pop scrollbar-custom position-fixed w-100 vh-100 top-0 left-0 d-flex justify-content-center" ref={ref}>
       <div className="pop-wrapper">
         <motion.div
           className="pop-backdrop position-absolute w-100 h-100 left-0 top-0"

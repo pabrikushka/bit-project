@@ -53,7 +53,7 @@ const ArtWidget = (props: any) => {
     variables: {
       id: params.artId,
     },
-    errorPolicy: "all" 
+    errorPolicy: "all"
   });
 
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
@@ -84,7 +84,7 @@ const ArtWidget = (props: any) => {
         ...audioContainer,
         audio: newArtPiece.audio,
       });
-    }else if(artQueryData && !artQueryData.arts){
+    } else if (artQueryData && !artQueryData.arts) {
       // TODO show error page ???
     }
   }, [artQueryData]);
@@ -95,11 +95,11 @@ const ArtWidget = (props: any) => {
 
   useEffect(() => {
     if (isFullScreenBanner || isModal) {
-      document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
+      document.getElementsByTagName("html")[0].classList.add("overflow-hidden");
     } else {
-      document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
+      document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
     }
-    return () => document.getElementsByTagName("body")[0].classList.remove("overflow-hidden");
+    return () => document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
   }, [isFullScreenBanner, isModal]);
 
   return (
@@ -131,24 +131,12 @@ const ArtWidget = (props: any) => {
               <Row className="art-body position-relative">
                 <Col xs={12} lg={7} className="art-body-main">
                   <ArtBody content={artPiece?.content} />
-                </Col>
-                <Col xs={12} lg={{ span: 12, order: 3 }}>
-                  <Row className="art-actions g-4 mt-4">
-                    <Col xs={12} sm={6}>
-                      <Button variant="outline-primary" className="bit-btn icon-btn d-block d-lg-inline-block" href="#">
-                        <DeepDiveIcon />
-                        Read More
-                      </Button>
-                    </Col>
-                    <Col xs={12} sm={6} lg={{ span: 5, offset: 1 }} className="ps-xl-5 px-xxl-5">
-                      <div className="btn-holder w-100 d-lg-block ps-xl-5 px-xxl-5">
-                        <Button variant="outline-primary" className="bit-btn icon-btn w-100" href="#">
-                          <AnimatedArrow />
-                          Share This
-                        </Button>
-                      </div>
-                    </Col>
-                  </Row>
+                  <div className="btn-holder w-100 d-lg-block mt-5">
+                    <Button variant="outline-primary" className="bit-btn icon-btn w-100" href="#">
+                      <AnimatedArrow />
+                      Share This
+                    </Button>
+                  </div>
                 </Col>
                 <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
                   <div className="art-credits-holder ps-xl-5 px-xxl-5">

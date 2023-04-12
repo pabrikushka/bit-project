@@ -9,6 +9,7 @@ import { chooseVideoStatus, chooseAudioStatus } from "./helpers";
 import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";
 import { IMediaAsset } from "../../../shared/types";
+import BannerShare from "./BannerShare";
 // import honeybadger from "../../../assets/images/honeybadger.jpg";
 
 interface ArtBannerProps {
@@ -89,6 +90,7 @@ const ArtBanner = (props: ArtBannerProps) => {
               toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
               toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
             />
+            <BannerShare />
           </motion.div>
         </motion.div>
       </div>

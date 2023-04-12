@@ -18,7 +18,7 @@ const ArtBody = (props: ArtBodyProps) => {
   const {content} = props;
   if(!content) return null;
   return (
-    <div className="pe-xl-5">
+    <div className="pe-lg-2 pe-xl-5 art-body-content">
       {/* <p className="lead mb-4 pb-2">
         It’s official, bitcoin is not a currency. The Internal Revenue Service ruled in May 2014 that the Bitcoin and its rivals will be treated as
         property, not cash, for tax purposes.

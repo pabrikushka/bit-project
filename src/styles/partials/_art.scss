@@ -308,10 +308,19 @@
 // Art Body 
 .art-body {
     margin-top: 3rem;
+    .art-body-content {
+        max-width: 75ch;
+    }
     // margin-top: 650px;
 
     // border-bottom: 2px solid $bit-light-100;
     @include media-breakpoint-up(lg) {
+        .art-body-main {
+            .btn-holder {
+                max-width: 30rem;
+            }
+        }
+
         .art-credits-col {
             position: relative;
             overflow: visible;
@@ -326,6 +335,18 @@
 }
 
 // Art Credits 
+
+.artist-credit {
+    background: rgba($bit-illusion, 0.08);
+}
+
+.art-stat {
+    border-bottom: 1px solid $bit-light-70;
+    &.art-stat-sub {
+        border-bottom: 1px solid $bit-light-10;
+    }
+}
+
 .art-credits {
     border-top: 1px solid $bit-light-70;
     display: flex;
@@ -421,7 +442,7 @@
     top: auto;
     bottom: 1rem;
     right: 1rem;
-    z-index: 9;
+    z-index: 1000;
     border: 5px solid $bit-dark;
     background: $bit-dark;
     box-shadow: 0px 4px 36px 1px rgba($bit-dark, .8);
@@ -434,6 +455,7 @@
             width: 8rem;
             height: 5rem;
             object-fit: cover;
+            overflow: hidden;
             // opacity: .5;
         }
 
@@ -479,24 +501,14 @@
     }
 
     @include media-breakpoint-up(lg) {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        max-height: 20rem;
-
         .art-holder {
+            width: 14rem;
+            aspect-ratio: 2/1;
             overflow: hidden;
-
             .art-img {
                 transition: all .3s ease-out;
-                opacity: 1;
                 width: 100%;
-                height: auto;
-                object-fit: cover;
-                aspect-ratio: 2/1;
+                height: 100%;
             }
 
             .icon {
@@ -506,19 +518,13 @@
                 transition: all .3s ease-out;
             }
         }
-
-        // Collapsed 
-        &.collapsed {
-            transform: none;
-            max-height: 0rem;
-            transform-origin: right center;
-            padding-bottom: 0 !important;
+        small {
+            transition: all .3s ease-out;
         }
-
         &:hover {
             .art-holder {
                 .art-img {
-                    transform: scale(1.1);
+                    transform: scale(1.2);
                     opacity: .3;
                 }
 
@@ -527,6 +533,10 @@
                     transform: translate(-50%, -50%) scale(1.2);
                     transition-delay: .1s;
                 }
+            }
+            .small {
+                color: $bit-blue;
+                filter: drop-shadow(3px 3px 30px rgba($bit-blue, .9));
             }
         }
     }

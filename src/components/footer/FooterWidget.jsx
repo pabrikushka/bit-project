@@ -9,8 +9,8 @@ import LogoXL from '../../assets/images/logoLockup.svg';
 
 const Footer = () => {
     return (
-        <footer>
-            <Container className='px-xl-5'>
+        <footer className='mb-5 pb-5'>
+            <Container className='px-xl-5 mb-5 pb-5 mb-lg-0 pb-lg-0'>
                 <Row className='footer-main g-0'>
                     <Col className='footer-col footer-main-col' xs={12} lg={4} xxl={3}>
                         <a className="navbar-brand glow-svg-hover mb-4 d-inline-flex" href="#">

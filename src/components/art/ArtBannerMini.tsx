@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import FullScreenIcon from "../../assets/icons/fullScreenIcon";
 import { IMediaAsset } from "../../shared/types";
 
@@ -11,16 +11,39 @@ interface ArtBannerMiniProps {
 
 const ArtBannerMini = (props: ArtBannerMiniProps) => {
   const { image, isVisible, setIsFullScreenBanner } = props;
-  const rootClass = `art-wrapper art-tease ${isVisible ? "" : "collapsed"} pb-lg-5`;
-  if(!image) return null;
+  const rootClass = `art-wrapper art-tease`;
+  if (!image) return null;
   return (
-    <motion.div className={rootClass}>
-      <div className="art-holder position-relative" onClick={() => setIsFullScreenBanner()}>
-        <motion.img className="art-img" src={image.url} alt={image.title}></motion.img>
-        <FullScreenIcon />
-      </div>
-      <div className="small text-uppercase font-aeonik text-center d-lg-none">Expand</div>
-    </motion.div>
+    <AnimatePresence mode="wait">
+      {isVisible && (
+        <motion.div
+          className={rootClass}
+          onClick={() => setIsFullScreenBanner()}
+          initial={{
+            scale: 0.3,
+            x: "120%"
+          }}
+          animate={{
+            scale: 1,
+            x: "0%",
+          }}
+          exit={{
+            scale: 0.3,
+            x: "120%"
+          }}
+          transition={{
+            ease: "easeInOut",
+            duration: .2,
+          }}
+        >
+          <div className="art-holder position-relative" >
+            <motion.img className="art-img" src={image.url} alt={image.title}></motion.img>
+            <FullScreenIcon />
+          </div>
+          <div className="small text-uppercase font-aeonik text-center pt-lg-1">Expand</div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

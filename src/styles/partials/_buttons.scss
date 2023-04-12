@@ -49,6 +49,47 @@
     }
 }
 
+.banner-btn {
+    .text-holder {
+        height: 2.5rem;
+    }
+    
+    .icon-holder {
+        background: $bit-light-100;
+        width: 2.5rem;
+        height: 2.5rem;
+        .icon {
+            position: relative;
+            height: 1.2rem;
+            margin: 0;
+            left: auto;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .text-holder {
+            max-width: 0rem;
+            overflow: hidden;
+            transition: all .3s ease-out;
+            .btn-text {
+                opacity: 0;
+                transition: all .3s ease-out;
+                transform: scale(0.8);
+            }
+        }
+        &:hover {
+            .text-holder {
+                max-width: 5rem;
+                padding: 0 1rem;
+                .btn-text {
+                    opacity: 1;
+                    transform: scale(0.8);
+                }
+            }
+        }
+    }
+}
+
 
 .cta-arrow-holder {
     display: flex;

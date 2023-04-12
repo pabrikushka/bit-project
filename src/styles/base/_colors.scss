@@ -8,6 +8,8 @@ $bit-light-80: rgba(#fff, .8);
 $bit-light-70: rgba(#fff, .7);
 $bit-light-60: rgba(#fff, .6);
 $bit-light-50: rgba(#fff, .5);
+$bit-light-20: rgba(#fff, .2);
+$bit-light-10: rgba(#fff, .1);
 
 // Blue
 $bit-blue: #41E7FF;
@@ -19,10 +21,16 @@ $bit-purple-dark: #9036BD;
 // Illusion
 $bit-illusion: #F5B0E0;
 
+// Green 
+$bit-green: #97DC6F;
+
+$bit-red: #DA5F67;
+
 
 $theme-colors: (
   "primary": $bit-light-100,
   "secondary": $bit-blue,
+  "dark": $bit-dark
 );
 
 // Text Colors 
@@ -46,4 +54,12 @@ $theme-colors: (
     background: -webkit-linear-gradient(90deg, $bit-blue 0%, $bit-illusion 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.text-green {
+    color: $bit-green;
+}
+
+.text-red {
+    color: $bit-red;
 }
