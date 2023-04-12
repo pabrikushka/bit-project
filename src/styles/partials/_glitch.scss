@@ -1,0 +1,23 @@
+@keyframes my-animation {
+	0% {
+		filter: none;
+	}
+	1% {
+		filter: url(#filter);
+	}
+	3% {
+		filter: url(#filter-2);
+	}
+	4% {
+		filter: url(#filter-3);
+	}
+	5% {
+		filter: none;
+	}
+}
+
+#my-image {
+	filter: url(#filter);
+	animation: 4s my-animation infinite;
+    animation-delay: 5s;
+}

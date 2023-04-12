@@ -11,7 +11,10 @@ h1,h1 {
     font-size: calc(1rem + 7.5vw);
     line-height: 1.1;
     @include media-breakpoint-up(sm) {
-        font-size: 4.2rem;
+        font-size: 4rem;
+    }
+    @include media-breakpoint-up(xl) {
+        font-size: 4.5rem;
     }
 }
 
