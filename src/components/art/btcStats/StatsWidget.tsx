@@ -46,7 +46,7 @@ const StatsWidget = (props: StatsWidgetProps) => {
         />
         <SubStatWithColor
           name="Return Since Event"
-          value={notNullOrUndefined(artPiece?.returnSinceEvent) ? `${artPiece?.returnSinceEvent?.toLocaleString()}%` : null}
+          value={notNullOrUndefined(artPiece?.returnSinceEvent) ? `${artPiece?.returnSinceEvent}%` : null}
           valueColourIsGreen={artPiece?.returnSinceEventColour}
         />
       </div>
