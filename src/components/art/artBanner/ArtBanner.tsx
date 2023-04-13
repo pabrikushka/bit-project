@@ -10,6 +10,8 @@ import BannerAudio from "./BannerAudio";
 import { useMeasure } from "react-use";
 import { IMediaAsset } from "../../../shared/types";
 import BannerShare from "./BannerShare";
+import BannerGlitch from "./BannerGlitch";
+import BannerSubscribe from "./BannerSubscribe";
 // import honeybadger from "../../../assets/images/honeybadger.jpg";
 
 interface ArtBannerProps {
@@ -82,15 +84,18 @@ const ArtBanner = (props: ArtBannerProps) => {
             </motion.div>
             <BannerVideo videoContainerState={videoContainerState} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} />
             <BannerAudio audioContainerState={audioContainerState} audioStatus={audioStatus} />
-            <BannerControls
+
+            {/* <BannerControls
               isFullScreenBanner={isFullScreenBanner}
               setIsFullScreenBanner={setIsFullScreenBanner}
               videoStatus={videoStatus}
               audioStatus={audioStatus}
               toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
               toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
-            />
-            <BannerShare />
+            /> */}
+            {/* <BannerGlitch/> */}
+            <BannerShare isFullScreenBanner={isFullScreenBanner}/>
+            <BannerSubscribe/>
           </motion.div>
         </motion.div>
       </div>

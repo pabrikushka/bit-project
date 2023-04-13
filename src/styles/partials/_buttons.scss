@@ -50,30 +50,36 @@
 }
 
 .banner-btn {
+    position: relative;
+    z-index: 100;
+    box-shadow: none !important;
     .text-holder {
         height: 2.5rem;
     }
     
     .icon-holder {
-        background: $bit-light-100;
+        background: $bit-dark;
+        color: $bit-light-100;
         width: 2.5rem;
         height: 2.5rem;
+        // border: 2px solid $bit-light-100;
         .icon {
             position: relative;
-            height: 1.2rem;
+            height: 1.6rem;
             margin: 0;
             left: auto;
         }
     }
 
     @include media-breakpoint-up(lg) {
+        .icon-holder, .text-holder, .btn-text {
+            transition: all .3s ease-out;
+        }
         .text-holder {
             max-width: 0rem;
             overflow: hidden;
-            transition: all .3s ease-out;
             .btn-text {
                 opacity: 0;
-                transition: all .3s ease-out;
                 transform: scale(0.8);
             }
         }
@@ -85,6 +91,11 @@
                     opacity: 1;
                     transform: scale(0.8);
                 }
+            }
+            .icon-holder {
+                background: $bit-light-100;
+                color: $bit-dark;
+                // border: 2px solid $bit-dark;
             }
         }
     }

@@ -1,5 +1,10 @@
 .form-control {
     border-radius: 0;
+    &:focus {
+        box-shadow: none;
+        outline: none;
+        border: 1px solid $bit-blue;
+    }
 }
 
 
@@ -10,6 +15,14 @@
         svg {
             width: 3rem;
             opacity: .6;
+            transition: all .3s ease;
+        }
+        &:hover {
+            background: $bit-dark;
+            color: $bit-light-100 !important;
+            svg {
+                opacity: 1;
+            }
         }
     }
 }

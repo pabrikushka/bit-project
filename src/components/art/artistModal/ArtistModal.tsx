@@ -109,8 +109,6 @@ const ArtistModal = (props: ArtistModalProps) => {
                 />
               </motion.div>
             </div>
-            x: ${mouse.x}
-            y: ${mouse.y}
             <div className="overflow-hidden mt-4">
               <motion.h1 className=" h1-mini text-gradient" variants={artistNameVariants} initial="hidden" animate="visible" exit="hidden">
                 {artist.name}

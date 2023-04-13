@@ -303,7 +303,27 @@
     }
 }
 
-// Art Video 
+// Art Glitch
+.banner-glitch {
+    z-index: 99;
+} 
+
+// Art Subscribe 
+.banner-subscribe {
+    z-index: 100;
+    height: 100%;
+    .banner-subscribe-bg {
+        opacity: 0.85;
+    }
+    @include media-breakpoint-up(sm) {
+        height: auto;
+    }
+    @include media-breakpoint-up(xl) {
+        form {
+            min-width: 30rem;
+        }
+    }
+}
 
 // Art Body 
 .art-body {
@@ -335,7 +355,6 @@
 }
 
 // Art Credits 
-
 .artist-credit {
     background: rgba($bit-illusion, 0.08);
 }
@@ -364,7 +383,6 @@
 
 // Art Slider 
 .art-slider {
-
     .row {
         padding-top: 5rem;
         margin-top: 5rem;
