@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import FooterForm from './FooterForm';
-import FooterSocial from './FooterSocial';
+import FooterLinks from './FooterLinks';
 import FooterSponsors from './FooterSponsors';
 import LogoXL from '../../assets/images/logoLockup.svg';
 import { motion } from 'framer-motion';
@@ -46,7 +46,7 @@ const Footer = () => {
                         <FooterForm />
                     </Col>
                     <Col className='footer-col d-lg-flex flex-column align-items-md-center' xs={12} sm={6} lg={4} xxl={5}>
-                        <FooterSocial />
+                        <FooterLinks />
                     </Col>
                     <Col className='footer-col' xs={8} sm={6} lg={4} xl={{ span: 3, offset: 1 }}>
                         <FooterSponsors />
