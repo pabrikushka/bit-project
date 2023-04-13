@@ -140,11 +140,6 @@ const ArtWidget = (props: any) => {
                 </Col>
                 <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
                   <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                    <ArtBannerMini
-                      image={artPiece?.thumbnail}
-                      isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
-                      setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
-                    />
                     <ArtCredits
                       setArtistForModalModal={setArtistForModalModal}
                       artPiece={artPiece}
@@ -170,6 +165,11 @@ const ArtWidget = (props: any) => {
           />
         </div>
       ) : null}
+      <ArtBannerMini
+        image={artPiece?.thumbnail}
+        isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
+        setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
+      />
       <AnimatePresence mode="wait">
         {isModal ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
       </AnimatePresence>

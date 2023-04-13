@@ -47,14 +47,14 @@ const Hero = () => {
             <motion.div 
             className='hero-bg-holder'
             >
-                <motion.video
+                {/* <motion.video
                     style={{
                         // x: moveX,
                         // y: moveY,
                     }}
                     className='hero-video' src={Mona} loop muted autoPlay={true}>
 
-                    </motion.video>
+                    </motion.video> */}
             </motion.div>
 
         </header>

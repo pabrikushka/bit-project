@@ -61,10 +61,10 @@ export default function RunningText() {
     return (
         <section className="rt-section" ref={ref}>
             <div className="rt-section-bg position-absolute w-100 h-100 top-0">
-                <motion.div
+                {/* <motion.div
                     className="rt-blob-1 position-absolute"
                     style={{
-                        scale: blobScale,
+                       // scale: blobScale,
                         // x: blob1X,
                         // y: blob1Y,
                     }}
@@ -74,18 +74,18 @@ export default function RunningText() {
                 <motion.div
                     className="rt-blob-2 position-absolute"
                     style={{
-                        scale: blobScale,
+                        // scale: blobScale,
                         // x: blob2X,
                         // y: blob2Y,
                     }}
                 >
                     <motion.div className="blob w-100 h-100"></motion.div>
-                </motion.div>
+                </motion.div> */}
             </div>
             <motion.div
                 className="rt-lines"
                 style={{
-                    scale: scale,
+                    //scale: scale,
                 }}
             >
                 <ParallaxText baseVelocity={-1}>Explore <span className="circle"></span> Learn <span className="circle"></span> Create <span className="circle"></span></ParallaxText>

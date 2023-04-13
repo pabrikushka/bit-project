@@ -77,7 +77,7 @@ const HistoryWidget = (props: any) => {
         <Container className="px-xl-5" style={{ paddingBottom: 100 }}>
           <Row>
             <Col xs={12} className="history-wrapper">
-              <div className="history-holder overflow-hidden">
+              <div className="history-holder">
                 {historyGroups.map((group: IHistoryGroup) => (
                   <HistoryGroup groupData={group} key={group.id} />
                 ))}

@@ -169,21 +169,31 @@
             padding-left: 0;
 
             .art-wrapper {
+                pointer-events: none;
                 position: absolute;
                 left: auto;
                 right: 0;
+                width: 22rem;
                 top: 0;
                 height: 100%;
 
                 .art-holder {
                     display: inline-block;
+                    height: 120%;
+                    top: -10%;
 
                     .art-frame {
                         transform-origin: top center;
-                        transform: scale(1.2) rotate(1deg) translateY(-4rem) translateX(2rem);
+                        .art-img {
+                            width: 120%;
+                            top: -10%;
+                            height: 120%;
+                            left:-10%
+                        }
+                        // transform: scale(1.2) rotate(1deg) translateY(-4rem) translateX(2rem);
                         // filter: blur(30px);
-                        opacity: 0;
-                        transition: transform .2s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .1s ease-out;
+                        // opacity: 0;
+                        // transition: transform .2s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .1s ease-out;
                     }
                 }
             }
@@ -197,14 +207,43 @@
                         display: inline-block;
 
                         .art-frame {
-                            opacity: 1;
+                            // opacity: 1;
                             // filter: blur(0px);
-                            transform: scale(1) rotate(0) translateY(0rem) translateX(0rem) !important;
-                            transition: transform .6s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .2s ease-out;
+                            // transform: scale(1) rotate(0) translateY(0rem) translateX(0rem) !important;
+                            // transition: transform .6s cubic-bezier(0.61, 1, 0.88, 1), opacity .1s ease-out, filter .2s ease-out;
 
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .art-card-content {
+            .art-wrapper {
+                width: 35em;
+                .art-holder {
+                    height: 140%;
+                    top: -20%;
+                }
+            }
+        }
+    }
+
+
+    @include media-breakpoint-up(xxl) {
+        .art-card-content {
+            .art-wrapper {
+                width: 38rem;
+            
+            }
+        }
+    }
+    @media(min-width:2200px) {
+        .art-card-content {
+            .art-wrapper {
+                width: 42rem;
             }
         }
     }
@@ -460,7 +499,7 @@
     top: auto;
     bottom: 1rem;
     right: 1rem;
-    z-index: 1000;
+    z-index: 99;
     border: 5px solid $bit-dark;
     background: $bit-dark;
     box-shadow: 0px 4px 36px 1px rgba($bit-dark, .8);
