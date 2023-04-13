@@ -147,8 +147,7 @@ const ArtWidget = (props: any) => {
                     />
                     <ArtCredits
                       setArtistForModalModal={setArtistForModalModal}
-                      arEnhanced={artPiece?.arEnhanced}
-                      audioArtist={artPiece?.audioArtist}
+                      artPiece={artPiece}
                       visualArtist={artPiece?.visualArtist}
                     />
                   </div>

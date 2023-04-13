@@ -6,6 +6,32 @@ export const GET_ART = gql`
     arts(id: $id) {
       ...coreArtFileds
       arEnhanced
+      circulatingSupply
+      marketCap
+      numberOfAddresses
+      blockNumber
+      blockHeight
+      hashRate
+      priceChange1Month
+      priceChange1MonthColour
+      priceChange1MonthGraph {
+        url
+        title
+      }
+      priceChange3Month
+      priceChange3MonthColour
+      priceChange3MonthGraph {
+        url
+        title
+      }
+      priceChange1Year
+      priceChange1YearColour
+      priceChange1YearGraph {
+        url
+        title
+      }
+      returnSinceEvent
+      returnSinceEventColour
       audio {
         url
         title
@@ -14,12 +40,12 @@ export const GET_ART = gql`
         json
       }
       visualArtist {
-         ... on Artists {
+        ... on Artists {
           ...coreArtitFileds
         }
       }
       audioArtist {
-         ... on Artists {
+        ... on Artists {
           ...coreArtitFileds
         }
       }
