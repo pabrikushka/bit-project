@@ -9,4 +9,6 @@ const formatEventDate = (eventDate: Date): string => {
 
 const createBTCLebel = (btcPrice: number) => `1BTC:$${btcPrice.toFixed(2)}`;
 
-export {formatEventDate, createBTCLebel}
+const notNullOrUndefined = (value: any) => value !== null && value !== undefined;
+
+export {formatEventDate, createBTCLebel, notNullOrUndefined}
