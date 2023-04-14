@@ -1,0 +1,92 @@
+
+
+.faq-accordion {
+    color: $bit-light-100;
+    border-bottom: 1px solid $bit-light-50;
+    border-radius: 0;
+    .accordion-header {
+        .accordion-button {
+            background: transparent;
+            padding: 1.4rem 0;
+            border-radius: 0;
+            color: $bit-light-70;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .icon {
+                width: 1.2rem;
+                transition: all .3s ease-in-out;
+            }
+            h3 {
+                transition: all .4s ease;
+            }
+            &:focus {
+                box-shadow: none;
+            }
+            &:hover {
+                color: $bit-blue;
+                h3 {
+                    text-shadow: 3px 3px 50px rgba($bit-blue, 1);
+                }
+                .icon {
+                    filter: drop-shadow(3px 3px 50px rgba($bit-blue, .9));
+                }
+            }
+            &::after {
+                display: none;
+            }
+            &[aria-expanded='true'] {
+                .icon {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    .accordion-body {
+        padding: 0.5rem 0 2rem 0;
+
+    }
+}
+
+.accordion {
+    .faq-accordion:last-of-type {
+        border-bottom: transparent;
+    }
+}
+
+.faq-nav {
+    .faq-nav-items {
+        list-style: none;
+        padding: 0;
+        .nav-link {
+            cursor: pointer;
+        }
+
+    }
+
+    @include media-breakpoint-up(md) {
+        position: sticky;
+        top: 2rem;
+        left: 0;
+        .nav-link {
+            padding: 1rem 0;
+            font-size: $h4-font-size;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        .faq-nav-items {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -0.3rem;
+            .faq-nav-item {
+                padding: 0.3rem;
+                .nav-link {
+                    font-size: $h4-font-size;
+                    border: 1px solid $bit-light-100;
+                }
+            }
+        }
+    }
+}

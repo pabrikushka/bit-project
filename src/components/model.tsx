@@ -35,9 +35,9 @@ export default function Model(props: ModelProps) {
   
     return (
       <group
-        position={props.position}
-        scale={props.scale}
-        rotation={[props.rotation.x + rotation.x, props.rotation.y + rotation.y, props.rotation.z]}
+        // position={props.position}
+        // scale={props.scale}
+        // rotation={[props.rotation.x + rotation.x, props.rotation.y + rotation.y, props.rotation.z]}
       >
         <primitive object={gltf.scene} />
       </group>

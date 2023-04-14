@@ -15,7 +15,7 @@ const Book = () => {
     return (
         <section className='book-section'>
             <Canvas>
-                <ambientLight />
+                {/* <ambientLight />
                 <pointLight position={[10, 10, 10]} />
                 <Model
                     modelPath="/watch.glb"
@@ -27,7 +27,7 @@ const Book = () => {
                         transition: { duration: 2 },
                         repeat: Infinity,
                     }}
-                />
+                /> */}
             </Canvas>
         </section>
     );

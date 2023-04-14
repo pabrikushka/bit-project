@@ -14,9 +14,18 @@ const NavbarListNavs = (props: any) => {
         </motion.div>
       </li>
       <li className="nav-item">
-        <motion.a variants={createNavLinkVariants()} href="/history" className="nav-link">
-          Book
-        </motion.a>
+        <motion.div variants={createNavLinkVariants()}>
+          <NavLink to="/" className="nav-link">
+            Collective
+          </NavLink>
+        </motion.div>
+      </li>
+      <li className="nav-item">
+        <motion.div variants={createNavLinkVariants()}>
+          <NavLink to="/" className="nav-link">
+            Shop
+          </NavLink>
+        </motion.div>
       </li>
     </>
   );

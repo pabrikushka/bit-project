@@ -27,7 +27,7 @@ const ArtHeader = (props: ArtHeaderProps) => {
             opacity: 1,
             skewY: 0,
             transition: {
-              duration: 0.3,
+              duration: 0.4,
               ease: "easeOut",
             },
           }}

@@ -174,7 +174,7 @@ body {
 
 // Nav Link 
 .nav-link {
-    padding: 1rem 1.2rem;
+    padding: 1rem 0.8rem;
     color: $bit-light-100;
     transition: all .25s ease-out;
 
@@ -221,7 +221,7 @@ body {
     }
 
     @include media-breakpoint-up(xxl) {
-        padding: 1.4rem 2.5rem;
+        padding: 1.4rem 2rem;
     }
 
     // Mobile 

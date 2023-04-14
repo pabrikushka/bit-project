@@ -6,6 +6,7 @@ import Home from "./pages/home.jsx";
 import HistoryWidget from "./components/history/HistoryWidget";
 import ArtWidget from "./components/art/ArtWidget";
 import Events from "./pages/events";
+import FaqWidget from "./components/faq/FaqWidget";
 
 
 const AnimatedRoutes = () => {
@@ -22,6 +23,7 @@ const AnimatedRoutes = () => {
                     <ArtWidget initialArt={location?.state?.id ? location?.state: undefined}/>
                 } />
                 <Route path="/events" exact element={<Events />} />
+                <Route path="/faq" exact element={<FaqWidget/>} />
             </Routes>
         </AnimatePresence>
     );
