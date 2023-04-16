@@ -20,10 +20,11 @@ interface ArtBannerProps {
   audioContainerState: [AudioContainer, React.Dispatch<React.SetStateAction<AudioContainer>>];
   isFullScreenBanner: boolean;
   setIsFullScreenBanner: any;
+  artReleased: boolean;
 }
 
 const ArtBanner = (props: ArtBannerProps) => {
-  const { image, videoContainerState, isFullScreenBanner, setIsFullScreenBanner, audioContainerState } = props;
+  const { image, videoContainerState, isFullScreenBanner, setIsFullScreenBanner, audioContainerState, artReleased} = props;
   // work around for browser full screen delay
   const [isBrowserFullScreenSwitchedOn, setIsBrowserFullScreenSwitchedOn] = useState<boolean | null>(null);
 
@@ -82,17 +83,17 @@ const ArtBanner = (props: ArtBannerProps) => {
             <motion.div className="art-frame">
               <motion.img src={image?.url} alt={image?.title} className="art-img position-static w-100" />
             </motion.div>
-            <BannerVideo videoContainerState={videoContainerState} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} />
-            <BannerAudio audioContainerState={audioContainerState} audioStatus={audioStatus} />
+            {artReleased && <BannerVideo videoContainerState={videoContainerState} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} />}
+            {artReleased && <BannerAudio audioContainerState={audioContainerState} audioStatus={audioStatus} />}
 
-            {/* <BannerControls
+            {/* {artReleased && <BannerControls
               isFullScreenBanner={isFullScreenBanner}
               setIsFullScreenBanner={setIsFullScreenBanner}
               videoStatus={videoStatus}
               audioStatus={audioStatus}
               toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
               toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
-            /> */}
+            />} */}
             {/* <BannerGlitch/> */}
             <BannerShare isFullScreenBanner={isFullScreenBanner}/>
             <BannerSubscribe/>

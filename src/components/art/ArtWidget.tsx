@@ -119,6 +119,7 @@ const ArtWidget = (props: any) => {
                     audioContainerState={audioContainerState}
                     isFullScreenBanner={false}
                     setIsFullScreenBanner={toogleBannerFullScreen}
+                    artReleased={artPiece?.artReleased}
                   />
                 </div>
               </Col>
@@ -162,6 +163,7 @@ const ArtWidget = (props: any) => {
             audioContainerState={audioContainerState}
             isFullScreenBanner={true}
             setIsFullScreenBanner={toogleBannerFullScreen}
+            artReleased={artPiece?.artReleased}
           />
         </div>
       ) : null}
