@@ -19,6 +19,8 @@ const HistoryWidget = (props: any) => {
 
   const [historyGroups, setHistoryGroups] = useState<IHistoryGroup[]>([]);
 
+  const [exitAnimationStarting, setExitAnimationStarting] = useState(false);
+
   const { loading, error, data: queryData } = useQuery(GET_WHOLE_HISTORY, {errorPolicy: "all"});
 
   const artHolderAnimation = useAnimation();
@@ -54,7 +56,7 @@ const HistoryWidget = (props: any) => {
 
   return (
     <>
-      <motion.main
+       <motion.main
         className=""
         initial={{
           y: "0rem",
@@ -73,13 +75,14 @@ const HistoryWidget = (props: any) => {
             duration: 1,
           },
         }}
+        onAnimationStart={() => setExitAnimationStarting(true)}
       >
         <Container className="px-xl-5" style={{ paddingBottom: 100 }}>
           <Row>
             <Col xs={12} className="history-wrapper">
               <div className="history-holder">
                 {historyGroups.map((group: IHistoryGroup) => (
-                  <HistoryGroup groupData={group} key={group.id} />
+                  <HistoryGroup groupData={group} key={group.id} exitAnimationStarting={exitAnimationStarting}/>
                 ))}
               </div>
               <HistoryYearNavigation historyGroups={historyGroups} />

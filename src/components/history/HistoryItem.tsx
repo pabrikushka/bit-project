@@ -10,6 +10,7 @@ import { useAnimation, useMotionValue, useTransform, useSpring } from "framer-mo
 
 interface HistoryItemProps {
   itemData: IHistoryItem;
+  exitAnimationStarting: boolean;
 }
 
 function getRelativeCoordinates(event: any, referenceElement: any) {
@@ -88,6 +89,8 @@ const HistoryItem = (props: HistoryItemProps) => {
     // console.log(y)
   }
 
+  const canHistoryItemPictureBeVisible = !props.exitAnimationStarting;
+
   // window.addEventListener('mousemove', handleMouse);
 
   return (
@@ -107,7 +110,7 @@ const HistoryItem = (props: HistoryItemProps) => {
           </motion.div>
         </Col>
         <AnimatePresence mode="wait">
-          {isHovered ? (<HistoryItemPicture frameX={frameX} frameY={frameY} frameRotate={frameRotate} imgX={imgX} imgY={imgY} itemData={props.itemData} />) : null}
+          {canHistoryItemPictureBeVisible && isHovered ? (<HistoryItemPicture frameX={frameX} frameY={frameY} frameRotate={frameRotate} imgX={imgX} imgY={imgY} itemData={props.itemData} />) : null}
         </AnimatePresence>
         <Col xs={12} lg={{ span: 5, order: 1 }} xl={4}>
           <motion.div className="art-card-main mt-4 mt-md-0 d-md-flex flex-column h-100">
