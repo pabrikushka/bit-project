@@ -121,6 +121,15 @@
     }
 }
 
+// Release Message 
+.release-message {
+    @include media-breakpoint-up(xl) {
+        h3 {
+            font-size: 2rem;
+        }
+    }
+}
+
 // Art Card 
 .art-card {
     text-decoration: none;

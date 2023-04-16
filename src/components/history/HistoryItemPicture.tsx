@@ -14,7 +14,7 @@ interface HistoryItemPictureProps {
 
 const HistoryItemPicture = (props: HistoryItemPictureProps) => {
   const { resetArt, fadeOut, artHolderAnimation, artImgAnimation, artHolderMotion, historyEvent, isMobile } = props.itemData;
-  const {frameX, frameY, frameRotate, imgX, imgY} = props;
+  const { frameX, frameY, frameRotate, imgX, imgY } = props;
 
   const pictureContainerRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const isInView = useInView(pictureContainerRef);
@@ -35,7 +35,7 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
   }, [isInView, isMobile]);
   if (!historyEvent.mainImage) return <div></div>;
 
-  
+
   return (
     <motion.div
       ref={pictureContainerRef}
@@ -73,7 +73,7 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
       <motion.div
         // exit={resetArt}
         className="art-holder"
-        // animate={artHolderAnimation}
+      // animate={artHolderAnimation}
       >
         <motion.div
           // exit={resetArt}
@@ -83,7 +83,7 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
             y: frameY,
             rotate: frameRotate
           }}
-          // variants={artHolderMotion}
+        // variants={artHolderMotion}
         >
           <motion.img
             // exit={resetArt}
@@ -94,8 +94,17 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
               translateX: imgX,
               y: imgY,
             }}
-            // animate={artImgAnimation}
+          // animate={artImgAnimation}
           />
+
+          {/* Release message  */}
+          <div className="release-message-holder w-100 h-100 start-0 top-0 position-absolute d-flex align-items-center justify-content-center">
+            <div className="release-message bg-dark p-3 text-center">
+              <h3 className="text-uppercase mb-0">
+                Artwork unveiled <br/> in 156 days
+              </h3>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     </motion.div>
