@@ -74,7 +74,7 @@ const HistoryWidget = (props: any) => {
             duration: 1,
           },
         }}
-        onAnimationStart={() => setExitAnimationStarting(true)}
+        //onAnimationStart={() => setExitAnimationStarting(true)}
       >
         <Container className="px-xl-5" style={{ paddingBottom: 100 }}>
           <Row>
