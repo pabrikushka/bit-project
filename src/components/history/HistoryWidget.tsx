@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Container from "react-bootstrap/Container";
@@ -9,7 +8,6 @@ import HistoryGroup from "./HistoryGroup";
 import { IHistoryGroup } from "./types";
 import { createHistoryGroups } from "./helpers";
 import HistoryYearNavigation from "./HistoryYearNavigation";
-import honeybadger from "../../assets/images/honeybadger.jpg";
 import TransitAnimator from "../../shared/TransitAnimator";
 import { useQuery } from "@apollo/client";
 import { GET_WHOLE_HISTORY } from "../../services/graphql/historyQuery";
@@ -18,6 +16,7 @@ const HistoryWidget = (props: any) => {
   const { isMobile } = useWindowParams();
 
   const [historyGroups, setHistoryGroups] = useState<IHistoryGroup[]>([]);
+  const [animationImage, setAnimationImage] = useState<string | null>(null);
 
   const [exitAnimationStarting, setExitAnimationStarting] = useState(false);
 
@@ -82,7 +81,12 @@ const HistoryWidget = (props: any) => {
             <Col xs={12} className="history-wrapper">
               <div className="history-holder">
                 {historyGroups.map((group: IHistoryGroup) => (
-                  <HistoryGroup groupData={group} key={group.id} exitAnimationStarting={exitAnimationStarting}/>
+                  <HistoryGroup 
+                    groupData={group} 
+                    key={group.id} 
+                    exitAnimationStarting={exitAnimationStarting}
+                    setAnimationImage={setAnimationImage}
+                    />
                 ))}
               </div>
               <HistoryYearNavigation historyGroups={historyGroups} />
@@ -90,7 +94,7 @@ const HistoryWidget = (props: any) => {
           </Row>
         </Container>
       </motion.main>
-      <TransitAnimator image={honeybadger} />
+      {animationImage && <TransitAnimator image={animationImage} />}
     </>
   );
 };

@@ -16,6 +16,7 @@ const ArtLink = React.forwardRef((props: any, ref: any) => {
 
     const handleClick = async () => {
       // TODO set loading true ???
+      
       const artQuery = await callQuery();
       // if(result.data){
       //     // TODO do we need conditional navigation?
@@ -26,6 +27,7 @@ const ArtLink = React.forwardRef((props: any, ref: any) => {
       if(initialArt.mainImage){
         const img = new Image();
         img.src = initialArt.mainImage.url;
+        props.setAnimationImage(initialArt.mainImage.url);
         await img.decode();
       }
 

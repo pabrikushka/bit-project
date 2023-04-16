@@ -11,7 +11,13 @@ const toMediaAsset = (mediaData: any): IMediaAsset | null => {
   
   const artItemToIArtBase = (artItem: any): IArtBase => {
     const eventDate = new Date(artItem.eventDate);
+    const artReleaseDate = artItem.artReleaseDate ? new Date(artItem.artReleaseDate) : null;
+    const artReleased = artItem.artReleased === false ? false: true;
     const { title, btcPrice, overview } = artItem;
+
+    const mainImage = toMediaAsset(artReleased? artItem.mainImage: artItem.glitchedImage);
+    const thumbnail = toMediaAsset(artReleased? artItem.thumbnail: artItem.glitchedImage);
+
     return {
       id: artItem.sys.id,
       year: eventDate.getFullYear(),
@@ -19,8 +25,11 @@ const toMediaAsset = (mediaData: any): IMediaAsset | null => {
       btcPrice,
       overview,
       eventDate,
-      mainImage: toMediaAsset(artItem.mainImage),
-      thumbnail: toMediaAsset(artItem.thumbnail),
+      mainImage,
+      thumbnail,
+      artReleaseDate,
+      artReleased,
+      glitchedImage: toMediaAsset(artItem.glitchedImage),
     };
   };
 

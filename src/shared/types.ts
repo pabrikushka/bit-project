@@ -11,5 +11,8 @@ export interface IArtBase {
   overview: string,
   btcPrice: number,
   mainImage: IMediaAsset | null,
-  thumbnail: IMediaAsset | null
+  thumbnail: IMediaAsset | null,
+  artReleased: boolean,
+  artReleaseDate: Date | null,
+  glitchedImage: IMediaAsset | null,
 }

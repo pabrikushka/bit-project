@@ -11,6 +11,7 @@ import { useAnimation, useMotionValue, useTransform, useSpring } from "framer-mo
 interface HistoryItemProps {
   itemData: IHistoryItem;
   exitAnimationStarting: boolean;
+  setAnimationImage: any;
 }
 
 function getRelativeCoordinates(event: any, referenceElement: any) {
@@ -94,7 +95,7 @@ const HistoryItem = (props: HistoryItemProps) => {
   // window.addEventListener('mousemove', handleMouse);
 
   return (
-    <MotionArtLink initial="rest" whileHover="hover" whileFocus="hover" animate="rest" artId={historyEvent.id} >
+    <MotionArtLink initial="rest" whileHover="hover" whileFocus="hover" animate="rest" artId={historyEvent.id} setAnimationImage={props.setAnimationImage}>
       <motion.div className="art-card-content row py-4 py-md-4" onMouseMove={handleMouse} onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
         <Col xs={12} lg={{ span: 3, order: 2 }} xl>

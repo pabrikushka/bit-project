@@ -5,7 +5,8 @@ import { IHistoryGroup, IHistoryItem } from "./types";
 
 interface HistoryGroupProps {
   groupData: IHistoryGroup,
-  exitAnimationStarting: boolean
+  exitAnimationStarting: boolean,
+  setAnimationImage: any
 }
 
 const HistoryGroup = (props: HistoryGroupProps) => {
@@ -17,7 +18,12 @@ const HistoryGroup = (props: HistoryGroupProps) => {
       </motion.header>
       <div className="history-row">
         {historyItems.map((itemData: IHistoryItem) => (
-          <HistoryItem itemData={itemData} key={`historyItem${itemData.historyEvent.id}`} exitAnimationStarting={props.exitAnimationStarting}/>
+          <HistoryItem 
+          itemData={itemData} 
+          key={`historyItem${itemData.historyEvent.id}`} 
+          exitAnimationStarting={props.exitAnimationStarting}
+          setAnimationImage={props.setAnimationImage}
+          />
         ))}
       </div>
     </section>

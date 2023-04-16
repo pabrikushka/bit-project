@@ -17,6 +17,12 @@ export const CORE_ARTS_FIELDS_FRAGMENT = gql`
       url
       title
     }
+    artReleaseDate
+    artReleased
+    glitchedImage {
+      url
+      title
+    }
   }
 `;
 
