@@ -15,14 +15,14 @@ const NavbarListNavs = (props: any) => {
       </li>
       <li className="nav-item">
         <motion.div variants={createNavLinkVariants()}>
-          <NavLink to="/" className="nav-link">
+          <NavLink to="/collective" className="nav-link">
             Collective
           </NavLink>
         </motion.div>
       </li>
       <li className="nav-item">
         <motion.div variants={createNavLinkVariants()}>
-          <NavLink to="/" className="nav-link">
+          <NavLink to="https://www.google.com/" className="nav-link">
             Shop
           </NavLink>
         </motion.div>

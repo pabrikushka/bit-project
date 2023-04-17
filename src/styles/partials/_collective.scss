@@ -1,0 +1,17 @@
+.collective-header {
+    // min-height: 600px;
+    min-height: 300px;
+    .rt-lines {
+        transform-origin: top;
+    }
+    @include media-breakpoint-up(sm) {
+        min-height: 500px;
+    }
+    @include media-breakpoint-up(md) {
+        height: 100vh;
+    }
+}
+
+.dummy {
+    height: 4000px;
+}

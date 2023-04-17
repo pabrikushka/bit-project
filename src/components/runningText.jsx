@@ -85,7 +85,7 @@ export default function RunningText() {
             <motion.div
                 className="rt-lines"
                 style={{
-                    //scale: scale,
+                    scale: scale,
                 }}
             >
                 <ParallaxText baseVelocity={-1}>Explore <span className="circle"></span> Learn <span className="circle"></span> Create <span className="circle"></span></ParallaxText>

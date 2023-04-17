@@ -8,6 +8,7 @@ import MenuButton from "./MenuButton";
 import useWindowParams from "../../shared/useWindowParams";
 import NavbarContent from "./NavbarContent";
 import NavbarContentMobile from "./NavbarContentMobile";
+import { NavLink } from "react-router-dom";
 
 const NavbarWidget = (props: any) => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -41,8 +42,10 @@ const NavbarWidget = (props: any) => {
   useEffect(() => {
     if (isMenuOpened) {
       document.body.classList.add("menu-open");
+      document.getElementsByTagName("html")[0].classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("menu-open");
+      document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
     }
   }, [isMenuOpened]);
 
@@ -50,13 +53,12 @@ const NavbarWidget = (props: any) => {
     <nav className={`bit-nav ${isMenuOpened ? "opened" : "collapsed"}`}>
       <Container className="nav-container px-xl-5">
         <div className="nav-content">
-          <a className="navbar-brand glow-svg-hover" href="#">
+          <NavLink to="/" className="navbar-brand glow-svg-hover">
             <Logo className={"brand-logo primary"} />
-            {/* <Logo className={'brand-logo secondary'}/> */}
-          </a>
+          </NavLink>
           {isSmallScreen ? <AnimatePresence>{isMenuOpened && <NavbarContentMobile />}</AnimatePresence> : <NavbarContent />}
           <NavSocial styleName={"d-none d-md-flex"} />
-          <NavbarButton styleName={"ps-4 d-none d-md-block"}/>
+          <NavbarButton styleName={"ps-4 d-none d-md-block"} />
           {isSmallScreen && <MenuButton isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />}
         </div>
       </Container>

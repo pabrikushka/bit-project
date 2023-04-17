@@ -7,6 +7,7 @@ import HistoryWidget from "./components/history/HistoryWidget";
 import ArtWidget from "./components/art/ArtWidget";
 import Events from "./pages/events";
 import FaqWidget from "./components/faq/FaqWidget";
+import CollectiveWidget from "./components/collective/CollectiveWidget";
 
 
 const AnimatedRoutes = () => {
@@ -22,6 +23,7 @@ const AnimatedRoutes = () => {
                     // kind of workaround to provide art object for a very first rendering 
                     <ArtWidget initialArt={location?.state?.id ? location?.state: undefined}/>
                 } />
+                <Route path="/collective" exact element={<CollectiveWidget/>} />
                 <Route path="/events" exact element={<Events />} />
                 <Route path="/faq" exact element={<FaqWidget/>} />
             </Routes>
