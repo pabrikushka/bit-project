@@ -32,6 +32,10 @@ export const GET_ART = gql`
       }
       returnSinceEvent
       returnSinceEventColour
+      video {
+        url
+        title
+      }
       audio {
         url
         title

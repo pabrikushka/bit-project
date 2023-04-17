@@ -167,11 +167,11 @@ const ArtWidget = (props: any) => {
           />
         </div>
       ) : null}
-      <ArtBannerMini
+      {artPiece?.artReleased && <ArtBannerMini
         image={artPiece?.thumbnail}
         isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
         setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
-      />
+      />}
       <AnimatePresence mode="wait">
         {isModal ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
       </AnimatePresence>

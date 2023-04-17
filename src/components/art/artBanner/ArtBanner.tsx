@@ -86,17 +86,17 @@ const ArtBanner = (props: ArtBannerProps) => {
             {artReleased && <BannerVideo videoContainerState={videoContainerState} videoStatus={videoStatus} isFullScreenBanner={isFullScreenBanner} />}
             {artReleased && <BannerAudio audioContainerState={audioContainerState} audioStatus={audioStatus} />}
 
-            {/* {artReleased && <BannerControls
+            {artReleased && <BannerControls
               isFullScreenBanner={isFullScreenBanner}
               setIsFullScreenBanner={setIsFullScreenBanner}
               videoStatus={videoStatus}
               audioStatus={audioStatus}
               toggleVideo={() => setVideoStatus(videoStatus === VideoStatuses.playing ? VideoStatuses.onPause : VideoStatuses.playing)}
               toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
-            />} */}
+            />} 
             {/* <BannerGlitch/> */}
             <BannerShare isFullScreenBanner={isFullScreenBanner}/>
-            <BannerSubscribe/>
+            {!artReleased && <BannerSubscribe/>}
           </motion.div>
         </motion.div>
       </div>

@@ -9,6 +9,8 @@ interface ArtCreditsProps {
   visualArtist: IArtist | null | undefined;
 }
 
+const notReleasedArtist = "XXXXX";
+
 const ArtCredits = (props: ArtCreditsProps) => {
   const { setArtistForModalModal, artPiece, visualArtist } = props;
   return (
@@ -18,7 +20,7 @@ const ArtCredits = (props: ArtCreditsProps) => {
         <dt className="fw-400">Artist</dt>
         <dd className="mb-0">
           <button className="nav-link btn-link bg-transparent border-0 p-0 d-flex align-items-center" onClick={() => setArtistForModalModal(visualArtist)}>
-            <span className="h4 mb-0">{visualArtist?.name}</span>
+            <span className="h4 mb-0">{artPiece.artReleased? visualArtist?.name : notReleasedArtist}</span>
           </button>
         </dd>
       </dl>
