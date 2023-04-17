@@ -22,7 +22,7 @@ const SubStatWithGraph = (props: SubStatWithGraphProps) => {
       <dl className="art-stat art-stat-sub d-flex align-items-center justify-content-between pb-2 mb-2 px-2 px-xxl-3">
         <dt className="small font-aeonik fw-400 text-light-100">{priceChangeName}</dt>
         <dd className={valueClassName}>
-          <img src={priceChangeGraph.url} />
+          <img src={priceChangeGraph.url} className="art-stat-img me-2"/>
           {priceChange}%
         </dd>
       </dl>
