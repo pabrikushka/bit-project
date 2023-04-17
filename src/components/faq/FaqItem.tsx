@@ -3,6 +3,7 @@ import { Accordion } from "react-bootstrap";
 import ArrowIcon from "../../assets/icons/arrow";
 import { IFaq } from "./types";
 import ReactMarkdown from "react-markdown";
+import { adjustLongText } from "../../shared/markdownHelpers";
 
 interface FaqItemProps {
   faq: IFaq;
@@ -17,7 +18,7 @@ const FaqItem = (props: FaqItemProps) => {
         <ArrowIcon />
       </Accordion.Header>
       <Accordion.Body>
-        <ReactMarkdown>{faq.content}</ReactMarkdown>
+        <ReactMarkdown>{adjustLongText(faq.content)}</ReactMarkdown>
       </Accordion.Body>
     </Accordion.Item>
   );
