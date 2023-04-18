@@ -220,4 +220,19 @@ const createHistoryGroups = (
   return historyGroups;
 };
 
-export { createHistoryGroups, createCenterArt, yearToShortYear };
+const countDaysToRelease = (artReleaseDate: Date | null): number => {
+  if(!artReleaseDate) return 0;
+
+  const releaseDate = new Date(artReleaseDate.valueOf());
+  releaseDate.setHours(0,0,0,0);
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const timeDiff = releaseDate.getTime() - today.getTime();
+  const days = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+  return days < 0 ? 0 : days;
+}
+
+export { createHistoryGroups, createCenterArt, yearToShortYear, countDaysToRelease };

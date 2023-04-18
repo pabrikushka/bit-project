@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { IHistoryItem } from "./types";
-import { createCenterArt } from "./helpers";
+import { countDaysToRelease, createCenterArt } from "./helpers";
 
 interface HistoryItemPictureProps {
   itemData: IHistoryItem;
@@ -35,7 +35,6 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
   }, [isInView, isMobile]);
   if (!historyEvent.mainImage) return <div></div>;
 
-
   return (
     <motion.div
       ref={pictureContainerRef}
@@ -56,7 +55,7 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
       transition={{
         opacity: {
           duration: 0.2,
-          ease: "easeOut"
+          ease: "easeOut",
         },
         scale: {
           type: "spring",
@@ -65,15 +64,13 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
           duration: 0.8,
           mass: 1,
           damping: 15,
-
-
-        }
+        },
       }}
     >
       <motion.div
         // exit={resetArt}
         className="art-holder"
-      // animate={artHolderAnimation}
+        // animate={artHolderAnimation}
       >
         <motion.div
           // exit={resetArt}
@@ -81,9 +78,9 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
           style={{
             translateX: frameX,
             y: frameY,
-            rotate: frameRotate
+            rotate: frameRotate,
           }}
-        // variants={artHolderMotion}
+          // variants={artHolderMotion}
         >
           <motion.img
             // exit={resetArt}
@@ -94,17 +91,19 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
               translateX: imgX,
               y: imgY,
             }}
-          // animate={artImgAnimation}
+            // animate={artImgAnimation}
           />
 
           {/* Release message  */}
-          <div className="release-message-holder w-100 h-100 start-0 top-0 position-absolute d-flex align-items-center justify-content-center">
-            <div className="release-message bg-dark p-3 text-center">
-              <h3 className="text-uppercase mb-0">
-                Artwork unveiled <br/> in 156 days
-              </h3>
+          {!historyEvent.artReleased && (
+            <div className="release-message-holder w-100 h-100 start-0 top-0 position-absolute d-flex align-items-center justify-content-center">
+              <div className="release-message bg-dark p-3 text-center">
+                <h3 className="text-uppercase mb-0">
+                  Artwork unveiled <br /> in {countDaysToRelease(historyEvent.artReleaseDate)} days
+                </h3>
+              </div>
             </div>
-          </div>
+          )}
         </motion.div>
       </motion.div>
     </motion.div>
