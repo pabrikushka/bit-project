@@ -8,6 +8,7 @@ import ThemeProvider from "react-bootstrap/ThemeProvider";
 import NavbarWidget from "./components/navbar/NavbarWidget";
 import Footer from "./components/footer/FooterWidget";
 import SiteAlert from "./components/siteAlert";
+import DefaultSEO from "./components/seo/DefaultSEO";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <AnimatedRoutes />
         </BrowserRouter>
         <Footer />
+        <DefaultSEO />
       </ThemeProvider>
     </ApolloProvider>
   );
