@@ -22,6 +22,7 @@ import { GET_ART } from "../../services/graphql/artQuery";
 import { useParams } from "react-router-dom";
 import { IArtist } from "./artistModal/types";
 import PageSpecificSEO from "../seo/PageSpecificSEO";
+import ArtBodyRightPart from "./ArtBodyRightPart";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
@@ -30,7 +31,7 @@ const ArtWidget = (props: any) => {
 
   const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(props.initialArt);
 
-  const isModal = artistForModalModal ? true : false;
+  const isArtistModalOpened = artistForModalModal ? true : false;
 
   const videoContainerState = useState<VideoContainer>({
     videoLoadingStatus: VideoLoadingStatuses.loading,
@@ -95,14 +96,14 @@ const ArtWidget = (props: any) => {
   };
 
   useEffect(() => {
-    if (isFullScreenBanner || isModal) {
+    if (isFullScreenBanner || isArtistModalOpened) {
       document.getElementsByTagName("html")[0].classList.add("overflow-hidden");
     } else {
       document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
     }
     return () => document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
-  }, [isFullScreenBanner, isModal]);
-console.log(artPiece?.metaTitle);
+  }, [isFullScreenBanner, isArtistModalOpened]);
+
   return (
     <>
       <main>
@@ -125,33 +126,7 @@ console.log(artPiece?.metaTitle);
                 </div>
               </Col>
             </Row>
-            <motion.div
-              initial={artBodyAnimationSettings.initial}
-              animate={artBodyAnimationSettings.animate}
-              transition={artBodyAnimationSettings.transition}
-            >
-              <Row className="art-body position-relative">
-                <Col xs={12} lg={7} className="art-body-main">
-                  <ArtBody content={artPiece?.content} />
-                  <div className="btn-holder w-100 d-lg-block mt-5">
-                    <Button variant="outline-primary" className="bit-btn icon-btn w-100" href="#">
-                      <AnimatedArrow />
-                      Share This
-                    </Button>
-                  </div>
-                </Col>
-                <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
-                  <div className="art-credits-holder ps-xl-5 px-xxl-5">
-                    <ArtCredits
-                      setArtistForModalModal={setArtistForModalModal}
-                      artPiece={artPiece}
-                      visualArtist={artPiece?.visualArtist}
-                    />
-                  </div>
-                </Col>
-                <Col xs={12}></Col>
-              </Row>
-            </motion.div>
+            <ArtBodyRightPart artPiece={artPiece} setArtistForModalModal={setArtistForModalModal}/>
           </Container>
         </section>
         <ArtSlider slides={prepareArtSlides()} />
@@ -174,7 +149,7 @@ console.log(artPiece?.metaTitle);
         setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
       />}
       <AnimatePresence mode="wait">
-        {isModal ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
+        {isArtistModalOpened ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
       </AnimatePresence>
       {artPiece?.metaTitle ? <PageSpecificSEO 
         title={artPiece.metaTitle}
