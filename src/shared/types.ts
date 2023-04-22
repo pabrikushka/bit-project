@@ -16,3 +16,10 @@ export interface IArtBase {
   artReleaseDate: Date | null,
   glitchedImage: IMediaAsset | null,
 }
+
+export interface ISEOProps {
+  title: string | null;
+  description: string | null;
+  imageSrc: string | null;
+  keywords: string[] | null;
+}

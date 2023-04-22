@@ -21,6 +21,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ART } from "../../services/graphql/artQuery";
 import { useParams } from "react-router-dom";
 import { IArtist } from "./artistModal/types";
+import PageSpecificSEO from "../seo/PageSpecificSEO";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
@@ -101,7 +102,7 @@ const ArtWidget = (props: any) => {
     }
     return () => document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
   }, [isFullScreenBanner, isModal]);
-
+console.log(artPiece?.metaTitle);
   return (
     <>
       <main>
@@ -175,6 +176,13 @@ const ArtWidget = (props: any) => {
       <AnimatePresence mode="wait">
         {isModal ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
       </AnimatePresence>
+      {artPiece?.metaTitle ? <PageSpecificSEO 
+        title={artPiece.metaTitle}
+        description={artPiece.metaDescription }
+        imageSrc={artPiece.metaImage?.url}
+        keywords={artPiece.metaTags}
+        pageUrl={window.location.href}
+      /> : null}
     </>
   );
 };
