@@ -4,7 +4,7 @@ import { IArtPiece } from "./types";
 import StatsWidget from "./btcStats/StatsWidget";
 
 interface ArtCreditsProps {
-  setArtistForModalModal: any;
+  setArtistForModal: any;
   artPiece: IArtPiece | undefined;
   visualArtist: IArtist | null | undefined;
 }
@@ -12,7 +12,7 @@ interface ArtCreditsProps {
 const notReleasedArtist = "XXXXX";
 
 const ArtCredits = (props: ArtCreditsProps) => {
-  const { setArtistForModalModal, artPiece, visualArtist } = props;
+  const { setArtistForModal, artPiece, visualArtist } = props;
   return (
     <>
       {/* Main Credit  */}
@@ -22,7 +22,7 @@ const ArtCredits = (props: ArtCreditsProps) => {
           {artPiece.artReleased ? (
             <button
               className="nav-link btn-link bg-transparent border-0 p-0 d-flex align-items-center"
-              onClick={() => setArtistForModalModal(visualArtist)}
+              onClick={() => setArtistForModal(visualArtist)}
             >
               <span className="h4 mb-0">{visualArtist?.name}</span>
             </button>

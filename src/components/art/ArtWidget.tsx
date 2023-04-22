@@ -26,12 +26,12 @@ import ArtBodyRightPart from "./ArtBodyRightPart";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
-  const [artistForModalModal, setArtistForModalModal] = useState<IArtist | null>(null);
+  const [artistForModal, setArtistForModal] = useState<IArtist | null>(null);
   const refToPageArtBanner = useRef(null);
 
   const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(props.initialArt);
 
-  const isArtistModalOpened = artistForModalModal ? true : false;
+  const isArtistModalOpened = artistForModal ? true : false;
 
   const videoContainerState = useState<VideoContainer>({
     videoLoadingStatus: VideoLoadingStatuses.loading,
@@ -126,7 +126,7 @@ const ArtWidget = (props: any) => {
                 </div>
               </Col>
             </Row>
-            <ArtBodyRightPart artPiece={artPiece} setArtistForModalModal={setArtistForModalModal}/>
+            <ArtBodyRightPart artPiece={artPiece} setArtistForModal={setArtistForModal}/>
           </Container>
         </section>
         <ArtSlider slides={prepareArtSlides()} />
@@ -149,7 +149,7 @@ const ArtWidget = (props: any) => {
         setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
       />}
       <AnimatePresence mode="wait">
-        {isArtistModalOpened ? <ArtistModal closeModal={() => setArtistForModalModal(null)} artist={artistForModalModal!} /> : null}
+        {isArtistModalOpened ? <ArtistModal closeModal={() => setArtistForModal(null)} artist={artistForModal!} /> : null}
       </AnimatePresence>
       {artPiece?.metaTitle ? <PageSpecificSEO 
         title={artPiece.metaTitle}

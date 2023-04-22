@@ -10,11 +10,11 @@ import ArtCredits from "./ArtCredits";
 
 interface ArtBodyRightPartProps {
   artPiece: IArtPiece | undefined;
-  setArtistForModalModal: any;
+  setArtistForModal: any;
 }
 
 const ArtBodyRightPart = (props: ArtBodyRightPartProps) => {
-  const { artPiece, setArtistForModalModal } = props;
+  const { artPiece, setArtistForModal } = props;
   return (
     <motion.div
       initial={artBodyAnimationSettings.initial}
@@ -33,7 +33,7 @@ const ArtBodyRightPart = (props: ArtBodyRightPartProps) => {
         </Col>
         <Col xs={12} lg={5} className="art-credits-col ps-xl-5 px-xxl-5 mt-5 mt-lg-0">
           <div className="art-credits-holder ps-xl-5 px-xxl-5">
-            <ArtCredits setArtistForModalModal={setArtistForModalModal} artPiece={artPiece} visualArtist={artPiece?.visualArtist} />
+            <ArtCredits setArtistForModal={setArtistForModal} artPiece={artPiece} visualArtist={artPiece?.visualArtist} />
           </div>
         </Col>
         <Col xs={12}></Col>
