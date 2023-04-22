@@ -10,6 +10,7 @@ import Footer from "./components/footer/FooterWidget";
 import SiteAlert from "./components/siteAlert";
 import DefaultSEO from "./components/seo/DefaultSEO";
 
+// TODO add correct DefaultSEO values
 function App() {
   return (
     <ApolloProvider client={apolloClient}>
@@ -20,7 +21,12 @@ function App() {
           <AnimatedRoutes />
         </BrowserRouter>
         <Footer />
-        <DefaultSEO />
+        <DefaultSEO 
+          title="test" 
+          description="Should be changed" 
+          imageSrc="http://example.com/facebook-foo.jpg"
+          keywords={[]}
+          />
       </ThemeProvider>
     </ApolloProvider>
   );

@@ -109,6 +109,10 @@ const artItemToIArtPiece = (artItem: any): IArtPiece => {
     content: artItem.content,
     audioArtist: artistItemToIArtist(artItem.audioArtist),
     visualArtist: artistItemToIArtist(artItem.visualArtist),
+    metaTitle: artItem.metaTitle,
+    metaDescription: artItem.metaDescription,
+    metaImage: toMediaAsset(artItem.metaImage),
+    metaTags: artItem.metaTags,
   };
 };
 

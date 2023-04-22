@@ -66,4 +66,8 @@ export interface IArtPiece extends IArtBase {
   content: any,
   audioArtist: IArtist | null,
   visualArtist: IArtist | null,
+  metaTitle: string | null,
+  metaDescription: string | null,
+  metaImage: IMediaAsset | null,
+  metaTags: string[] | null
 }

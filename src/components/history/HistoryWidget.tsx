@@ -11,7 +11,6 @@ import HistoryYearNavigation from "./HistoryYearNavigation";
 import TransitAnimator from "../../shared/TransitAnimator";
 import { useQuery } from "@apollo/client";
 import { GET_WHOLE_HISTORY } from "../../services/graphql/historyQuery";
-import PageSpecificSEO from "../seo/PageSpecificSEO";
 
 const HistoryWidget = (props: any) => {
   const { isMobile } = useWindowParams();
@@ -99,7 +98,6 @@ const HistoryWidget = (props: any) => {
         </Container>
       </motion.main>
       {animationImage && <TransitAnimator image={animationImage} />}
-      <PageSpecificSEO />
     </>
   );
 };

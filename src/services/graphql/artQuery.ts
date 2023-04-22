@@ -53,6 +53,13 @@ export const GET_ART = gql`
           ...coreArtitFileds
         }
       }
+      metaTitle
+      metaDescription
+      metaImage{
+        url
+        title
+      }
+      metaTags
     }
   }
   ${CORE_ARTS_FIELDS_FRAGMENT}
