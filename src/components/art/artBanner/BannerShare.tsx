@@ -6,10 +6,11 @@ import AnimatedShare from "../../../assets/icons/animatedShare";
 
 interface BannerShareProps {
     isFullScreenBanner: boolean;
+    setIsShareModelOpened: any;
 }
 
 const BannerShare = (props: BannerShareProps) => {
-    const { isFullScreenBanner} = props;
+    const { isFullScreenBanner, setIsShareModelOpened} = props;
 
     const animationSettings = {
         initial: {
@@ -35,7 +36,9 @@ const BannerShare = (props: BannerShareProps) => {
             animate={isFullScreenBanner ? false : animationSettings.animate}
             transition={isFullScreenBanner ? undefined : animationSettings.transition}
         >
-            <Button className="bit-btn icon-btn banner-btn d-flex p-0 bg-transparent border-0 relative">
+            <Button 
+                onClick={() => setIsShareModelOpened(true)}
+                className="bit-btn icon-btn banner-btn d-flex p-0 bg-transparent border-0 relative">
                 <div className="text-holder uppercase bg-dark text-primary d-flex align-items-center justify-content-center me-1">
                     <span className="btn-text">
                         Share

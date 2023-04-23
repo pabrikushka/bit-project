@@ -21,10 +21,11 @@ interface ArtBannerProps {
   isFullScreenBanner: boolean;
   setIsFullScreenBanner: any;
   artReleased: boolean;
+  setIsShareModelOpened: any;
 }
 
 const ArtBanner = (props: ArtBannerProps) => {
-  const { image, videoContainerState, isFullScreenBanner, setIsFullScreenBanner, audioContainerState, artReleased} = props;
+  const { image, videoContainerState, isFullScreenBanner, setIsFullScreenBanner, audioContainerState, artReleased, setIsShareModelOpened} = props;
   // work around for browser full screen delay
   const [isBrowserFullScreenSwitchedOn, setIsBrowserFullScreenSwitchedOn] = useState<boolean | null>(null);
 
@@ -95,7 +96,7 @@ const ArtBanner = (props: ArtBannerProps) => {
               toggleAudio={() => setAudioStatus(audioStatus === AudioStatuses.unmute ? AudioStatuses.mute : AudioStatuses.unmute)}
             />} 
             {/* <BannerGlitch/> */}
-            <BannerShare isFullScreenBanner={isFullScreenBanner}/>
+            <BannerShare isFullScreenBanner={isFullScreenBanner} setIsShareModelOpened={setIsShareModelOpened}/>
             {!artReleased && <BannerSubscribe/>}
           </motion.div>
         </motion.div>
