@@ -19,7 +19,7 @@ const ArtCredits = (props: ArtCreditsProps) => {
       <dl className="artist-credit d-flex align-items-center justify-content-between px-2 px-xxl-3 py-2 mb-4 py-xl-3">
         <dt className="fw-400">Artist</dt>
         <dd className="mb-0">
-          {artPiece.artReleased ? (
+          {artPiece?.artReleased ? (
             <button
               className="nav-link btn-link bg-transparent border-0 p-0 d-flex align-items-center"
               onClick={() => setArtistForModal(visualArtist)}

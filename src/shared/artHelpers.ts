@@ -1,4 +1,5 @@
-const formatEventDate = (eventDate: Date): string => {
+const formatEventDate = (eventDate: Date | undefined): string => {
+  if(!eventDate) return "";
     const options: Intl.DateTimeFormatOptions = { 
         year: 'numeric',
         month: 'long',

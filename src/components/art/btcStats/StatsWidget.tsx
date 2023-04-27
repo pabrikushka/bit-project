@@ -18,7 +18,7 @@ const StatsWidget = (props: StatsWidgetProps) => {
         {/* Main  */}
         <dl className="art-stat art-stat-main d-flex align-items-center justify-content-between py-2 mb-4 px-2 px-xxl-3">
           <dt className="small fw-400 font-aeonik text-light-70 text-uppercase">BTC On this day</dt>
-          <dd className="small fw-400 font-aeonik text-light-70 text-uppercase mb-0">{formatEventDate(artPiece.eventDate)}</dd>
+          <dd className="small fw-400 font-aeonik text-light-70 text-uppercase mb-0">{formatEventDate(artPiece?.eventDate)}</dd>
         </dl>
         <SubStat name="Circulating Supply" value={artPiece?.circulatingSupply} />
         <SubStat name="Market Cap" value={notNullOrUndefined(artPiece?.marketCap) ? `$${artPiece?.marketCap?.toLocaleString()}` : null} />
