@@ -27,6 +27,13 @@ const NavbarListNavs = (props: any) => {
           </NavLink>
         </motion.div>
       </li>
+      <li className="nav-item">
+        <motion.div variants={createNavLinkVariants()}>
+          <NavLink to="/faq" className="nav-link">
+            FAQ
+          </NavLink>
+        </motion.div>
+      </li>
     </>
   );
 };
