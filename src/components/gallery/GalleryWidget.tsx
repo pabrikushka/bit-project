@@ -47,7 +47,7 @@ const GalleryWidget = (props: any) => {
           </perspectiveCamera>
         </Canvas>
       </section>
-      <TransitAnimator image={honeybadger} />
+      {/* <TransitAnimator image={honeybadger} /> */}
     </>
   );
 };

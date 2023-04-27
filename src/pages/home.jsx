@@ -5,6 +5,7 @@ import Book from "../components/book.tsx";
 import Overview from "../components/overview.tsx";
 import GalleryWidget from "../components/gallery/GalleryWidget";
 import Exhibition from '../components/exhibition';
+import TransitAnimator from "../shared/TransitAnimator";
 
 
 
@@ -32,6 +33,7 @@ const Home = () => {
                 buttonText={"Book Your Tickets"}
             /> */}
             {/* <Exhibition/> */}
+            <TransitAnimator image={null} />
         </main>
     )
 }

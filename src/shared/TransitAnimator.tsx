@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 interface TransitAnimatorProps {
-  image: any,
+  image: string | null,
 }
 
 const TransitAnimator = (props: TransitAnimatorProps) => {
@@ -38,10 +38,10 @@ const TransitAnimator = (props: TransitAnimatorProps) => {
               <motion.div
                 className="animator-holder"
               >
-                <motion.img
+                {image ? <motion.img
                   className="animator-img"
                   src={image}
-                />
+                /> : null}
                 <motion.div
                   className="animator-curtains"
                 >
