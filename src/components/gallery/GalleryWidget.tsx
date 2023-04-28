@@ -4,8 +4,6 @@ import { useScroll, useSpring } from "framer-motion";
 import React from "react";
 import GalleryCard from "./GalleryCard";
 import { getListCards, prepareCameraConfig } from "./helpers";
-import TransitAnimator from "../../shared/TransitAnimator";
-import honeybadger from '../../assets/images/honeybadger.jpg';
 
 const GalleryWidget = (props: any) => {
   const ref = useRef(null);
@@ -47,7 +45,6 @@ const GalleryWidget = (props: any) => {
           </perspectiveCamera>
         </Canvas>
       </section>
-      {/* <TransitAnimator image={honeybadger} /> */}
     </>
   );
 };
