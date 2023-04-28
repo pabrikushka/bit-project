@@ -8,6 +8,7 @@ import { GET_ALL_FAQ_CATEGORIES } from "../../services/graphql/faqCategoriesQuer
 import { GET_ALL_FAQS } from "../../services/graphql/faqsQuery";
 import { categoryItemToIFaqCategory, createFaqGroups } from "./helpers";
 import { IFaqCategory, IFaqGroup } from "./types";
+import TransitAnimator from "../../shared/TransitAnimator";
 
 const FaqWidget = (props: any) => {
   const [faqCategories, setFaqCategories] = useState<IFaqCategory[]>([]);
@@ -128,6 +129,7 @@ const FaqWidget = (props: any) => {
           </motion.div>
         </Container>
       </motion.main>
+      <TransitAnimator image={null} />
     </>
   );
 };

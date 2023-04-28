@@ -1,20 +1,14 @@
-import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import AnimatedArrow from "../../assets/icons/animatedArrow";
-import Button from "react-bootstrap/Button";
-import { artBodyAnimationSettings, artItemToIArtPiece, prepareArtSlides } from "./helpers";
+import { artItemToIArtPiece, prepareArtSlides } from "./helpers";
 import useOnScreen from "../../shared/useOnScreen";
 import { AudioContainer, AudioLoadingStatuses, IArtPiece, VideoContainer, VideoLoadingStatuses } from "./types";
 import ArtBanner from "./artBanner/ArtBanner";
-import DeepDiveIcon from "../../assets/icons/deepDiveIcon";
 import ArtBannerMini from "./ArtBannerMini";
 import ArtHeader from "./ArtHeader";
-import ArtBody from "./ArtBody";
-import ArtCredits from "./ArtCredits";
 import ArtSlider from "./artSlider/ArtSlider";
 import ArtistModal from "./artistModal/ArtistModal";
 import { useQuery } from "@apollo/client";
@@ -24,6 +18,7 @@ import { IArtist } from "./artistModal/types";
 import PageSpecificSEO from "../seo/PageSpecificSEO";
 import ArtBodyRightPart from "./ArtBodyRightPart";
 import ShareModal from "./share/ShareModal";
+import TransitAnimator from "../../shared/TransitAnimator";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
@@ -168,6 +163,7 @@ const ArtWidget = (props: any) => {
         keywords={artPiece.metaTags}
         pageUrl={window.location.href}
       /> : null}
+      <TransitAnimator image={null} />
     </>
   );
 };

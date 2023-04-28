@@ -97,7 +97,7 @@ const HistoryWidget = (props: any) => {
           </Row>
         </Container>
       </motion.main>
-      {animationImage && <TransitAnimator image={animationImage} />}
+      <TransitAnimator image={animationImage} />
     </>
   );
 };
