@@ -58,13 +58,17 @@ const HistoryWidget = (props: any) => {
       <motion.main
         className=""
         initial={{
+          opacity: 0,
+          y: "4rem",
+        }}
+        animate={{
           y: "0rem",
           scale: 1,
           opacity: 1,
         }}
         exit={{
           y: "-4rem",
-          scale: 0.6,
+          scale: 0.8,
           opacity: 0,
         }}
         transition={{

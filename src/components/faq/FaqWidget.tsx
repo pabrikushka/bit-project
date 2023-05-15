@@ -33,7 +33,25 @@ const FaqWidget = (props: any) => {
 
   return (
     <>
-      <motion.main>
+      <motion.main
+        initial={{
+          y: "0rem",
+          scale: 1,
+          opacity: 1,
+        }}
+        exit={{
+          y: "-4rem",
+          scale: 0.8,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+          scale: {
+            duration: 1,
+          },
+        }}
+      >
         <Container className="px-xl-5">
           <Row>
             <Col xs={12}>

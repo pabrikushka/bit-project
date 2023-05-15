@@ -8,6 +8,9 @@
         bottom: 1rem;
         left: 0;
         width: 100%;
+        h3 {
+            font-size: $h5-font-size;
+        }
     }
     &.section-title {
         border-bottom: 1px solid $bit-light-100;
@@ -17,7 +20,11 @@
 
 
     @include media-breakpoint-up(sm) {
-        // height: 20rem;
+        .art-details {
+            h3 {
+                font-size: $h3-font-size;
+            }
+        }
     }
 
     @include media-breakpoint-up(lg) {
