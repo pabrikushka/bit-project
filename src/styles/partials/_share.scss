@@ -1,0 +1,43 @@
+.copy-action {
+    border-color: rgba($bit-light-100, 0.2) !important;
+}
+
+.share-grid {
+    .share-grid-item {
+        flex: 0 1 50%;
+        padding: 0.5rem 0;
+        @include media-breakpoint-up(sm) {
+            flex: 0 1 33.3333%;
+            padding: 0.7rem;
+        }
+        @include media-breakpoint-up(md) {
+            flex: 0 1 auto;
+            padding: 0.7rem 1rem;
+        }
+    }
+}
+
+.react-share__ShareButton {
+    @include media-breakpoint-up(md) {
+        svg {
+            opacity: 0.8;
+            transition: all .3s ease-out;
+        }
+        h5 {
+            padding-top: 0.1rem;
+            opacity: 0.6;
+            transition: all .3s ease-out;
+        }
+        &:hover {
+            svg {
+                transform: scale(1.07);
+                opacity: 1;
+            }
+            h5 {
+                opacity: 1;
+                color: $bit-blue !important;
+            text-shadow: 3px 3px 50px rgba($bit-blue, 1);
+            }
+        }
+    }
+}

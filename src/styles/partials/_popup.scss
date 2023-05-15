@@ -8,7 +8,7 @@
         transition: all .5s ease-out;
         &:hover {
             // transition-delay: .4s;
-            background: rgba($bit-dark, .9);
+            // background: rgba($bit-dark, .9);
             
             .cursor-holder {
                 opacity: 1;
@@ -54,7 +54,7 @@
         }
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
         .pop-backdrop {
             // backdrop-filter: blur(10px);
         }
@@ -71,5 +71,52 @@
                 padding-top: 0 !important;
             }
         }
+    }
+}
+
+.share-pop {
+    
+    @include media-breakpoint-down(md) {
+        .pop-content {
+            min-height: 100%;
+            .pop-body {
+                min-height: 100%;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .pop-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .pop-content {
+                margin: auto;
+                max-width: 48rem !important;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .pop-content {
+            max-width: 58rem !important;
+            .pop-body {
+                padding: 3rem !important;
+            }
+        }
+    }
+}
+
+
+.pop-close {
+    z-index: 5;
+    .icon {
+        width: 1.4rem;
+        @include media-breakpoint-up(sm) {
+            width: 2rem;
+        }
+    }
+    &.bg-dark {
+        background: $bit-dark !important;
     }
 }

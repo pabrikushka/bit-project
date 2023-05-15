@@ -8,9 +8,8 @@ interface ShareButtonWrapperProps {
 const ShareButtonWrapper = (props: ShareButtonWrapperProps) => {
   const { socialName, shareUrl } = props;
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between" }}>
+    <div className="share-grid-item">
       {chooseShareButton(socialName, shareUrl)}
-      <span>{socialName}</span>
     </div>
   );
 };

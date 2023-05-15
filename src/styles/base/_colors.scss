@@ -50,6 +50,10 @@ $theme-colors: (
     color: $bit-light-60;
 }
 
+.text-light-50 {
+    color: $bit-light-50;
+}
+
 .text-gradient {
     background: -webkit-linear-gradient(90deg, $bit-blue 0%, $bit-illusion 100%);
     -webkit-background-clip: text;

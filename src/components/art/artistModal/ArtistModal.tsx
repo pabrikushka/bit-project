@@ -78,6 +78,12 @@ const ArtistModal = (props: ArtistModalProps) => {
           animate="visible"
           exit="hidden"
         >
+          <button 
+            className="pop-close btn btn-link position-fixed  end-0 top-0 bg-transparent border-none text-primary p-2 p-sm-3 d-lg-none bg-dark d-flex items-center justify-center"
+            onClick={() => closeModal()}
+          >
+            <CloseIcon />
+          </button>
           <div className="pop-head position-relative overflow-hidden">
             <motion.img
               src={artist.banner?.url}
