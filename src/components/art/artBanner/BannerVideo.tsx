@@ -59,6 +59,7 @@ const BannerVideo = (props: BannerVideoProps) => {
         muted
         autoPlay={true}
         ref={vidRef}
+        playsInline
         onLoadedData={handleVideoLoaded}
       ></motion.video>
     </motion.div>
