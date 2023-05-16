@@ -10,13 +10,14 @@ import { categoryItemToIFaqCategory, createFaqGroups } from "./helpers";
 import { IFaqCategory, IFaqGroup } from "./types";
 import TransitAnimator from "../../shared/TransitAnimator";
 import useScrollOnTop from "../../shared/useScrollOnTop";
+import LoadignWidget from "../loading/LoadignWidget";
 
 const FaqWidget = (props: any) => {
   const [faqCategories, setFaqCategories] = useState<IFaqCategory[]>([]);
   const [faqGroups, setFaqGroups] = useState<IFaqGroup[]>([]);
 
   const { data: queryDataCategories } = useQuery(GET_ALL_FAQ_CATEGORIES, { errorPolicy: "all" });
-  const { data: queryDataFaqs } = useQuery(GET_ALL_FAQS, { errorPolicy: "all" });
+  const { loading: allFaqsLoading, data: queryDataFaqs } = useQuery(GET_ALL_FAQS, { errorPolicy: "all" });
 
   useScrollOnTop();
 
@@ -141,9 +142,7 @@ const FaqWidget = (props: any) => {
                     },
                   }}
                 >
-                  {faqGroups.map((item: IFaqGroup) => (
-                    <FaqGroup faqGroup={item} key={item.groupId} />
-                  ))}
+                  {allFaqsLoading ? <LoadignWidget /> : faqGroups.map((item: IFaqGroup) => <FaqGroup faqGroup={item} key={item.groupId} />)}
                 </motion.div>
               </Col>
             </Row>
