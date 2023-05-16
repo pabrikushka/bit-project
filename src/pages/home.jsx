@@ -6,8 +6,10 @@ import Overview from "../components/overview.tsx";
 import GalleryWidget from "../components/gallery/GalleryWidget";
 import Exhibition from "../components/exhibition";
 import TransitAnimator from "../shared/TransitAnimator";
+import useScrollOnTop from "../shared/useScrollOnTop";
 
 const Home = () => {
+  useScrollOnTop();
   return (
     <>
       <main className="overflow-hidden">

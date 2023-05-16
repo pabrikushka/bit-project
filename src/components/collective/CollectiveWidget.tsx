@@ -4,6 +4,7 @@ import { motion, Variants, useScroll, useSpring, useTransform, useMotionValue } 
 import { Container, Row, Col } from "react-bootstrap";
 import ParallaxText from "../parallaxText";
 import TransitAnimator from "../../shared/TransitAnimator";
+import useScrollOnTop from "../../shared/useScrollOnTop";
 
 const CollectiveWidget = (props: any) => {
   const ref = useRef(null);
@@ -38,6 +39,9 @@ const CollectiveWidget = (props: any) => {
       },
     },
   };
+
+  useScrollOnTop();
+
   return (
     <>
       <motion.main className="overflow-hidden">

@@ -9,6 +9,7 @@ import { GET_ALL_FAQS } from "../../services/graphql/faqsQuery";
 import { categoryItemToIFaqCategory, createFaqGroups } from "./helpers";
 import { IFaqCategory, IFaqGroup } from "./types";
 import TransitAnimator from "../../shared/TransitAnimator";
+import useScrollOnTop from "../../shared/useScrollOnTop";
 
 const FaqWidget = (props: any) => {
   const [faqCategories, setFaqCategories] = useState<IFaqCategory[]>([]);
@@ -16,6 +17,8 @@ const FaqWidget = (props: any) => {
 
   const { data: queryDataCategories } = useQuery(GET_ALL_FAQ_CATEGORIES, { errorPolicy: "all" });
   const { data: queryDataFaqs } = useQuery(GET_ALL_FAQS, { errorPolicy: "all" });
+
+  useScrollOnTop();
 
   useEffect(() => {
     if (queryDataCategories) {
