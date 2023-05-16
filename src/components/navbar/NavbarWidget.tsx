@@ -28,7 +28,6 @@ const NavbarWidget = (props: any) => {
       setVisible(true);
     }
 
-
     setPrevScrollPos(currentScrollPos);
   };
 
@@ -37,7 +36,6 @@ const NavbarWidget = (props: any) => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   useEffect(() => {
     if (isMenuOpened) {
@@ -49,14 +47,24 @@ const NavbarWidget = (props: any) => {
     }
   }, [isMenuOpened]);
 
+  const handleOnClickToRoot = () =>{
+    if (isSmallScreen && isMenuOpened) {
+      setIsMenuOpened(false);
+    }
+  }
+
   return (
     <nav className={`bit-nav ${isMenuOpened ? "opened" : "collapsed"}`}>
       <Container className="nav-container px-xl-5">
         <div className="nav-content">
-          <NavLink to="/" className="navbar-brand glow-svg-hover">
+          <NavLink to="/" className="navbar-brand glow-svg-hover" onClick={handleOnClickToRoot}>
             <Logo className={"brand-logo primary"} />
           </NavLink>
-          {isSmallScreen ? <AnimatePresence>{isMenuOpened && <NavbarContentMobile />}</AnimatePresence> : <NavbarContent />}
+          {isSmallScreen ? (
+            <AnimatePresence>{isMenuOpened && <NavbarContentMobile closeMenuforMobile={() => setIsMenuOpened(false)} />}</AnimatePresence>
+          ) : (
+            <NavbarContent />
+          )}
           <NavSocial styleName={"d-none d-md-flex"} />
           <NavbarButton styleName={"ps-4 d-none d-md-block"} />
           {isSmallScreen && <MenuButton isMenuOpened={isMenuOpened} setIsMenuOpened={setIsMenuOpened} />}
