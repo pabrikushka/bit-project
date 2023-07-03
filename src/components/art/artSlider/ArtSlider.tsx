@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Row from "react-bootstrap/Row";
 import ArtSlideContent from "./ArtSlideContent";
 import { ArtSlideData } from "../types";
+import ArtItem from "../artViewAll/ArtItem";
 
 interface ArtSliderProps {
   slides: ArtSlideData[];

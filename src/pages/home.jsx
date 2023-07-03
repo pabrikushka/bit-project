@@ -7,13 +7,15 @@ import GalleryWidget from "../components/gallery/GalleryWidget";
 import Exhibition from "../components/exhibition";
 import TransitAnimator from "../shared/TransitAnimator";
 import useScrollOnTop from "../shared/useScrollOnTop";
+import HeroTest from "../components/heroTest";
 
 const Home = () => {
   useScrollOnTop();
   return (
     <>
       <main className="overflow-hidden">
-        <Hero />
+        <HeroTest />
+        {/* <Hero /> */}
         <RunningText />
         <Overview
           title={"The history of bitcoin"}

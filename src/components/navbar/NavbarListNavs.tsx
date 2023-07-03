@@ -20,7 +20,7 @@ const NavbarListNavs = (props: NavbarListNavsProps) => {
       <li className="nav-item">
         <motion.div variants={createNavLinkVariants()} onClick={handleOnClick}>
           <NavLink to="/history" className="nav-link">
-            BTC History
+            View All
           </NavLink>
         </motion.div>
       </li>
