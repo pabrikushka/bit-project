@@ -19,6 +19,7 @@ import PageSpecificSEO from "../seo/PageSpecificSEO";
 import ArtBodyRightPart from "./ArtBodyRightPart";
 import ShareModal from "./share/ShareModal";
 import TransitAnimator from "../../shared/TransitAnimator";
+import ArtGroup from "./artViewAll/ArtGroup";
 
 const ArtWidget = (props: any) => {
   const [isFullScreenBanner, setIsFullScreenBanner] = useState(false);
@@ -130,7 +131,8 @@ const ArtWidget = (props: any) => {
               setIsShareModelOpened={setIsShareModelOpened}/>
           </Container>
         </section>
-        <ArtSlider slides={prepareArtSlides()} />
+        {/* <ArtSlider slides={prepareArtSlides()} /> */}
+        <ArtGroup></ArtGroup>
       </main>
       {isFullScreenBanner ? (
         <div className="full-screen position-fixed w-100 vh-100 top-0 left-0 d-flex align-items-center justify-content-center">
