@@ -1,0 +1,22 @@
+.rh5v-DefaultPlayer_component {
+  font-size: 15px !important;
+  .rh5v-DefaultPlayer_controls {
+    height: 45px !important;
+    button {
+      width: 45px !important;
+      height: 45px !important;
+    }
+    svg {
+      width: 40px !important;
+      height: 40px !important;
+    }
+    .rh5v-Time_component {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .rh5v-Volume_slider {
+      height: 130px !important;
+    }
+  }
+}

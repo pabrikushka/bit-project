@@ -47,11 +47,15 @@
         min-height: 30rem;
     }
 
-    &-btn {
+    .hero-btn {
         position: absolute;
         z-index: 10;
         top: 50%;
         left: 50%;
         transform: translate(-50%, 50%);
+        &:focus {
+            outline: 2px solid rgba($bit-blue, 1);
+            outline-offset: 4px;
+        }
     }
 }
