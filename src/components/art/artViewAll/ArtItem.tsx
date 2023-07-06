@@ -11,8 +11,6 @@ interface ArtItemProps {
 
 const ArtItem = (props: ArtItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const controlsFrame = useAnimation();
-  const controlsImg = useAnimation();
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -20,24 +18,8 @@ const ArtItem = (props: ArtItemProps) => {
 
   function handleMouseLeave() {
     setIsHovered(false);
-
-    controlsFrame.start({
-      translateX: 0, // Reset the translateX value to 0
-      y: 0, // Set the y-coordinate to the initial position
-      rotate: '0deg', // Reset the translateX value to 0t the translateY value to 0
-      transition: { duration: 1, delay: 0.5 },
-    });
-    controlsImg.start({
-      translateX: 0, // Reset the translateY value to 0
-      y: 0, // Set the y-coordinate to the initial position
-      transition: { duration: 1, delay: 0.5 },
-    });
-
-    frameX.set('0rem');
-    frameY.set('0rem');
-    frameRotate.set('0deg');
-    imgX.set('0%');
-    imgY.set('0%');
+    x.set(0.5)
+    y.set(0.5)
   }
 
   const MotionArtLink = motion(ArtLink, { forwardMotionProps: true });
@@ -58,12 +40,12 @@ const ArtItem = (props: ArtItemProps) => {
   const xVelocity2 = useSpring(x, mouseSpring2);
   const yVelocity2 = useSpring(y, mouseSpring2);
 
-  const frameX = useTransform(xVelocity, [0, 1], ['-1rem', '1rem']);
-  const frameY = useTransform(yVelocity, [0, 1], ['-1rem', '1rem']);
-  const frameRotate = useTransform(xVelocity, [0, 1], ['-5deg', '5deg']);
+  const frameX = useTransform(xVelocity, [0, 1], ['-0.7rem', '0.7rem']);
+  const frameY = useTransform(yVelocity, [0, 1], ['-0.7rem', '0.7rem']);
+  const frameRotate = useTransform(xVelocity, [0, 1], ['-4deg', '4deg']);
 
-  const imgX = useTransform(xVelocity2, [0, 1], ['5%', '-5%']);
-  const imgY = useTransform(yVelocity2, [0, 1], ['5%', '-5%']);
+  const imgX = useTransform(xVelocity2, [0, 1], ['4%', '-4%']);
+  const imgY = useTransform(yVelocity2, [0, 1], ['4%', '-4%']);
 
   function handleMouse(event: any) {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -83,7 +65,6 @@ const ArtItem = (props: ArtItemProps) => {
                   y: frameY,
                   rotate: frameRotate,
                 }}
-                animate={controlsFrame}
                 className='art-mini-wrapper'>
                 <motion.img
                   src={props.itemData.thumbnail.url}
@@ -93,7 +74,6 @@ const ArtItem = (props: ArtItemProps) => {
                     translateX: imgX,
                     y: imgY,
                   }}
-                  animate={controlsImg}
                   className='art-mini-img'
                 />
               </motion.div>

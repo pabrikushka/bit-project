@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform, useMotionValue, MotionValue } from 'framer-motion';
 import Mona from '../assets/videos/dude.mp4';
 import Button from 'react-bootstrap/Button';
-import VideoModal from './art/share/VideoModal';
+import VideoModal from './video/VideoModal';
 
 // function useParallax(value: MotionValue<number>, distance: number) {
 //     return useTransform(value, [0, 1], [-distance, distance]);
@@ -54,6 +54,15 @@ const HeroTest = (props: HeroProps) => {
 
   console.log(showVideoModal);
 
+  useEffect(() => {
+    if (showVideoModal) {
+      document.getElementsByTagName("html")[0].classList.add("overflow-hidden");
+    } else {
+      document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
+    }
+    return () => document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
+  }, [showVideoModal]);
+
   return (
     <header
       className='hero fader fader-40 fader-bottom fader-top'
@@ -73,10 +82,10 @@ const HeroTest = (props: HeroProps) => {
           muted
           autoPlay={true}></motion.video>
       </motion.div>
-      <Button variant='primary' className='hero-btn' href='#' onClick={handleShowVideoModal}>
-        Hello This is a button
+      <Button variant='primary' className='bit-btn hero-btn' onClick={handleShowVideoModal}>
+        Play Video
       </Button>
-      <VideoModal show={showVideoModal} video={Mona} onClose={handleCloseVideoModal} />  
+      {showVideoModal && <VideoModal video={Mona} onClose={handleCloseVideoModal} />}
     </header>
 
   );
