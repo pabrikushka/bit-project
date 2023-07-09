@@ -42,7 +42,7 @@ const VideoModal = (props: ModalProps) => {
 
   return createPortal(
     <div className='pop share-pop scrollbar-custom position-fixed w-100 vh-100 top-0 left-0 d-flex justify-content-center'>
-      <div className='pop-wrapper' style={{ height: '100%' }}>
+      <div className='pop-wrapper d-flex align-items-center justify-content-center' style={{ height: '100%' }}>
         {/* backdrop */}
         <motion.div
           className='pop-backdrop position-absolute w-100 h-100 left-0 top-0'
@@ -52,9 +52,15 @@ const VideoModal = (props: ModalProps) => {
           animate='visible'
           exit='hidden'>
           {/* cursor */}
-          <motion.div className='cursor-holder' variants={cursorVariants} animate='default'>
+          <motion.div className='cursor-holder d-none d-md-block' variants={cursorVariants} animate='default'>
             <CloseIcon />
           </motion.div>
+          {/* close button */}
+          <button
+            className='pop-close btn btn-link position-absolute  end-0 top-0 bg-transparent border-none text-primary p-2 p-sm-3 d-md-none d-flex items-center justify-center'
+            onClick={() => props.onClose()}>
+            <CloseIcon />
+          </button>
         </motion.div>
         {/* content */}
         <motion.div
@@ -63,7 +69,7 @@ const VideoModal = (props: ModalProps) => {
           initial='hidden'
           animate='visible'
           exit='hidden'>
-            {/* video player */}
+          {/* video player */}
           <VideoPlayer video={props.video}></VideoPlayer>
         </motion.div>
       </div>

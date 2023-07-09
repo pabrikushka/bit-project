@@ -4,13 +4,14 @@ import React from "react";
 import { CardData } from "./types";
 import { hoverCard } from "./helpers";
 import { useNavigate  } from "react-router-dom";
-import honeybadger from '../../assets/images/honeybadger.jpg';
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
 
 
 interface GalleryCardtProps {
-  cardData: CardData
+  cardData: CardData;
+  id: string;
+  img: string;
 }
 
 const GalleryCard = (props: GalleryCardtProps) => {
@@ -19,7 +20,7 @@ const GalleryCard = (props: GalleryCardtProps) => {
   } = props;
 
   // TODO discuss how better to work with pictures
-  const texture = useLoader(TextureLoader, honeybadger)
+  const texture = useLoader(TextureLoader, props.img)
 
   const [hovered, setHovered] = useState(false);
 
@@ -36,7 +37,7 @@ const GalleryCard = (props: GalleryCardtProps) => {
 
   const onClick = (e: any) => {
     // TODO make it not hard coded
-    navigate("/art/6dl0Hjk34l6rcWjSYCw9n6")
+    navigate(`/art/${props.id}`)
   };
   const onHover = useCallback((e: any, value: boolean) => {
     setHovered(value);
