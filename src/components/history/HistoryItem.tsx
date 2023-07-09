@@ -106,6 +106,7 @@ const HistoryItem = (props: HistoryItemProps) => {
         onMouseMove={handleMouse}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        id={historyEvent.id}
       >
         <Col xs={12} lg={{ span: 3, order: 2 }} xl>
           <motion.div

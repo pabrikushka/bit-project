@@ -66,6 +66,15 @@ const ArtWidget = (props: any) => {
       // @ts-ignore
       behavior: "instant", // Optional if you want to skip the scrolling animation
     });
+
+    const handlePopstate = () => {
+      sessionStorage.setItem('scrollPositionArtId', params.artId);
+    };
+
+    window.addEventListener('popstate', handlePopstate);
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
   }, []);
 
   useEffect(() => {

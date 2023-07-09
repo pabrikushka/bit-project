@@ -11,6 +11,7 @@ import HistoryYearNavigation from "./HistoryYearNavigation";
 import TransitAnimator from "../../shared/TransitAnimator";
 import { useQuery } from "@apollo/client";
 import { GET_WHOLE_HISTORY } from "../../services/graphql/historyQuery";
+import { scroller } from "react-scroll";
 
 const HistoryWidget = (props: any) => {
   const { isMobile } = useWindowParams();
@@ -52,6 +53,16 @@ const HistoryWidget = (props: any) => {
       setHistoryGroups(newHistoryGroups);
     }
   }, [isMobile, queryData]);
+
+  useEffect(() => {
+    if(historyGroups.length > 0 ){
+      const scrollPositionArtId = sessionStorage.getItem('scrollPositionArtId');
+      if(scrollPositionArtId){
+        sessionStorage.removeItem('scrollPositionArtId');
+        scroller.scrollTo(scrollPositionArtId, {offset: -300});
+      }
+    }
+  }, [historyGroups]);
 
   return (
     <>
