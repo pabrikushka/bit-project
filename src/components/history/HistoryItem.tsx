@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import Col from "react-bootstrap/Col";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
 import { IHistoryItem } from "./types";
-import ArtLink from "./ArtLink";
 import HistoryItemPicture from "./HistoryItemPicture";
 import { createBTCLebel, formatEventDate } from "../../shared/artHelpers";
-import { useAnimation, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { useMotionValue, useTransform, useSpring } from "framer-motion";
+import ArtNavigator from "./ArtNavigator";
 
 interface HistoryItemProps {
   itemData: IHistoryItem;
@@ -57,7 +57,7 @@ const HistoryItem = (props: HistoryItemProps) => {
     setIsHovered(false);
   }
 
-  const MotionArtLink = motion(ArtLink, { forwardMotionProps: true });
+  const MotionArtNavigator = motion(ArtNavigator, { forwardMotionProps: true });
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
@@ -93,7 +93,7 @@ const HistoryItem = (props: HistoryItemProps) => {
   // window.addEventListener('mousemove', handleMouse);
 
   return (
-    <MotionArtLink
+    <MotionArtNavigator
       initial="rest"
       whileHover="hover"
       whileFocus="hover"
@@ -106,6 +106,7 @@ const HistoryItem = (props: HistoryItemProps) => {
         onMouseMove={handleMouse}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        id={historyEvent.id}
       >
         <Col xs={12} lg={{ span: 3, order: 2 }} xl>
           <motion.div
@@ -142,7 +143,7 @@ const HistoryItem = (props: HistoryItemProps) => {
           </motion.div>
         </Col>
       </motion.div>
-    </MotionArtLink>
+    </MotionArtNavigator>
   );
 };
 
