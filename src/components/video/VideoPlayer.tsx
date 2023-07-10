@@ -1,17 +1,12 @@
-import React from 'react'
-import { DefaultPlayer as Video } from 'react-html5video';
-import 'react-html5video/dist/styles.css'
+import React from 'react';
+import ReactPlayer from 'react-player';
 
 interface VideoPlayerProps {
   video: string;
 }
 
 const VideoPlayer = (props: VideoPlayerProps) => {
-  return (
-    <Video autoPlay loop>
-      <source src={props.video} type='video/mp4'/>
-    </Video>
-  )
-}
+  return <ReactPlayer url={props.video} playing={true} controls={true} width='100%' height='100%' />;
+};
 
-export default VideoPlayer
+export default VideoPlayer;
