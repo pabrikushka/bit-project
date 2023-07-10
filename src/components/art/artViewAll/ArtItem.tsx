@@ -11,6 +11,8 @@ interface ArtItemProps {
 
 const ArtItem = (props: ArtItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [animationImage, setAnimationImage] = useState<string | null>(null);
+
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -55,7 +57,7 @@ const ArtItem = (props: ArtItemProps) => {
 
   return (
     <Col xs={12} lg={6}>
-      <MotionArtLink to={''} artId={props.itemData.sys.id}>
+      <MotionArtLink to={''} artId={props.itemData.sys.id} setAnimationImage={setAnimationImage}>
         <motion.div onMouseMove={handleMouse} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className='art-card-mini'>
             <div className='art-card-mini-content d-sm-flex'>
