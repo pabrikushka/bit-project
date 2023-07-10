@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import ArtItem from './ArtItem';
-import { Container, Row } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
-import { GET_WHOLE_HISTORY } from '../../../services/graphql/historyQuery';
-import { NavLink, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import ArtItem from "./ArtItem";
+import { Container, Row } from "react-bootstrap";
+import { useQuery } from "@apollo/client";
+import { GET_WHOLE_HISTORY } from "../../../services/graphql/historyQuery";
+import { NavLink, useParams } from "react-router-dom";
 
-type Props = {};
+type Props = {
+  setAnimationImage: any;
+};
 
 const ArtGroup = (props: Props) => {
   const { artId } = useParams(); // current item ID from query
+  const { setAnimationImage } = props;
 
   // all items
   const { data: queryData } = useQuery(GET_WHOLE_HISTORY, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
   const items = queryData?.artsCollection?.items || [];
 
@@ -37,16 +40,26 @@ const ArtGroup = (props: Props) => {
   };
 
   return (
-    <Container className='px-xl-5'>
-      <section className='art-section-mini pt-5 my-5'>
-        <div className='d-flex align-items-end justify-content-between'>
-          <h2 className='mb-0  fw-light'>More</h2>
-          <NavLink to='/history' className='nav-link m-0 mb-1 p-0 text-uppercase'>
+    <Container className="px-xl-5">
+      <section className="art-section-mini pt-5 my-5">
+        <div className="d-flex align-items-end justify-content-between">
+          <h2 className="mb-0  fw-light">More</h2>
+          <NavLink
+            to="/history"
+            className="nav-link m-0 mb-1 p-0 text-uppercase"
+          >
             VIew all
           </NavLink>
         </div>
-        <Row className='g-0'>
-          {items && getNextItems().map((item) => <ArtItem itemData={item} key={item.sys.id}></ArtItem>)}
+        <Row className="g-0">
+          {items &&
+            getNextItems().map((item) => (
+              <ArtItem
+                itemData={item}
+                key={item.sys.id}
+                setAnimationImage={setAnimationImage}
+              />
+            ))}
         </Row>
       </section>
     </Container>

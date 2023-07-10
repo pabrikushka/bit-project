@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { artItemToIArtPiece, prepareArtSlides } from "./helpers";
 import useOnScreen from "../../shared/useOnScreen";
-import { AudioContainer, AudioLoadingStatuses, IArtPiece, VideoContainer, VideoLoadingStatuses } from "./types";
+import {
+  AudioContainer,
+  AudioLoadingStatuses,
+  IArtPiece,
+  VideoContainer,
+  VideoLoadingStatuses,
+} from "./types";
 import ArtBanner from "./artBanner/ArtBanner";
 import ArtBannerMini from "./ArtBannerMini";
 import ArtHeader from "./ArtHeader";
@@ -26,8 +32,11 @@ const ArtWidget = (props: any) => {
   const [artistForModal, setArtistForModal] = useState<IArtist | null>(null);
   const [isShareModelOpened, setIsShareModelOpened] = useState<boolean>(false);
   const refToPageArtBanner = useRef(null);
+  const [animationImage, setAnimationImage] = useState<string | null>(null);
 
-  const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(props.initialArt);
+  const [artPiece, setArtPiece] = useState<IArtPiece | undefined>(
+    props.initialArt
+  );
 
   const isArtistModalOpened = artistForModal ? true : false;
 
@@ -44,6 +53,7 @@ const ArtWidget = (props: any) => {
   const [audioContainer, setAudioContainer] = audioContainerState;
 
   const params = useParams();
+  console.log(params);
 
   const {
     loading,
@@ -53,7 +63,7 @@ const ArtWidget = (props: any) => {
     variables: {
       id: params.artId,
     },
-    errorPolicy: "all"
+    errorPolicy: "all",
   });
 
   const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
@@ -67,19 +77,25 @@ const ArtWidget = (props: any) => {
       behavior: "instant", // Optional if you want to skip the scrolling animation
     });
 
-    const handlePopstate = () => {
-      sessionStorage.setItem('scrollPositionArtId', params.artId);
+    const handlePopstate = (event: PopStateEvent) => {
+      if (!event.currentTarget) {
+        return;
+      }
+      const currentTarget = event.currentTarget as Window;
+      const pathName = currentTarget.location?.pathname ?? "";
+      if (pathName.includes("history"))
+        sessionStorage.setItem("scrollPositionArtId", params.artId);
     };
 
-    window.addEventListener('popstate', handlePopstate);
+    window.addEventListener("popstate", handlePopstate);
     return () => {
-      window.removeEventListener('popstate', handlePopstate);
+      window.removeEventListener("popstate", handlePopstate);
     };
-  }, []);
+  }, [params.artId]);
 
   useEffect(() => {
     // for smooth transition animation do not update data if
-    // they provided initially 
+    // they provided initially
     if (artQueryData && artQueryData.arts && !props.initialArt) {
       const newArtPiece = artItemToIArtPiece(artQueryData.arts);
       setArtPiece(newArtPiece);
@@ -106,14 +122,34 @@ const ArtWidget = (props: any) => {
     if (isFullScreenBanner || isArtistModalOpened || isShareModelOpened) {
       document.getElementsByTagName("html")[0].classList.add("overflow-hidden");
     } else {
-      document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
+      document
+        .getElementsByTagName("html")[0]
+        .classList.remove("overflow-hidden");
     }
-    return () => document.getElementsByTagName("html")[0].classList.remove("overflow-hidden");
+    return () =>
+      document
+        .getElementsByTagName("html")[0]
+        .classList.remove("overflow-hidden");
   }, [isFullScreenBanner, isArtistModalOpened, isShareModelOpened]);
 
   return (
     <>
-      <main>
+      <motion.main
+        className=""
+        exit={{
+          y: "-4rem",
+          scale: 0.8,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+          scale: {
+            duration: 1,
+          },
+        }}
+        //onAnimationStart={() => setExitAnimationStarting(true)}
+      >
         <section>
           <Container className="px-xl-5">
             <Row>
@@ -134,15 +170,16 @@ const ArtWidget = (props: any) => {
                 </div>
               </Col>
             </Row>
-            <ArtBodyRightPart 
-              artPiece={artPiece} 
+            <ArtBodyRightPart
+              artPiece={artPiece}
               setArtistForModal={setArtistForModal}
-              setIsShareModelOpened={setIsShareModelOpened}/>
+              setIsShareModelOpened={setIsShareModelOpened}
+            />
           </Container>
         </section>
         {/* <ArtSlider slides={prepareArtSlides()} /> */}
-        <ArtGroup></ArtGroup>
-      </main>
+        <ArtGroup setAnimationImage={setAnimationImage} />
+      </motion.main>
       {isFullScreenBanner ? (
         <div className="full-screen position-fixed w-100 vh-100 top-0 left-0 d-flex align-items-center justify-content-center">
           <ArtBanner
@@ -156,25 +193,39 @@ const ArtWidget = (props: any) => {
           />
         </div>
       ) : null}
-      {artPiece?.artReleased && <ArtBannerMini
-        image={artPiece?.thumbnail}
-        isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
-        setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
-      />}
+      {artPiece?.artReleased && (
+        <ArtBannerMini
+          image={artPiece?.thumbnail}
+          isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
+          setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
+        />
+      )}
       <AnimatePresence mode="wait">
-        {isArtistModalOpened ? <ArtistModal closeModal={() => setArtistForModal(null)} artist={artistForModal!} /> : null}
+        {isArtistModalOpened ? (
+          <ArtistModal
+            closeModal={() => setArtistForModal(null)}
+            artist={artistForModal!}
+          />
+        ) : null}
       </AnimatePresence>
       <AnimatePresence mode="wait">
-        {isShareModelOpened ? <ShareModal closeModal={() => setIsShareModelOpened(false)}  title={artPiece?.title}/> : null}
+        {isShareModelOpened ? (
+          <ShareModal
+            closeModal={() => setIsShareModelOpened(false)}
+            title={artPiece?.title}
+          />
+        ) : null}
       </AnimatePresence>
-      {artPiece?.metaTitle ? <PageSpecificSEO 
-        title={artPiece.metaTitle}
-        description={artPiece.metaDescription }
-        imageSrc={artPiece.metaImage?.url}
-        keywords={artPiece.metaTags}
-        pageUrl={window.location.href}
-      /> : null}
-      <TransitAnimator image={null} />
+      {artPiece?.metaTitle ? (
+        <PageSpecificSEO
+          title={artPiece.metaTitle}
+          description={artPiece.metaDescription}
+          imageSrc={artPiece.metaImage?.url}
+          keywords={artPiece.metaTags}
+          pageUrl={window.location.href}
+        />
+      ) : null}
+      <TransitAnimator image={animationImage} />
     </>
   );
 };
