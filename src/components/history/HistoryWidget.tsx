@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -6,12 +6,12 @@ import Col from "react-bootstrap/Col";
 import useWindowParams from "../../shared/useWindowParams";
 import HistoryGroup from "./HistoryGroup";
 import { IHistoryGroup } from "./types";
-import { createHistoryGroups } from "./helpers";
+import { createHistoryGroups, restoreScrollToPosition } from "./helpers";
 import HistoryYearNavigation from "./HistoryYearNavigation";
 import TransitAnimator from "../../shared/TransitAnimator";
 import { useQuery } from "@apollo/client";
 import { GET_WHOLE_HISTORY } from "../../services/graphql/historyQuery";
-import { scroller } from "react-scroll";
+import useScrollOnTop from "../../shared/useScrollOnTop";
 
 const HistoryWidget = (props: any) => {
   const { isMobile } = useWindowParams();
@@ -20,8 +20,13 @@ const HistoryWidget = (props: any) => {
   const [animationImage, setAnimationImage] = useState<string | null>(null);
 
   const [exitAnimationStarting, setExitAnimationStarting] = useState(false);
+  const [showHistoryYearNavigation, setShowHistoryYearNavigation] = useState(true);
 
-  const { loading, error, data: queryData } = useQuery(GET_WHOLE_HISTORY, { errorPolicy: "all" });
+  const {
+    loading,
+    error,
+    data: queryData,
+  } = useQuery(GET_WHOLE_HISTORY, { errorPolicy: "all" });
 
   const artHolderAnimation = useAnimation();
   const artImgAnimation = useAnimation();
@@ -46,21 +51,30 @@ const HistoryWidget = (props: any) => {
       });
     }
   };
+  
+  useScrollOnTop();
+
+  const delayHistoryYearNavigation = useCallback(async () =>{
+    setShowHistoryYearNavigation(false);
+    await new Promise(() => setTimeout(() => setShowHistoryYearNavigation(true), 500));
+  }, []);
 
   useEffect(() => {
     if (queryData) {
-      const newHistoryGroups = createHistoryGroups(queryData, artHolderAnimation, artImgAnimation, isMobile);
+      const newHistoryGroups = createHistoryGroups(
+        queryData,
+        artHolderAnimation,
+        artImgAnimation,
+        isMobile
+      );
       setHistoryGroups(newHistoryGroups);
     }
   }, [isMobile, queryData]);
 
   useEffect(() => {
-    if(historyGroups.length > 0 ){
-      const scrollPositionArtId = sessionStorage.getItem('scrollPositionArtId');
-      if(scrollPositionArtId){
-        sessionStorage.removeItem('scrollPositionArtId');
-        scroller.scrollTo(scrollPositionArtId, {offset: -300});
-      }
+    if (historyGroups.length > 0 && sessionStorage.getItem("scrollPositionArtId")) {
+      delayHistoryYearNavigation();
+      restoreScrollToPosition();
     }
   }, [historyGroups]);
 
@@ -89,11 +103,9 @@ const HistoryWidget = (props: any) => {
             duration: 1,
           },
         }}
-      //onAnimationStart={() => setExitAnimationStarting(true)}
+        //onAnimationStart={() => setExitAnimationStarting(true)}
       >
-        <h1 className="visually-hidden">
-          History
-        </h1>
+        <h1 className="visually-hidden">History</h1>
         <Container className="px-xl-5" style={{ paddingBottom: 100 }}>
           <Row>
             <Col xs={12} className="history-wrapper">
@@ -107,7 +119,7 @@ const HistoryWidget = (props: any) => {
                   />
                 ))}
               </div>
-              <HistoryYearNavigation historyGroups={historyGroups} />
+              {showHistoryYearNavigation ? <HistoryYearNavigation historyGroups={historyGroups} /> : null}
             </Col>
           </Row>
         </Container>

@@ -1,7 +1,8 @@
 import * as React from "react";
-import { animateScroll, Link } from "react-scroll";
+import { Link } from "react-scroll";
 import { yearToShortYear } from "./helpers";
 import { IHistoryGroup } from "./types";
+import { useCallback } from "react";
 
 interface HistoryYearNavigationProps {
   historyGroups: IHistoryGroup[];
@@ -10,22 +11,25 @@ interface HistoryYearNavigationProps {
 const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
   const { historyGroups } = props;
 
-  const [currentIndex, setCurrentIndex] = React.useState(0); 
-  
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
   const dotTopValue = currentIndex * 2 + 1;
-  
+
   // React.useEffect(() => {
   //   if(dataForHistory?.length){
   //       animateScroll.scrollTo(dataForHistory[0].id)
   //   }
   // }, [dataForHistory]);
 
-  const handleSetActive = (to: string, element: HTMLElement) =>{
-    const foundIndex = historyGroups.findIndex(q => q.id.toString() === to);
-    if (foundIndex !== undefined) {
+  const handleSetActive = useCallback(
+    (to: string, element: HTMLElement) => {
+      const foundIndex = historyGroups.findIndex((q) => q.id.toString() === to);
+      if (foundIndex !== undefined) {
         setCurrentIndex(foundIndex);
-    }
-  }
+      }
+    },
+    [historyGroups]
+  );
 
   return (
     <nav className="history-nav pt-3">
@@ -46,7 +50,7 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
                 spy={true}
                 delay={50}
                 smooth={false}
-                onSetActive = {handleSetActive}
+                onSetActive={handleSetActive}
               >
                 {yearToShortYear(data.year)}
               </Link>

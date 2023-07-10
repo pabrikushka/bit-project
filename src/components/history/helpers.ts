@@ -235,4 +235,23 @@ const countDaysToRelease = (artReleaseDate: Date | null): number => {
   return days < 0 ? 0 : days;
 }
 
-export { createHistoryGroups, createCenterArt, yearToShortYear, countDaysToRelease };
+const restoreScrollToPosition = () => {
+  const scrollPositionArtId = sessionStorage.getItem("scrollPositionArtId");
+  if (scrollPositionArtId) {
+    sessionStorage.removeItem("scrollPositionArtId");
+    const targetElement = document.getElementById(scrollPositionArtId);
+    if (targetElement) {
+      const offSet = -300;
+      const y =
+        targetElement.getBoundingClientRect().top + window.scrollY + offSet;
+      document.documentElement.scrollTo({
+        top: y,
+        left: 0,
+        // @ts-ignore
+        behavior: "instant",
+      });
+    }
+  }
+}
+
+export { createHistoryGroups, createCenterArt, yearToShortYear, countDaysToRelease, restoreScrollToPosition };
