@@ -44,7 +44,24 @@ const CollectiveWidget = (props: any) => {
 
   return (
     <>
-      <motion.main className="overflow-hidden">
+      <motion.main className="overflow-hidden"
+        initial={{
+          opacity: 0,
+          y: "4rem",
+        }}
+        animate={{
+          y: "0rem",
+          opacity: 1,
+        }}
+        exit={{
+          y: "-4rem",
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+        }}
+      >
         <motion.header className="collective-header pt-md-5 mt-5 pb-5" ref={ref}>
           <h1 className="visually-hidden">Smashtoshi Collective</h1>
           <div className="hero-running-text">

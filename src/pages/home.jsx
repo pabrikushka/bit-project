@@ -8,12 +8,31 @@ import Exhibition from "../components/exhibition";
 import TransitAnimator from "../shared/TransitAnimator";
 import useScrollOnTop from "../shared/useScrollOnTop";
 import HeroTest from "../components/heroTest";
+import { motion } from "framer-motion";
 
 const Home = () => {
   useScrollOnTop();
   return (
     <>
-      <main className="overflow-hidden">
+      <motion.main
+        className="overflow-hidden"
+        initial={{
+          opacity: 0,
+          y: "4rem",
+        }}
+        animate={{
+          y: "0rem",
+          opacity: 1,
+        }}
+        exit={{
+          y: "-4rem",
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+        }}
+      >
         <HeroTest />
         {/* <Hero /> */}
         <RunningText />
@@ -39,7 +58,7 @@ const Home = () => {
                 buttonText={"Book Your Tickets"}
             /> */}
         {/* <Exhibition/> */}
-      </main>
+      </motion.main>
       <TransitAnimator image={null} />
     </>
   );
