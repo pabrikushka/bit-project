@@ -15,6 +15,7 @@ const GalleryWidget = (props: any) => {
   const { data: queryData } = useQuery(GET_WHOLE_HISTORY, {
     errorPolicy: 'all',
   });
+  const artItems = queryData?.artsCollection?.items || [];
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -34,11 +35,14 @@ const GalleryWidget = (props: any) => {
   useEffect(() => {
     const unsubscribeScrollInSpring = scrollInSpring.onChange(updateCamera);
     return () => unsubscribeScrollInSpring();
-  }, []);
-
+  }, []); 
+  
   const linkPositionToArt = () => {
+    if (artItems.length === 0) {
+      return [];
+    }
+
     const cardList = getListCards().map((item, index) => {
-      const artItems = queryData.artsCollection.items;
 
       const image = artItems[index % artItems.length].mainImage.url;
       const artId = artItems[index % artItems.length].sys.id;
