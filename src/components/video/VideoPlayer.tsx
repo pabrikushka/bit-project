@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
+
 interface VideoPlayerProps {
   video: string;
 }

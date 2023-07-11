@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 import { motion, useMotionValue, useSpring, useTransform, animate, useAnimation } from 'framer-motion';
-import ArtLink from '../../history/ArtLink';
 import { createBTCLebel, formatEventDate } from "../../../shared/artHelpers";
+import ArtNavigator from '../../history/ArtNavigator';
+import { IArtPiece } from '../types';
 
 
 interface ArtItemProps {
   itemData: any;
+  setAnimationImage: any;
 }
 
 const ArtItem = (props: ArtItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [animationImage, setAnimationImage] = useState<string | null>(null);
 
 
   function handleMouseEnter() {
@@ -24,7 +25,7 @@ const ArtItem = (props: ArtItemProps) => {
     y.set(0.5)
   }
 
-  const MotionArtLink = motion(ArtLink, { forwardMotionProps: true });
+  const MotionArtNavigator = motion(ArtNavigator, { forwardMotionProps: true });
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
@@ -57,7 +58,7 @@ const ArtItem = (props: ArtItemProps) => {
 
   return (
     <Col xs={12} lg={6}>
-      <MotionArtLink to={''} artId={props.itemData.sys.id} setAnimationImage={setAnimationImage}>
+      <MotionArtNavigator artId={props.itemData.sys.id} setAnimationImage={props.setAnimationImage}>
         <motion.div onMouseMove={handleMouse} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className='art-card-mini'>
             <div className='art-card-mini-content d-sm-flex'>
@@ -91,7 +92,7 @@ const ArtItem = (props: ArtItemProps) => {
             </div>
           </div>
         </motion.div>
-      </MotionArtLink>
+      </MotionArtNavigator>
     </Col>
   );
 };
