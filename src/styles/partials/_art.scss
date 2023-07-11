@@ -150,6 +150,7 @@
     transition: all .3s ease-out;
     position: relative;
     display: block;
+    cursor: pointer;
 
     .art-card-content {
         position: relative;
@@ -197,6 +198,7 @@
                 width: 22rem;
                 top: 0;
                 height: 100%;
+                z-index: 9;
 
                 .art-holder {
                     display: inline-block;
