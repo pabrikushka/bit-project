@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { artItemToIArtPiece, prepareArtSlides } from "./helpers";
-import useOnScreen from "../../shared/useOnScreen";
 import {
   AudioContainer,
   AudioLoadingStatuses,
@@ -66,7 +65,23 @@ const ArtWidget = (props: any) => {
     errorPolicy: "all",
   });
 
-  const isPageArtBannerVisible = useOnScreen(refToPageArtBanner);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const targetElement = targetRef.current;
+      const targetHeight = targetElement.offsetHeight
+      setIsScrolled(scrollPosition > targetHeight-60);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     //document.documentElement.scrollTop || document.body.scrollTop
@@ -152,7 +167,7 @@ const ArtWidget = (props: any) => {
       >
         <section>
           <Container className="px-xl-5">
-            <Row>
+            <Row ref={targetRef}>
               <Col xs={12}>
                 <ArtHeader artPiece={artPiece} />
               </Col>
@@ -196,7 +211,7 @@ const ArtWidget = (props: any) => {
       {artPiece?.artReleased && (
         <ArtBannerMini
           image={artPiece?.thumbnail}
-          isVisible={!isFullScreenBanner && !isPageArtBannerVisible}
+          isVisible={!isFullScreenBanner && isScrolled}
           setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
         />
       )}

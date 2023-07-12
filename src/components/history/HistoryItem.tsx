@@ -131,10 +131,10 @@ const HistoryItem = (props: HistoryItemProps) => {
 
             {isHovered ? (
               <>
-                <motion.div initial="rest" animate="hover" variants={detailsMotion}>
+                <motion.div initial="rest" animate="hover" exit="rest" variants={detailsMotion}>
                   <p className="text-light-70">{historyEvent.overview}</p>
                 </motion.div>
-                <motion.div initial="rest" animate="hover" variants={ctaMotion} className="cta-arrow-holder mt-md-auto">
+                <motion.div initial="rest" animate="hover" exit="rest" variants={ctaMotion} className="cta-arrow-holder mt-md-auto">
                   <AnimatedArrow />
                   Learn More
                 </motion.div>

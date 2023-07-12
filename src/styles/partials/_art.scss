@@ -70,8 +70,10 @@
 }
 
 .history-section {
-    padding-top: 2rem;
-    margin-bottom: 3rem;
+    padding-top: 4rem;
+    &:first-of-type {
+        padding-top: 2rem;
+    }
 }
 
 // Histroy Nav
