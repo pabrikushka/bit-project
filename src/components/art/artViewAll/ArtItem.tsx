@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Col } from 'react-bootstrap';
 import { motion, useMotionValue, useSpring, useTransform, animate, useAnimation } from 'framer-motion';
 import { createBTCLebel, formatEventDate } from "../../../shared/artHelpers";
 import ArtNavigator from '../../history/ArtNavigator';
 import { IArtPiece } from '../types';
+import { SizesContext } from '../../../context/sizesContext';
 
 
 interface ArtItemProps {
@@ -14,6 +15,7 @@ interface ArtItemProps {
 const ArtItem = (props: ArtItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const {isTablet} = useContext(SizesContext);
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -57,13 +59,13 @@ const ArtItem = (props: ArtItemProps) => {
   }
 
   return (
-    <Col xs={12} lg={6}>
+    <Col xs={12} lg={6} className='motion-safe'>
       <MotionArtNavigator artId={props.itemData.sys.id} setAnimationImage={props.setAnimationImage}>
         <motion.div onMouseMove={handleMouse} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className='art-card-mini'>
             <div className='art-card-mini-content d-sm-flex'>
               <motion.div
-                style={{
+                style={!isTablet && {
                   translateX: frameX,
                   y: frameY,
                   rotate: frameRotate,
@@ -72,7 +74,7 @@ const ArtItem = (props: ArtItemProps) => {
                 <motion.img
                   src={props.itemData.thumbnail.url}
                   alt=''
-                  style={{
+                  style={!isTablet && {
                     scale: 1.15,
                     translateX: imgX,
                     y: imgY,

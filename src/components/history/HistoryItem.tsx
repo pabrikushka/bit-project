@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { motion } from "framer-motion";
 import Col from "react-bootstrap/Col";
 import AnimatedArrow from "../../assets/icons/animatedArrow";
@@ -7,6 +7,7 @@ import HistoryItemPicture from "./HistoryItemPicture";
 import { createBTCLebel, formatEventDate } from "../../shared/artHelpers";
 import { useMotionValue, useTransform, useSpring } from "framer-motion";
 import ArtNavigator from "./ArtNavigator";
+import { SizesContext } from "../../context/sizesContext";
 
 interface HistoryItemProps {
   itemData: IHistoryItem;
@@ -48,6 +49,8 @@ function getRelativeCoordinates(event: any, referenceElement: any) {
 const HistoryItem = (props: HistoryItemProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const { fadeOut, detailsMotion, ctaMotion, hideBorder, historyEvent } = props.itemData;
+  const {isTablet} = useContext(SizesContext);
+
 
   function handleMouseEnter() {
     setIsHovered(true);
@@ -122,14 +125,18 @@ const HistoryItem = (props: HistoryItemProps) => {
             <h5 className="font-aeonik small text-light-70">{createBTCLebel(historyEvent.btcPrice)}</h5>
           </motion.div>
         </Col>
-        {isHovered ? (
+        {isHovered && !isTablet ? (
           <HistoryItemPicture frameX={frameX} frameY={frameY} frameRotate={frameRotate} imgX={imgX} imgY={imgY} itemData={props.itemData} />
         ) : null}
+        {isTablet && (
+          <HistoryItemPicture frameX={frameX} frameY={frameY} frameRotate={frameRotate} imgX={imgX} imgY={imgY} itemData={props.itemData} />
+        )}
+
         <Col xs={12} lg={{ span: 5, order: 1 }} xl={4}>
           <motion.div className="art-card-main mt-4 mt-md-0 d-md-flex flex-column h-100">
             <h3 className="mb-md-3 text-light-100">{historyEvent.title}</h3>
 
-            {isHovered ? (
+            {isHovered && !isTablet ? (
               <>
                 <motion.div initial="rest" animate="hover" variants={detailsMotion}>
                   <p className="text-light-70">{historyEvent.overview}</p>
@@ -140,6 +147,16 @@ const HistoryItem = (props: HistoryItemProps) => {
                 </motion.div>
               </>
             ) : null}
+
+            {isTablet && <>
+                <div >
+                  <p className="text-light-70">{historyEvent.overview}</p>
+                </div>
+                <div className="cta-arrow-holder mt-md-auto">
+                  <AnimatedArrow />
+                  Learn More
+                </div>
+              </>}
           </motion.div>
         </Col>
       </motion.div>

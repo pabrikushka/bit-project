@@ -12,6 +12,7 @@ interface GalleryCardtProps {
   cardData: CardData;
   id: string;
   img: string;
+  setAnimationImage: any;
 }
 
 const GalleryCard = (props: GalleryCardtProps) => {
@@ -37,6 +38,11 @@ const GalleryCard = (props: GalleryCardtProps) => {
 
   const onClick = (e: any) => {
     // TODO make it not hard coded
+    // const img = new Image();
+    // img.src = props.img;
+    props.setAnimationImage(props.img);
+    // await img.decode();
+
     navigate(`/art/${props.id}`)
   };
   const onHover = useCallback((e: any, value: boolean) => {
