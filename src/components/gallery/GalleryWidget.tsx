@@ -1,27 +1,35 @@
-import React from 'react';
-import { Canvas } from '@react-three/fiber';
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
-import GalleryCard from './GalleryCard';
-import { useQuery } from '@apollo/client';
-import { getListCards, prepareCameraConfig } from './helpers';
-import { GET_WHOLE_HISTORY } from '../../services/graphql/historyQuery';
-import TransitAnimator from '../../shared/TransitAnimator';
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { useScroll, useSpring } from "framer-motion";
+import GalleryCard from "./GalleryCard";
+import { useQuery } from "@apollo/client";
+import { getListCards, prepareCameraConfig } from "./helpers";
+import { GET_WHOLE_HISTORY } from "../../services/graphql/historyQuery";
 
-const GalleryWidget = (props: any) => {
+interface GalleryWidgetProps {
+  setAnimationImage: any;
+}
+
+const GalleryWidget = (props: GalleryWidgetProps) => {
   const ref = useRef(null);
+  const { setAnimationImage } = props;
 
-  const [cameraConfig, setSetCameraConfig] = useState(prepareCameraConfig(null));
+const [cameraConfig, setSetCameraConfig] = useState(prepareCameraConfig(null));
   const [animationImage, setAnimationImage] = useState<string | null>(null);
+=======
+  const [cameraConfig, setSetCameraConfig] = useState(
+    prepareCameraConfig(null)
+  );
 
   const { data: queryData } = useQuery(GET_WHOLE_HISTORY, {
-    errorPolicy: 'all',
+    errorPolicy: "all",
   });
   const artItems = queryData?.artsCollection?.items || [];
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   const scrollInSpring = useSpring(scrollYProgress, {
@@ -62,50 +70,28 @@ const GalleryWidget = (props: any) => {
 
   return (
     <>
-      <motion.main
-        className=""
-        // initial={{
-        //   opacity: 0,
-        //   y: "4rem",
-        // }}
-        // animate={{
-        //   y: "0rem",
-        //   scale: 1,
-        //   opacity: 1,
-        // }}
-        exit={{
-          y: "-4rem",
-          scale: 0.8,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 0.6,
-          ease: "easeOut",
-          scale: {
-            duration: 1,
-          },
-        }}>
-        <section className='gallery-section fader fader-40 fader-top fader-bottom' ref={ref}>
-          <Canvas className='canvas'>
-            <ambientLight />
-            <spotLight position={[0, 5, 10]} penumbra={1} castShadow />
-            <perspectiveCamera {...cameraConfig}>
-              <group>
-                {linkPositionToArt().map((card: any, index: number) => (
-                  <GalleryCard
-                    cardData={card}
-                    key={`Card${index}`}
-                    id={card.artId}
-                    img={card.image}
-                    setAnimationImage={setAnimationImage}
-                  />
-                ))}
-              </group>
-            </perspectiveCamera>
-          </Canvas>
-        </section>
-      <TransitAnimator image={animationImage} />
-      </motion.main>
+<section
+        className="gallery-section fader fader-40 fader-top fader-bottom"
+        ref={ref}
+      >
+        <Canvas className="canvas">
+          <ambientLight />
+          <spotLight position={[0, 5, 10]} penumbra={1} castShadow />
+          <perspectiveCamera {...cameraConfig}>
+            <group>
+              {linkPositionToArt().map((card: any, index: number) => (
+                <GalleryCard
+                  cardData={card}
+                  key={`Card${index}`}
+                  artId={card.artId}
+                  artImage={card.image}
+                  setAnimationImage={setAnimationImage}
+                />
+              ))}
+            </group>
+          </perspectiveCamera>
+        </Canvas>
+      </section>
     </>
   );
 };

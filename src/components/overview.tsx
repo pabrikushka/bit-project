@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 
 function Overview(props: any) {
@@ -37,7 +38,7 @@ function Overview(props: any) {
                         <motion.div className='mb-4 overflow-hidden'>
                             <motion.h2
                                 className='text-uppercase fw-400 text-gradient'
-        	                    variants={sectionVariants}
+                                variants={sectionVariants}
                             >
                                 {props.title}
                             </motion.h2>
@@ -47,16 +48,24 @@ function Overview(props: any) {
                                 variants={sectionVariants}
                             >
                                 {props.text}
-                                
+
                             </motion.p>
                         </motion.div>
                         <motion.div className='overflow-hidden py-5'>
-                            <motion.div 
+                            <motion.div
                                 variants={sectionVariants}
                             >
-                                <Button variant="primary" className="bit-btn" href="#">
-                                    {props.buttonText}
-                                </Button>
+                                {props.buttonLink && (
+                                    <Link className="btn btn-primary bit-btn" to={props.buttonLink}>
+                                        {props.buttonText}
+                                    </Link>
+                                )}
+
+                                {props.externalLink && (
+                                    <a className="btn btn-primary bit-btn" href={props.externalLink}>
+                                        {props.buttonText}
+                                    </a>
+                                )}
                             </motion.div>
                         </motion.div>
                     </Col>

@@ -6,26 +6,38 @@ import { hoverCard } from "./helpers";
 import { useNavigate  } from "react-router-dom";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
+import useImperativeQuery from "../../services/graphql/useImperativeQuery";
+import { GET_ART } from "../../services/graphql/artQuery";
+import { artItemToIArtPiece } from "../art/helpers";
 
 
 interface GalleryCardtProps {
   cardData: CardData;
-  id: string;
-  img: string;
+artId: string;
+  artImage: string;
   setAnimationImage: any;
 }
 
 const GalleryCard = (props: GalleryCardtProps) => {
   const {
-    cardData
+    cardData,
+    setAnimationImage,
+    artId
   } = props;
 
   // TODO discuss how better to work with pictures
-  const texture = useLoader(TextureLoader, props.img)
+  const texture = useLoader(TextureLoader, props.artImage)
 
   const [hovered, setHovered] = useState(false);
 
   const navigate  = useNavigate();
+
+  const callQuery = useImperativeQuery(GET_ART, {
+    variables: {
+      id: artId,
+    },
+    errorPolicy: "all"
+  });
 
   const currentCard = hovered? hoverCard(cardData): cardData;
 
@@ -36,15 +48,20 @@ const GalleryCard = (props: GalleryCardtProps) => {
     config: config.wobbly,
   });
 
-  const onClick = (e: any) => {
-    // TODO make it not hard coded
-    // const img = new Image();
-    // img.src = props.img;
-    props.setAnimationImage(props.img);
-    // await img.decode();
+const onClick = async (e: any) => {
+    const artQuery = await callQuery();
+    const initialArt = artItemToIArtPiece(artQuery.data.arts);
 
-    navigate(`/art/${props.id}`)
+    // cache image for next page
+    if(initialArt.mainImage){
+      const img = new Image();
+      img.src = initialArt.mainImage.url;
+      setAnimationImage(initialArt.mainImage.url);
+      await img.decode();
+    }
+    navigate(`/art/${artId}`, { state: initialArt });
   };
+  
   const onHover = useCallback((e: any, value: boolean) => {
     setHovered(value);
   }, []);

@@ -33,9 +33,9 @@ const NavbarListNavs = (props: NavbarListNavsProps) => {
       </li>
       <li className="nav-item">
         <motion.div variants={createNavLinkVariants()} onClick={handleOnClick}>
-          <NavLink to="https://www.google.com/" className="nav-link">
+          <a href="https://smashtoshi.myshopify.com/" className="nav-link">
             Shop
-          </NavLink>
+          </a>
         </motion.div>
       </li>
       <li className="nav-item">
