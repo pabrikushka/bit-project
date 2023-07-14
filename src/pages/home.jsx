@@ -11,6 +11,7 @@ import HeroTest from "../components/heroTest";
 import { motion } from "framer-motion";
 
 const Home = () => {
+  const [animationImage, setAnimationImage] = React.useState(null);
   useScrollOnTop();
   return (
     <>
@@ -44,7 +45,7 @@ const Home = () => {
           buttonText={"Explore the Artworks"}
           buttonLink="/history"
         />
-        <GalleryWidget />
+        <GalleryWidget setAnimationImage={setAnimationImage}/>
         <Overview
           title={"The ultimate btc collection"}
           text={
@@ -61,7 +62,7 @@ const Home = () => {
             /> */}
         {/* <Exhibition/> */}
       </motion.main>
-      <TransitAnimator image={null} />
+      <TransitAnimator image={animationImage} />
     </>
   );
 };

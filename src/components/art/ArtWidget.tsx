@@ -52,7 +52,6 @@ const ArtWidget = (props: any) => {
   const [audioContainer, setAudioContainer] = audioContainerState;
 
   const params = useParams();
-  console.log(params);
 
   const {
     loading,
