@@ -210,7 +210,7 @@ const ArtWidget = (props: any) => {
       {artPiece?.artReleased && (
         <ArtBannerMini
           image={artPiece?.thumbnail}
-          isVisible={!isFullScreenBanner && isScrolled}
+          isVisible={!isFullScreenBanner && isScrolled && !animationImage}
           setIsFullScreenBanner={() => toogleBannerFullScreen(true)}
         />
       )}
