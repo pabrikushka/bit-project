@@ -1,7 +1,6 @@
 function Logo(props) {
     return (
         <svg className={props.className} data-name="Layer 1" viewBox="0 0 200 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <title>Logo_HistoryOfBitcoin@2x</title>
             <g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                 <g id="nav/History-White" transform="translate(-76.000000, -32.000000)" fill="#FFFFFF" fillRule="nonzero">
                     <g id="Logo_HistoryOfBitcoin" transform="translate(76.358253, 32.000000)">
