@@ -16,11 +16,6 @@ const GalleryWidget = (props: GalleryWidgetProps) => {
   const { setAnimationImage } = props;
 
 const [cameraConfig, setSetCameraConfig] = useState(prepareCameraConfig(null));
-  const [animationImage, setAnimationImage] = useState<string | null>(null);
-=======
-  const [cameraConfig, setSetCameraConfig] = useState(
-    prepareCameraConfig(null)
-  );
 
   const { data: queryData } = useQuery(GET_WHOLE_HISTORY, {
     errorPolicy: "all",
