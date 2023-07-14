@@ -15,6 +15,9 @@ const GalleryWidget = (props: GalleryWidgetProps) => {
   const ref = useRef(null);
   const { setAnimationImage } = props;
 
+const [cameraConfig, setSetCameraConfig] = useState(prepareCameraConfig(null));
+  const [animationImage, setAnimationImage] = useState<string | null>(null);
+=======
   const [cameraConfig, setSetCameraConfig] = useState(
     prepareCameraConfig(null)
   );
@@ -67,7 +70,7 @@ const GalleryWidget = (props: GalleryWidgetProps) => {
 
   return (
     <>
-      <section
+<section
         className="gallery-section fader fader-40 fader-top fader-bottom"
         ref={ref}
       >

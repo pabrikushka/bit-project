@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState, useContext } from "react";
 import { motion, useInView } from "framer-motion";
 import { IHistoryItem } from "./types";
 import { countDaysToRelease, createCenterArt } from "./helpers";
+import { SizesContext } from "../../context/sizesContext";
 
 interface HistoryItemPictureProps {
   itemData: IHistoryItem;
@@ -15,6 +16,7 @@ interface HistoryItemPictureProps {
 const HistoryItemPicture = (props: HistoryItemPictureProps) => {
   const { resetArt, fadeOut, artHolderAnimation, artImgAnimation, artHolderMotion, historyEvent, isMobile } = props.itemData;
   const { frameX, frameY, frameRotate, imgX, imgY } = props;
+  const {isTablet} = useContext(SizesContext);
 
   const pictureContainerRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const isInView = useInView(pictureContainerRef);
@@ -40,19 +42,19 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
       ref={pictureContainerRef}
       // exit={fadeOut}
       className="art-wrapper col-xs-12 col-lg-4 order-md-3 col-xl-5"
-      initial={{
+      initial={!isTablet && {
         scale: 0.8,
         opacity: 0,
       }}
-      animate={{
+      animate={!isTablet && {
         scale: 0.95,
         opacity: 1,
       }}
-      exit={{
+      exit={!isTablet && {
         scale: 0.8,
         opacity: 0,
       }}
-      transition={{
+      transition={!isTablet && {
         opacity: {
           duration: 0.2,
           ease: "easeOut",
@@ -75,7 +77,7 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
         <motion.div
           // exit={resetArt}
           className="art-frame"
-          style={{
+          style={!isTablet && {
             translateX: frameX,
             y: frameY,
             rotate: frameRotate,
@@ -87,7 +89,7 @@ const HistoryItemPicture = (props: HistoryItemPictureProps) => {
             src={historyEvent.thumbnail?.url ?? ""}
             alt={historyEvent.thumbnail?.title ?? ""}
             className="art-img"
-            style={{
+            style={!isTablet && {
               translateX: imgX,
               y: imgY,
             }}

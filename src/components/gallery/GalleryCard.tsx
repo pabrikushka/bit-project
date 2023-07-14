@@ -13,7 +13,7 @@ import { artItemToIArtPiece } from "../art/helpers";
 
 interface GalleryCardtProps {
   cardData: CardData;
-  artId: string;
+artId: string;
   artImage: string;
   setAnimationImage: any;
 }
@@ -48,7 +48,7 @@ const GalleryCard = (props: GalleryCardtProps) => {
     config: config.wobbly,
   });
 
-  const onClick = async (e: any) => {
+const onClick = async (e: any) => {
     const artQuery = await callQuery();
     const initialArt = artItemToIArtPiece(artQuery.data.arts);
 
