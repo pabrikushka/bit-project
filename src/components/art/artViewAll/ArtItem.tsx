@@ -25,6 +25,7 @@ const ArtItem = (props: ArtItemProps) => {
     setIsHovered(false);
     x.set(0.5)
     y.set(0.5)
+    console.log('left')
   }
 
   const MotionArtNavigator = motion(ArtNavigator, { forwardMotionProps: true });

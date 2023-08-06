@@ -17,7 +17,7 @@ const ShareModal = (props: ShareModalProps) => {
   const ref = React.useRef(null);
   const mouse = useMouse(ref, {
     enterDelay: 100,
-    leaveDelay: 100,
+    // leaveDelay: 100,
   });
 
   let mouseXPosition = 0;
