@@ -52,6 +52,7 @@ const VideoModal = (props: ModalProps) => {
           animate='visible'
           exit='hidden'>
           {/* cursor */}
+          <div className='cursor-holder'></div>
           <motion.div className='cursor-holder d-none d-md-block' variants={cursorVariants} animate='default'>
             <CloseIcon />
           </motion.div>
