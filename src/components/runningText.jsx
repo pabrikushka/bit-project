@@ -91,8 +91,7 @@ export default function RunningText() {
           <span className='circle'></span>
         </ParallaxText>
         <ParallaxText baseVelocity={1}>
-          Bitcoin <span className='circle'></span> Stories <span className='circle'></span> Knowledge{' '}
-          <span className='circle'></span>
+          Bitcoin <span className='circle'></span> Stories <span className='circle'></span>
         </ParallaxText>
       </motion.div>
     </section>

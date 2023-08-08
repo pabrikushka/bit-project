@@ -13,16 +13,13 @@ interface ArtItemProps {
 }
 
 const ArtItem = (props: ArtItemProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   const {isTablet} = useContext(SizesContext);
 
   function handleMouseEnter() {
-    setIsHovered(true);
+    console.log('enter')
   }
 
   function handleMouseLeave() {
-    setIsHovered(false);
     x.set(0.5)
     y.set(0.5)
     console.log('left')
@@ -60,7 +57,7 @@ const ArtItem = (props: ArtItemProps) => {
   }
 
   return (
-    <Col xs={12} lg={6} className='motion-safe'>
+    <Col xs={12} lg={6} className='motion-safe px-3'>
       <MotionArtNavigator artId={props.itemData.sys.id} setAnimationImage={props.setAnimationImage}>
         <motion.div onMouseMove={handleMouse} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className='art-card-mini'>

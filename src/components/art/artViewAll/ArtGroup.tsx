@@ -4,7 +4,7 @@ import { Container, Row } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { GET_WHOLE_HISTORY } from '../../../services/graphql/historyQuery';
 import { NavLink, useParams } from 'react-router-dom';
-import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ArrowMore from '../../../assets/icons/arrowMore';
 
 type Props = {
@@ -44,29 +44,29 @@ const ArtGroup = (props: Props) => {
   // Cursor
   const [animateCursor, setAnimateCursor] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const xPosition = useMotionValue(0);
-  const yPosition = useMotionValue(0);
+  const xPositionV = useMotionValue(0);
+  const yPositionV = useMotionValue(0);
+  const xPositionS = useSpring(xPositionV, {mass: 0.2,});
+  const yPositionS = useSpring(yPositionV, {mass: 0.2,});
 
-  const windowMiddleX = window.innerWidth / 2;
+  const documentMiddleX = document.documentElement.clientWidth / 2;
 
   const mouseMove = (e) => {
-    xPosition.set(e.clientX);
-    yPosition.set(e.clientY);
-    setAnimateCursor(e.clientX > windowMiddleX);
+    xPositionV.set(e.clientX);
+    yPositionV.set(e.clientY);
+    setAnimateCursor(e.clientX > documentMiddleX);
   };
 
   const mouseEnter = () => {
     setIsHovered(true);
-    console.log('Enter');
   };
   const mouseOut = () => {
     setIsHovered(false);
-    console.log('Out');
   };
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      if (e.clientX > windowMiddleX) {
+      if (e.clientX > documentMiddleX) {
         setAnimateCursor(true);
       } else {
         setAnimateCursor(false);
@@ -78,7 +78,7 @@ const ArtGroup = (props: Props) => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [windowMiddleX]);
+  }, [documentMiddleX]);
 
   return (
     <Container className='px-xl-5'>
@@ -97,9 +97,9 @@ const ArtGroup = (props: Props) => {
                 <motion.div
                   className='cursor-holder d-none d-md-block'
                   initial={{scale: 0.1, opacity: 0,}}
-                  style={{ x: xPosition, y: yPosition, rotate: animateCursor ? 180 : 0 }}
+                  style={{ x: xPositionS, y: yPositionS, rotate: animateCursor ? 180 : 0 }} 
                   animate={animateCursor ? 'rotated' : 'default'}
-                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  transition={{type: "spring", duration: 1, mass: 0.5, stiffness: 120, }}
                   variants={{
                     default: { rotate: 0, scale: 1, opacity: 1 },
                     rotated: { rotate: 180, scale: 1, opacity: 1 },

@@ -657,7 +657,6 @@
         left: 0;
         top: 0;
         object-fit: cover;
-        transition: transform 0.3s ease-out;
       }
     }
 
@@ -697,25 +696,17 @@
 // Cursor
 
 .art-section-mini-row {
-//   &:hover {
-// //     // transition-delay: .4s;
-// //     // background: rgba($bit-dark, .9);
-//     .cursor-holder {
-//       opacity: 1;
-//     }
-//   }
+  margin-right: -1rem;
+  margin-left: -1rem;
   .cursor-holder {
-    width: 90px;
-    height: 90px;
-    margin: -45px 0 0 -45px;
-    // background: white;
+    width: 112px;
+    height: 112px;
+    margin: -56px 0 0 -56px;
     position: fixed;
     top: 0;
     left: 0;
     pointer-events: none;
     user-select: none;
-    transition: opacity 0.2s ease-out;
-    // opacity: 0;
     z-index: 9999999999999;
   }
 }
