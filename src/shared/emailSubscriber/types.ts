@@ -1,6 +1,5 @@
 export enum SignupStatus {
   success,
-  duplicate,
   error,
 }
 export interface SignupResult {

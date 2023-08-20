@@ -11,17 +11,13 @@ const startSignup = (email: string, callback: any) => {
       status: SignupStatus.error,
       message: null,
     };
-    if (data.msg.includes("already subscribed")) {
-      result.status = SignupStatus.duplicate;
-      result.message = data.msg;
-      console.warn(data.msg);
+    if (data.result === "success") {
+      result.status = SignupStatus.success;
     } else if (err) {
       console.error(err);
-    } else if (data.result !== "success") {
+    } else {
       console.error(data.msg);
       result.message = data.msg;
-    } else {
-      result.status = SignupStatus.success;
     }
     callback(result);
   });
