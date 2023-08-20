@@ -381,6 +381,20 @@
   .art-body-content {
     max-width: 75ch;
   }
+
+  .art-demo-content {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to top, black, transparent);
+      pointer-events: none;
+    }
+  }
   // margin-top: 650px;
 
   // border-bottom: 2px solid $bit-light-100;

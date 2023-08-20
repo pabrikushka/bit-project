@@ -7,6 +7,7 @@ export const GET_ART = gql`
       ...coreArtFileds
       arEnhanced
       circulatingSupply
+      contentReleased
       marketCap
       numberOfAddresses
       blockNumber
@@ -41,6 +42,9 @@ export const GET_ART = gql`
         title
       }
       content {
+        json
+      }
+      demoContent {
         json
       }
       visualArtist {
