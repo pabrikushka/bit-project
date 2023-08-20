@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import AnimatedArrow from "../../../assets/icons/animatedArrow";
+import Subscribe from "../share/Subscribe";
 
 
 const BannerSubscribe = () => {
@@ -75,6 +76,7 @@ const BannerSubscribe = () => {
                         </Button>
                     </InputGroup>
                 </Form>
+                {/* <Subscribe></Subscribe> */}
             </motion.div>
 
         </motion.div>

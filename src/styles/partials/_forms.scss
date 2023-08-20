@@ -26,3 +26,26 @@
         }
     }
 }
+
+// Subscribe form
+
+.subscribe {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    height: 60px;
+
+    & > * {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+    }
+
+    .subscribe-form > * {
+        width: 100%;
+    }
+}
+
