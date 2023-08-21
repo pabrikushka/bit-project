@@ -107,6 +107,8 @@ const artItemToIArtPiece = (artItem: any): IArtPiece => {
     audio: toMediaAsset(artItem.audio),
     video: toMediaAsset(artItem.video),
     content: artItem.content,
+    demoContent: artItem.demoContent,
+    contentReleased: artItem.contentReleased,
     audioArtist: artistItemToIArtist(artItem.audioArtist),
     visualArtist: artistItemToIArtist(artItem.visualArtist),
     metaTitle: artItem.metaTitle,
