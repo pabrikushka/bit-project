@@ -32,7 +32,7 @@ const ArtBody = (props: ArtBodyProps) => {
         )}
         {contentReleased && <div>{documentToReactComponents(content.json, options)}</div>}
       </div>
-      {!contentReleased && <h3 className='mt-5 pb-3'>...Full story dropping soon</h3>}
+      {!contentReleased && <p className='lead fw-normal mt-5 pb-3'>...Full story dropping soon</p>}
     </div>
   );
 };
