@@ -382,6 +382,10 @@
     max-width: 75ch;
   }
 
+  .lead {
+    font-size: 1.35rem !important;
+  }
+
   .art-demo-content {
     position: relative;
     &:after {
@@ -389,9 +393,9 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 100%;
+      height: 140px;
       width: 100%;
-      background: linear-gradient(to top, black, transparent);
+      background: linear-gradient(to top, $bit-dark, transparent);
       pointer-events: none;
     }
   }
