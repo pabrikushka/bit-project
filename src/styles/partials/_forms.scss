@@ -47,5 +47,13 @@
     .subscribe-form > * {
         width: 100%;
     }
+
+    .subscribe-spinner-wrapper {
+        background: linear-gradient(to left,white 60%, transparent );
+        .subscribe-spinner {
+            border-color: rgba($bit-dark, 1);
+            border-right-color: transparent !important;
+        }
+    }
 }
 

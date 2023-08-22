@@ -1,41 +1,45 @@
-import React, { useState } from 'react';
-import { Button, Form, InputGroup } from 'react-bootstrap';
-import AnimatedArrow from '../../../assets/icons/animatedArrow';
-import Rocket from '../../../assets/icons/rocket';
-import Smiley from '../../../assets/icons/smiley';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, InputGroup, Spinner } from 'react-bootstrap';
+import AnimatedArrow from '../../../../assets/icons/animatedArrow';
+import Rocket from '../../../../assets/icons/rocket';
+import Smiley from '../../../../assets/icons/smiley';
 import { AnimatePresence, motion } from 'framer-motion';
 import { delay, transform } from 'lodash';
+import { startSignup } from './signupHelper';
 
 type Props = {};
 
 const Subscribe = (props: Props) => {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isProccessing, setIsProccessing] = useState(false);
+  const [emailValue, setEmailValue] = useState('');
+  const [signupResult, setSignupResult] = useState(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const applySignupResult = (result) => {
+    console.log(result); // TODO delete me
+    setSignupResult(result);
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData.get('EMAIL'),
-        headers: { 'Access-Control-Allow-Origin': '*' },
-      });
-
-      if (response.ok) {
-        setIsSuccess(true);
-      } else {
-        setIsError(true);
-      }
-    } catch (error) {
-      setIsSuccess(true);
+    if (emailValue !== '') {
+      setIsProccessing(true);
+      startSignup(emailValue, applySignupResult);
     }
   };
 
-  console.log(isError);
+  useEffect(() => {
+    if (!signupResult) return;
+    if (signupResult.status === 0) {
+      setIsError(false);
+      setIsSuccess(true);
+    } else if (signupResult.status === 1) {
+      setIsError(true);
+      setIsSuccess(false);
+    }
+    setIsProccessing(false);
+  }, [signupResult]);
 
   return (
     <div className='subscribe'>
@@ -51,7 +55,6 @@ const Subscribe = (props: Props) => {
             <div id='mc_embed_shell'>
               <div id='mc_embed_signup'>
                 <form
-                  action='https://kisslabs.us4.list-manage.com/subscribe/post?u=c1a5e982447e163b13590c489&amp;id=2c95acdcdd&amp;f_id=00222ee9f0'
                   method='post'
                   id='mc-embedded-subscribe-form'
                   name='mc-embedded-subscribe-form'
@@ -61,16 +64,27 @@ const Subscribe = (props: Props) => {
                   onSubmit={handleSubmit}>
                   <div id='mc_embed_signup_scroll'>
                     <InputGroup className='arrow-group'>
-                      <Form.Control
-                        type='email'
-                        name='EMAIL'
-                        className='required email'
-                        placeholder='Enter your email here'
-                        aria-label='Your Email'
-                        id='mce-EMAIL'
-                        required
-                      />
-                      <span id='mce-EMAIL-HELPERTEXT' className='helper_text'></span>
+                      <div className='position-relative flex-grow-1'>
+                        <Form.Control
+                          type='email'
+                          name='EMAIL'
+                          className='required email h-100'
+                          placeholder='Enter your email here'
+                          aria-label='Your Email'
+                          id='mce-EMAIL'
+                          value={emailValue}
+                          onChange={(e) => setEmailValue(e.target.value)}
+                          required
+                        />
+                        <span id='mce-EMAIL-HELPERTEXT' className='helper_text'></span>
+                        { isProccessing &&
+                          <div className='subscribe-spinner-wrapper h-100 position-absolute top-0 end-0 d-flex align-items-center justify-content-center ps-4 pe-3'>
+                          <Spinner className='subscribe-spinner' animation='border' role='status' size='sm'>
+                            <span className='visually-hidden'>Loading...</span>
+                          </Spinner>
+                        </div>
+                        } 
+                      </div>
                       <Button
                         type='submit'
                         name='subscribe'
@@ -80,14 +94,6 @@ const Subscribe = (props: Props) => {
                         <AnimatedArrow />
                       </Button>
                     </InputGroup>
-                    {/* 
-                    <div aria-hidden='true' style={{ position: 'absolute', left: '-5000px' }}>
-                      <input type='text' name='b_c1a5e982447e163b13590c489_2c95acdcdd' tabIndex={-1} />
-                    </div> */}
-                    <div id='mce-responses' className='clear'>
-                      <div className='response' id='mce-error-response' style={{ display: 'none' }}></div>
-                      <div className='response' id='mce-success-response' style={{ display: 'none' }}></div>
-                    </div>
                   </div>
                 </form>
               </div>

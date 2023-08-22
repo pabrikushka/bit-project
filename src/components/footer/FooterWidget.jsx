@@ -7,7 +7,7 @@ import FooterLinks from './FooterLinks';
 import FooterSponsors from './FooterSponsors';
 import LogoXL from '../../assets/images/logoLockup.svg';
 import { motion } from 'framer-motion';
-import Subscribe from '../art/share/Subscribe';
+import Subscribe from '../art/share/subscribe/Subscribe';
 
 const Footer = () => {
     return (
@@ -44,8 +44,10 @@ const Footer = () => {
                         <p className='text-light-60 mb-1'>
                             Be the first to know about the latest updates, artworks and events
                         </p>
-                        <FooterForm />
+                        {/* <FooterForm /> */}
+                        <div className='pt-3'>
                         <Subscribe></Subscribe>
+                        </div>
                     </Col>
                     <Col className='footer-col d-lg-flex flex-column align-items-md-center' xs={12} sm={6} lg={4} xxl={5}>
                         <FooterLinks />

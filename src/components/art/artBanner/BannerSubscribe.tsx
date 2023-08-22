@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import AnimatedArrow from "../../../assets/icons/animatedArrow";
-import Subscribe from "../share/Subscribe";
+import Subscribe from "../share/subscribe/Subscribe";
 
 
 const BannerSubscribe = () => {
