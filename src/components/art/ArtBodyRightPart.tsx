@@ -16,9 +16,7 @@ interface ArtBodyRightPartProps {
 
 const ArtBodyRightPart = (props: ArtBodyRightPartProps) => {
   const { artPiece, setArtistForModal, setIsShareModelOpened } = props;
-
-  console.log(artPiece.artReleased)
-
+  
   return (
     <motion.div
       initial={artBodyAnimationSettings.initial}
@@ -27,7 +25,7 @@ const ArtBodyRightPart = (props: ArtBodyRightPartProps) => {
     >
       <Row className="art-body position-relative">
         <Col xs={12} lg={7} className="art-body-main">
-          <ArtBody content={artPiece?.content} />
+          <ArtBody content={artPiece?.content} demoContent={artPiece?.demoContent} overview={artPiece?.overview} contentReleased={artPiece?.contentReleased} />
           <div className="btn-holder w-100 d-lg-block mt-5">
             <Button 
               variant="outline-primary" 
