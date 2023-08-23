@@ -100,6 +100,7 @@ const ArtGroup = (props: Props) => {
                   style={{ x: xPositionS, y: yPositionS, rotate: animateCursor ? 180 : 0 }} 
                   animate={animateCursor ? 'rotated' : 'default'}
                   transition={{type: "spring", duration: 1, mass: 0.5, stiffness: 120, }}
+                  exit={{scale: 0.1, opacity: 0,}}
                   variants={{
                     default: { rotate: 0, scale: 1, opacity: 1 },
                     rotated: { rotate: 180, scale: 1, opacity: 1 },

@@ -16,7 +16,7 @@ interface ArtBodyRightPartProps {
 
 const ArtBodyRightPart = (props: ArtBodyRightPartProps) => {
   const { artPiece, setArtistForModal, setIsShareModelOpened } = props;
-
+  
   return (
     <motion.div
       initial={artBodyAnimationSettings.initial}
