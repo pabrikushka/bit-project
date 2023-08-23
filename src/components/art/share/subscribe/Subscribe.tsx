@@ -12,34 +12,34 @@ type Props = {};
 const Subscribe = (props: Props) => {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isProccessing, setIsProccessing] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [emailValue, setEmailValue] = useState('');
-  const [signupResult, setSignupResult] = useState(null);
+  const [signUpResult, setSignUpResult] = useState(null);
 
   const applySignupResult = (result) => {
     console.log(result); // TODO delete me
-    setSignupResult(result);
+    setSignUpResult(result);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (emailValue !== '') {
-      setIsProccessing(true);
+      setIsProcessing(true);
       startSignup(emailValue, applySignupResult);
     }
   };
 
   useEffect(() => {
-    if (!signupResult) return;
-    if (signupResult.status === 0) {
+    if (!signUpResult) return;
+    if (signUpResult.status === 0) {
       setIsError(false);
       setIsSuccess(true);
-    } else if (signupResult.status === 1) {
+    } else if (signUpResult.status === 1) {
       setIsError(true);
       setIsSuccess(false);
     }
-    setIsProccessing(false);
-  }, [signupResult]);
+    setIsProcessing(false);
+  }, [signUpResult]);
 
   return (
     <div className='subscribe'>
@@ -48,7 +48,7 @@ const Subscribe = (props: Props) => {
         {!(isError || isSuccess) && (
           <motion.div
             className='subscribe-form'
-            transition={{ duration: 0.5, delay: isError || isSuccess ? 0 : 0.5 }}
+            transition={{ type: 'spring', duration: 0.5, delay: isError || isSuccess ? 0 : 0.7 }}
             initial={{ translateY: '-100%', opacity: 0 }}
             animate={{ translateY: '0%', opacity: 1 }}
             exit={{ translateY: '-100%', opacity: 0 }}>
@@ -77,13 +77,19 @@ const Subscribe = (props: Props) => {
                           required
                         />
                         <span id='mce-EMAIL-HELPERTEXT' className='helper_text'></span>
-                        { isProccessing &&
-                          <div className='subscribe-spinner-wrapper h-100 position-absolute top-0 end-0 d-flex align-items-center justify-content-center ps-4 pe-3'>
-                          <Spinner className='subscribe-spinner' animation='border' role='status' size='sm'>
-                            <span className='visually-hidden'>Loading...</span>
-                          </Spinner>
-                        </div>
-                        } 
+                        <AnimatePresence>
+                          {isProcessing && (
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              className='subscribe-spinner-wrapper h-100 position-absolute top-0 end-0 d-flex align-items-center justify-content-center ps-4 pe-3'>
+                              <Spinner className='subscribe-spinner' animation='border' role='status' size='sm'>
+                                <span className='visually-hidden'>Loading...</span>
+                              </Spinner>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                       <Button
                         type='submit'
@@ -110,7 +116,7 @@ const Subscribe = (props: Props) => {
         className='subscribe-error'
         initial={{ translateY: '100%', opacity: 0 }}
         animate={isError ? 'onShow' : 'default'}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, type: 'spring' }}
         variants={{
           default: { translateY: '100%', opacity: 0, transition: { delay: 0.6 } },
           onShow: { translateY: '0%', opacity: 1, transition: { delay: 0.8 } },
@@ -119,6 +125,7 @@ const Subscribe = (props: Props) => {
           <motion.div
             animate={isError ? 'onShow' : 'default'}
             initial={{ translateX: '-10px', translateY: '15px', rotate: '25deg' }}
+            transition={{ type: 'spring' }}
             variants={{
               default: {
                 translateX: '-10px',
@@ -142,6 +149,7 @@ const Subscribe = (props: Props) => {
               className='m-0 opacity-50'
               animate={isError ? 'onShow' : 'default'}
               initial={{ translateY: '15px' }}
+              transition={{ type: 'spring' }}
               variants={{
                 default: { translateY: '15px', transition: { transition: 0.3, delay: 0.35 } },
                 onShow: { translateY: '0px', transition: { transition: 0.3, delay: 0.9 } },
@@ -160,7 +168,7 @@ const Subscribe = (props: Props) => {
         className='subscribe-error'
         initial={{ translateY: '100%', opacity: 0 }}
         animate={isSuccess ? 'onShow' : 'default'}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, type: 'spring' }}
         variants={{
           default: { translateY: '100%', opacity: 0, transition: { delay: 0.6 } },
           onShow: { translateY: '0%', opacity: 1, transition: { delay: 0.8 } },
@@ -169,6 +177,7 @@ const Subscribe = (props: Props) => {
           <motion.div
             animate={isSuccess ? 'onShow' : 'default'}
             initial={{ translateX: '-10px', translateY: '15px', rotate: '25deg' }}
+            transition={{ type: 'spring' }}
             variants={{
               default: {
                 translateX: '-10px',
@@ -192,6 +201,7 @@ const Subscribe = (props: Props) => {
               className='m-0 opacity-50'
               animate={isSuccess ? 'onShow' : 'default'}
               initial={{ translateY: '15px' }}
+              transition={{ type: 'spring' }}
               variants={{
                 default: { translateY: '15px', transition: { transition: 0.3, delay: 0.35 } },
                 onShow: { translateY: '0px', transition: { transition: 0.3, delay: 0.9 } },

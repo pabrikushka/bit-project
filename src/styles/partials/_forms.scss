@@ -35,6 +35,9 @@
     position: relative;
     overflow: hidden;
     height: 60px;
+    width: 100%;
+    min-width: 180px;
+    max-width: 400px;
 
     & > * {
         height: 60px;
@@ -54,6 +57,10 @@
             border-color: rgba($bit-dark, 1);
             border-right-color: transparent !important;
         }
+    }
+
+    .input-group {
+        flex-wrap: nowrap !important;
     }
 }
 

@@ -368,11 +368,6 @@
   @include media-breakpoint-up(sm) {
     height: auto;
   }
-  @include media-breakpoint-up(xl) {
-    form {
-      min-width: 30rem;
-    }
-  }
 }
 
 // Art Body
