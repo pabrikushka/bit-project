@@ -13,6 +13,9 @@ const notReleasedArtist = "XXXXX";
 
 const ArtCredits = (props: ArtCreditsProps) => {
   const { setArtistForModal, artPiece, visualArtist } = props;
+
+  console.log(visualArtist);
+
   return (
     <>
       {/* Main Credit  */}

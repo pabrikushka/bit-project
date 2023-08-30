@@ -9,6 +9,8 @@ interface ArtistFooterProps {
 
 const ArtistFooter = (props: ArtistFooterProps) => {
   const { artist } = props;
+
+  console.log(artist.twitter);
   const showSocials = artist.discord || artist.instagram || artist.youTube || artist.mastodon ? true : false;
   const showMarketplace = artist.openSea || artist.foundation || artist.superRare || artist.rairable ? true : false;
   return (

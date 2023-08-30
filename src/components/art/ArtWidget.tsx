@@ -107,6 +107,8 @@ const ArtWidget = (props: any) => {
     };
   }, [params.artId]);
 
+  console.log(artQueryData)
+
   useEffect(() => {
     // for smooth transition animation do not update data if
     // they provided initially

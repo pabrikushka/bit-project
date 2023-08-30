@@ -71,6 +71,7 @@ const artistItemToIArtist = (artistItem: any): IArtist | null => {
     discord: artistItem.discord,
     instagram: artistItem.instagram,
     youTube: artistItem.youTube,
+    twitter: artistItem.twitter,
     mastodon: artistItem.mastodon,
     bandcamp: artistItem.bandcamp,
     openSea: artistItem.openSea,
