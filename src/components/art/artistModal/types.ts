@@ -19,6 +19,7 @@ export interface IArtist {
     discord: string | null,
     instagram: string | null,
     youTube: string | null,
+    twitter: string | null,
     mastodon: string | null,
     bandcamp: string | null,
     openSea: string | null,

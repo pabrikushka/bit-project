@@ -42,6 +42,7 @@ export const CORE_ARTISTS_FIELDS_FRAGMENT = gql`
     discord
     instagram
     youTube
+    twitter
     mastodon
     bandcamp
     openSea
