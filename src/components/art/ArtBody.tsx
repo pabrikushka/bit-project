@@ -20,7 +20,6 @@ const options = {
 const ArtBody = (props: ArtBodyProps) => {
   const { content, demoContent, contentReleased, overview } = props;
 
-  if (!content) return null;
   return (
     <div className='pe-lg-2 pe-xl-5'>
       <p className='lead fw-normal mb-4 pb-2'>
@@ -30,7 +29,7 @@ const ArtBody = (props: ArtBodyProps) => {
         {!contentReleased && (
           <div className='art-demo-content'>{documentToReactComponents(demoContent?.json, options)}</div>
         )}
-        {contentReleased && <div>{documentToReactComponents(content.json, options)}</div>}
+        {contentReleased && <div>{documentToReactComponents(content?.json, options)}</div>}
       </div>
       {!contentReleased && <p className='lead fw-normal mt-5 pb-3'>...Full story dropping soon</p>}
     </div>
