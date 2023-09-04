@@ -721,5 +721,9 @@
     pointer-events: none;
     user-select: none;
     z-index: 9999999999999;
+
+    @include media-breakpoint-down(lg) {
+      display: none !important;
+    }
   }
 }
