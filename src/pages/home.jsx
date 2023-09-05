@@ -63,7 +63,7 @@ const Home = () => {
             text={
               'Experience a multi-sensory journey through 128 uniquly enhanced Bitcoin artworks by leading creatives from the Smashtoshi Collective. Combined with AR, AI, customisable materials and print finishes BIT is unique in the world of luxury publications.'
             }
-            buttonText={'Buy BIT'}
+            buttonText={'Pre Order'}
             externalLink='https://smashtoshi.myshopify.com/'
           />
         </RenderIfVisible>
