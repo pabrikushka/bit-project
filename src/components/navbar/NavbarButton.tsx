@@ -6,7 +6,7 @@ function NavbarButton(props: any) {
     return (
         <div className={props.styleName}>
             <a className="btn btn-primary bit-btn" href="https://smashtoshi.myshopify.com/">
-                Pre Order
+                Pre-Order
             </a>
         </div>
     )
