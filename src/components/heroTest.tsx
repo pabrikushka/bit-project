@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform, useMotionValue, MotionValue } from 'framer-motion';
-import Mona from '../assets/videos/dude.mp4';
+import Mona from '../assets/videos/bit-teaser-no-audio.mp4';
 import Button from 'react-bootstrap/Button';
 import VideoModal from './video/VideoModal';
 
