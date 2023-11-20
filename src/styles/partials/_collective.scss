@@ -10,6 +10,10 @@
     @include media-breakpoint-up(md) {
         height: 100vh;
     }
+    @include media-breakpoint-down(md) {
+        margin-top: 4rem;
+    }
+
 }
 
 .collective-video {
