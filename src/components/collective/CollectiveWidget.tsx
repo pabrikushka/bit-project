@@ -97,7 +97,7 @@ const CollectiveWidget = (props: any) => {
             <Row className="mt-5 pt-5">
               <Col xs={12} lg={{ span: 8, offset: 2 }} xxl={{ span: 6, offset: 3 }}>
                 <div className="mb-5 overflow-hidden">
-                  <motion.h2 variants={sectionVariants}>
+                  <motion.h2 >
                     Smashtoshi is a collective of over 200 artists, creators and disruptors with a passion for the game-changing technology brought
                     about by Bitcoin that burns brighter than the fiery depths of Mt. Gox.
                   </motion.h2>
