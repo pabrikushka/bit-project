@@ -11,7 +11,7 @@
         height: 100vh;
     }
     @include media-breakpoint-down(md) {
-        margin-top: 4rem;
+        margin-top: 4rem !important;
     }
 
 }
