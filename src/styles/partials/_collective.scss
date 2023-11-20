@@ -19,5 +19,9 @@
     width: 100%;
     height: auto;
     mix-blend-mode: exclusion;
+    @include media-breakpoint-down(md) {
+        width: 150%;
+        left: -25%;
+    }
 }
 
