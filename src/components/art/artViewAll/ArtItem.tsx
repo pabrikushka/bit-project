@@ -86,7 +86,7 @@ const ArtItem = (props: ArtItemProps) => {
                   <h5 className='font-aeonik small text-light-70'>{createBTCLebel(props.itemData.btcPrice)}</h5>
                 </div>
                 <div className='art-card-mini-main'>
-                  <h2 className='mb-0  fw-light'>{props.itemData.title}</h2>
+                  <h3 className='mb-0  fw-light'>{props.itemData.title}</h3>
                 </div>
               </div>
             </div>

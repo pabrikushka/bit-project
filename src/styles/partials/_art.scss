@@ -26,6 +26,10 @@
     }
   }
 
+  @include media-breakpoint-down(md) {
+    margin-top: 8rem;
+  }
+
   @include media-breakpoint-up(lg) {
     border-bottom: 1px solid transparent;
     // height: calc(6rem + 10.5vw);
@@ -61,6 +65,10 @@
       top: 4rem;
       left: 0;
     }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-top: 3rem;
   }
 }
 
@@ -109,6 +117,7 @@
 
           @include media-breakpoint-down(md) {
             font-size: 0.875em;
+            height: 1.5rem;
           }
         }
       }

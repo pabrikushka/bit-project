@@ -12,6 +12,12 @@
     }
 }
 
-.dummy {
-    height: 4000px;
+.collective-video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    mix-blend-mode: exclusion;
 }
+

@@ -151,7 +151,7 @@ const ArtWidget = (props: any) => {
   return (
     <>
       <motion.main
-        className=""
+        className="art-widget"
         exit={{
           y: "-4rem",
           scale: 0.8,

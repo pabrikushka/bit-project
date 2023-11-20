@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import ParallaxText from "../parallaxText";
 import TransitAnimator from "../../shared/TransitAnimator";
 import useScrollOnTop from "../../shared/useScrollOnTop";
+import Mona from '../../assets/videos/Collective-Animation.mp4';
 
 const CollectiveWidget = (props: any) => {
   const ref = useRef(null);
@@ -44,7 +45,17 @@ const CollectiveWidget = (props: any) => {
 
   return (
     <>
-      <motion.main className="overflow-hidden"
+      <motion.video
+        className="collective-video"
+        src={Mona}
+        loop
+        muted
+        autoPlay={true}
+      >
+
+      </motion.video>
+
+      <motion.main className="overflow-hidden position-relative"
         initial={{
           opacity: 0,
           y: "4rem",
@@ -81,7 +92,7 @@ const CollectiveWidget = (props: any) => {
           </div>
         </motion.header>
         <motion.section className="collective-overview py-5 mt-5" initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.4 }}>
-          <Container className="px-xl-5">
+          <Container className="px-xl-5 pt-5">
             <Row className="mt-5 pt-5">
               <Col xs={12} lg={{ span: 8, offset: 2 }} xxl={{ span: 6, offset: 3 }}>
                 <div className="mb-5 overflow-hidden">
@@ -113,7 +124,6 @@ const CollectiveWidget = (props: any) => {
           </Container>
         </motion.section>
 
-        <div className="dummy"></div>
       </motion.main>
       <TransitAnimator image={null} />
     </>

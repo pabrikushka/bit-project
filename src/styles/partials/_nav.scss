@@ -80,6 +80,7 @@ body {
 
     // Mobile nav 
     @include media-breakpoint-down(md) {
+        position: fixed;
         .nav-items {
             overflow: hidden;
             position: fixed;
@@ -259,6 +260,12 @@ body {
         }
     }
 
+}
+
+.footer-link {
+    &::before {
+        display: none !important;
+    }
 }
 
 .nav-trigger {

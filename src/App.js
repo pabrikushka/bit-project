@@ -21,8 +21,9 @@ function App() {
           <BrowserRouter>
             <NavbarWidget />
             <AnimatedRoutes />
+            <Footer />
           </BrowserRouter>
-          <Footer />
+          
           <DefaultSEO
             title='test'
             description='Should be changed'
