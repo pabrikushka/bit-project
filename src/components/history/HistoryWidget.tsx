@@ -78,8 +78,6 @@ const HistoryWidget = (props: any) => {
     }
   }, [historyGroups]);
 
-  console.log(historyGroups);
-
   return (
     <>
       <motion.main

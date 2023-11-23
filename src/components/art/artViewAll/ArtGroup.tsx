@@ -6,6 +6,7 @@ import { GET_WHOLE_HISTORY } from '../../../services/graphql/historyQuery';
 import { NavLink, useParams } from 'react-router-dom';
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import ArrowMore from '../../../assets/icons/arrowMore';
+import { forEach } from 'lodash';
 
 type Props = {
   setAnimationImage: any;
@@ -17,6 +18,9 @@ const ArtGroup = (props: Props) => {
 
   // all items
   const { data: queryData } = useQuery(GET_WHOLE_HISTORY, {
+    variables: {
+      limit: 200, // Set your desired limit here
+    },
     errorPolicy: 'all',
   });
   const items = queryData?.artsCollection?.items || [];
@@ -29,15 +33,15 @@ const ArtGroup = (props: Props) => {
     }
 
     const itemsCount = items.length;
+    const previousIndex = (index - 1 + itemsCount) % itemsCount;
     const nextIndex = (index + 1) % itemsCount;
-    const secondNextIndex = (index + 2) % itemsCount;
 
-    if (index === itemsCount - 2) {
-      return [items[nextIndex], items[0]]; // last and first items
+    if (index === 0) {
+      return [items[itemsCount - 1], items[nextIndex]]; // first item
     } else if (index === itemsCount - 1) {
-      return [items[0], items[1]]; // first two items
+      return [items[previousIndex], items[0]]; // last item
     } else {
-      return [items[nextIndex], items[secondNextIndex]]; //next two items
+      return [items[previousIndex], items[nextIndex]]; // not first or last
     }
   };
 
@@ -46,8 +50,8 @@ const ArtGroup = (props: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const xPositionV = useMotionValue(0);
   const yPositionV = useMotionValue(0);
-  const xPositionS = useSpring(xPositionV, {mass: 0.2,});
-  const yPositionS = useSpring(yPositionV, {mass: 0.2,});
+  const xPositionS = useSpring(xPositionV, { mass: 0.2 });
+  const yPositionS = useSpring(yPositionV, { mass: 0.2 });
 
   const documentMiddleX = document.documentElement.clientWidth / 2;
 
@@ -96,11 +100,11 @@ const ArtGroup = (props: Props) => {
               {isHovered && (
                 <motion.div
                   className='cursor-holder d-none d-md-block'
-                  initial={{scale: 0.1, opacity: 0,}}
-                  style={{ x: xPositionS, y: yPositionS, rotate: animateCursor ? 180 : 0 }} 
+                  initial={{ scale: 0.1, opacity: 0 }}
+                  style={{ x: xPositionS, y: yPositionS, rotate: animateCursor ? 180 : 0 }}
                   animate={animateCursor ? 'rotated' : 'default'}
-                  transition={{type: "spring", duration: 1, mass: 0.5, stiffness: 120, }}
-                  exit={{scale: 0.1, opacity: 0,}}
+                  transition={{ type: 'spring', duration: 1, mass: 0.5, stiffness: 120 }}
+                  exit={{ scale: 0.1, opacity: 0 }}
                   variants={{
                     default: { rotate: 0, scale: 1, opacity: 1 },
                     rotated: { rotate: 180, scale: 1, opacity: 1 },
