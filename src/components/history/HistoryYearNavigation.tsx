@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Link } from "react-scroll";
-import { yearToShortYear } from "./helpers";
-import { IHistoryGroup } from "./types";
-import { useCallback } from "react";
+import * as React from 'react';
+import { Link } from 'react-scroll';
+import { yearToShortYear } from './helpers';
+import { IHistoryGroup } from './types';
+import { useCallback } from 'react';
 
 interface HistoryYearNavigationProps {
   historyGroups: IHistoryGroup[];
@@ -32,26 +32,24 @@ const HistoryYearNavigation = (props: HistoryYearNavigationProps) => {
   );
 
   return (
-    <nav className="history-nav pt-3">
-      <div className="history-nav-content py-4 py-md-5 mt-xl-5">
-        <div className="history-nav-items ps-3 ps-md-5 pe-md-3">
+    <nav className='history-nav pt-3'>
+      <div className='history-nav-content py-4 py-md-5 mt-xl-5'>
+        <div className='history-nav-items ps-3 ps-md-5 pe-md-3'>
           <div
-            className="history-nav-dot d-none d-md-block"
+            className='history-nav-dot d-none d-md-block'
             style={{
               top: `${dotTopValue}rem`,
-            }}
-          ></div>
+            }}></div>
           {historyGroups.map((data: IHistoryGroup, index: number) => (
-            <li className="history-nav-item" key={`link${index}`}>
+            <li className='history-nav-item' key={`link${index}`}>
               <Link
-                className="nav-link small history-nav-link font-aeonik"
-                activeClass="active"
+                className='nav-link small history-nav-link font-aeonik'
+                activeClass='active'
                 to={data.id.toString()}
                 spy={true}
                 delay={50}
                 smooth={false}
-                onSetActive={handleSetActive}
-              >
+                onSetActive={handleSetActive}>
                 {yearToShortYear(data.year)}
               </Link>
             </li>

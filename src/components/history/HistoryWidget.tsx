@@ -1,17 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, useAnimation } from "framer-motion";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import useWindowParams from "../../shared/useWindowParams";
-import HistoryGroup from "./HistoryGroup";
-import { IHistoryGroup } from "./types";
-import { createHistoryGroups, restoreScrollToPosition } from "./helpers";
-import HistoryYearNavigation from "./HistoryYearNavigation";
-import TransitAnimator from "../../shared/TransitAnimator";
-import { useQuery } from "@apollo/client";
-import { GET_WHOLE_HISTORY } from "../../services/graphql/historyQuery";
-import useScrollOnTop from "../../shared/useScrollOnTop";
+import { useState, useEffect, useCallback } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import useWindowParams from '../../shared/useWindowParams';
+import HistoryGroup from './HistoryGroup';
+import { IHistoryGroup } from './types';
+import { createHistoryGroups, restoreScrollToPosition } from './helpers';
+import HistoryYearNavigation from './HistoryYearNavigation';
+import TransitAnimator from '../../shared/TransitAnimator';
+import { useQuery } from '@apollo/client';
+import { GET_WHOLE_HISTORY } from '../../services/graphql/historyQuery';
+import useScrollOnTop from '../../shared/useScrollOnTop';
 
 const HistoryWidget = (props: any) => {
   const { isMobile } = useWindowParams();
@@ -26,7 +26,12 @@ const HistoryWidget = (props: any) => {
     loading,
     error,
     data: queryData,
-  } = useQuery(GET_WHOLE_HISTORY, { errorPolicy: "all" });
+  } = useQuery(GET_WHOLE_HISTORY, {
+    variables: {
+      limit: 200, // Set your desired limit here
+    },
+    errorPolicy: 'all',
+  });
 
   const artHolderAnimation = useAnimation();
   const artImgAnimation = useAnimation();
@@ -51,65 +56,62 @@ const HistoryWidget = (props: any) => {
       });
     }
   };
-  
+
   useScrollOnTop();
 
-  const delayHistoryYearNavigation = useCallback(async () =>{
+  const delayHistoryYearNavigation = useCallback(async () => {
     setShowHistoryYearNavigation(false);
     await new Promise(() => setTimeout(() => setShowHistoryYearNavigation(true), 500));
   }, []);
 
   useEffect(() => {
     if (queryData) {
-      const newHistoryGroups = createHistoryGroups(
-        queryData,
-        artHolderAnimation,
-        artImgAnimation,
-        isMobile
-      );
+      const newHistoryGroups = createHistoryGroups(queryData, artHolderAnimation, artImgAnimation, isMobile);
       setHistoryGroups(newHistoryGroups);
     }
   }, [isMobile, queryData]);
 
   useEffect(() => {
-    if (historyGroups.length > 0 && sessionStorage.getItem("scrollPositionArtId")) {
+    if (historyGroups.length > 0 && sessionStorage.getItem('scrollPositionArtId')) {
       delayHistoryYearNavigation();
       restoreScrollToPosition();
     }
   }, [historyGroups]);
 
+  console.log(historyGroups);
+
   return (
     <>
       <motion.main
-        className=""
+        className=''
         initial={{
           opacity: 0,
-          y: "4rem",
+          y: '4rem',
         }}
         animate={{
-          y: "0rem",
+          y: '0rem',
           scale: 1,
           opacity: 1,
         }}
         exit={{
-          y: "-4rem",
+          y: '-4rem',
           scale: 0.8,
           opacity: 0,
         }}
         transition={{
           duration: 0.6,
-          ease: "easeOut",
+          ease: 'easeOut',
           scale: {
             duration: 1,
           },
         }}
         //onAnimationStart={() => setExitAnimationStarting(true)}
       >
-        <h1 className="visually-hidden">History</h1>
-        <Container className="px-xl-5" style={{ paddingBottom: 100 }}>
+        <h1 className='visually-hidden'>History</h1>
+        <Container className='px-xl-5' style={{ paddingBottom: 100 }}>
           <Row>
-            <Col xs={12} className="history-wrapper">
-              <div className="history-holder">
+            <Col xs={12} className='history-wrapper'>
+              <div className='history-holder'>
                 {historyGroups.map((group: IHistoryGroup) => (
                   <HistoryGroup
                     groupData={group}
