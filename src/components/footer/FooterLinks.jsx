@@ -26,7 +26,7 @@ const FooterLinks = () => {
                         e.preventDefault();
                     }}
                 >
-                    hello@smashtoshi.com
+                    Email
                 </Link>
                 </li>
             </ul>
