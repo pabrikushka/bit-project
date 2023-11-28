@@ -32,7 +32,7 @@ function Overview(props: any) {
             whileInView="onscreen"
             viewport={{ once: true, amount: 0.2 }}
         >
-            <Container>
+            <Container className="pt-5 mt-xl-5">
                 <Row>
                     <Col xs={12} md={{ span: 10, offset: 1 }} lg={{ span: 8, offset: 2 }} xxl={{ span: 6, offset: 3 }} className="text-center position-relative">
                         <motion.div className='mb-4 overflow-hidden'>

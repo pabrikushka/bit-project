@@ -174,7 +174,7 @@ const Subscribe = (props: Props) => {
         className='subscribe-error'
         initial={{ translateY: '100%', opacity: 0 }}
         animate={isSuccess ? 'onShow' : 'default'}
-        transition={{ duration: 0.6, type: 'spring', stiffness: 260, damping: 20 }}
+        transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
         variants={{
           default: { translateY: '100%', opacity: 0, transition: { delay: 0.7 } },
           onShow: { translateY: '0%', opacity: 1, transition: { delay: 0.9 } },
@@ -183,7 +183,7 @@ const Subscribe = (props: Props) => {
           <motion.div
             animate={isSuccess ? 'onShow' : 'default'}
             initial={{ translateX: '-10px', translateY: '15px', rotate: '25deg' }}
-            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
             variants={{
               default: {
                 translateX: '-10px',
@@ -207,7 +207,7 @@ const Subscribe = (props: Props) => {
               className='m-0 opacity-50'
               animate={isSuccess ? 'onShow' : 'default'}
               initial={{ translateY: '15px' }}
-              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 20 }}
               variants={{
                 default: { translateY: '15px', transition: { transition: 0.4, delay: 0.45 } },
                 onShow: { translateY: '0px', transition: { transition: 0.4, delay: 1 } },

@@ -14,7 +14,7 @@ const ArtHeader = (props: ArtHeaderProps) => {
 
   return (
     <motion.header className="title-block art-title-block">
-      <motion.div className="art-title-holder pb-4">
+      <motion.div className="art-title-holder pb-4 mt-auto mb-auto">
         <motion.h1
           className="art-title h1-mini"
           initial={{

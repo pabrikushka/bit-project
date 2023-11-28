@@ -92,7 +92,7 @@ const CollectiveWidget = (props: any) => {
             </motion.div>
           </div>
         </motion.header>
-        <motion.section className="collective-overview position-relative py-5 mt-5" initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.4 }}>
+        <motion.section className="collective-overview position-relative py-5" initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.4 }}>
           <Container className="px-xl-5 pt-5">
             <Row className="mt-5 pt-5">
               <Col xs={12} lg={{ span: 8, offset: 2 }} xxl={{ span: 6, offset: 3 }}>
