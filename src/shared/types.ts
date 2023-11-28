@@ -12,7 +12,7 @@ export interface IArtBase {
   btcPrice: number,
   mainImage: IMediaAsset | null,
   thumbnail: IMediaAsset | null,
-  artReleased: boolean,
+  artReleased: boolean, 
   artReleaseDate: Date | null,
   glitchedImage: IMediaAsset | null,
 }

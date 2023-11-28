@@ -12,7 +12,12 @@ const toMediaAsset = (mediaData: any): IMediaAsset | null => {
   const artItemToIArtBase = (artItem: any): IArtBase => {
     const eventDate = new Date(artItem.eventDate);
     const artReleaseDate = artItem.artReleaseDate ? new Date(artItem.artReleaseDate) : null;
-    const artReleased = artItem.artReleased === false ? false: true;
+
+    // Get IsArtReleased Based On Dates
+    const currentDate = new Date();
+    const releaseDate = new Date(artItem.artReleaseDate);
+    const artReleased = currentDate >= releaseDate;
+    // const artReleased = artItem.artReleased === false ? false: true; // TODO: delete later
     const { title, btcPrice, overview } = artItem;
 
     const mainImage = toMediaAsset(artReleased? artItem.mainImage: artItem.glitchedImage);

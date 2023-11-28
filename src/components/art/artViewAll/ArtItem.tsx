@@ -5,7 +5,7 @@ import { createBTCLebel, formatEventDate } from "../../../shared/artHelpers";
 import ArtNavigator from '../../history/ArtNavigator';
 import { IArtPiece } from '../types';
 import { SizesContext } from '../../../context/sizesContext';
-
+import GlitchImage from "../../../assets/images/glitch.jpg";
 
 interface ArtItemProps {
   itemData: any;
@@ -56,6 +56,8 @@ const ArtItem = (props: ArtItemProps) => {
     y.set((event.clientY - rect.top) / rect.height);
   }
 
+  console.log('item data!', props.itemData);
+
   return (
     <Col xs={12} lg={6} className='motion-safe px-3'>
       <MotionArtNavigator artId={props.itemData.sys.id} setAnimationImage={props.setAnimationImage}>
@@ -70,7 +72,7 @@ const ArtItem = (props: ArtItemProps) => {
                 }}
                 className='art-mini-wrapper'>
                 <motion.img
-                  src={props.itemData.thumbnail.url}
+                  src={props.itemData.artReleased ? props.itemData.thumbnail?.url : props.itemData.glitchedImage?.url}
                   alt=''
                   style={!isTablet && {
                     scale: 1.15,

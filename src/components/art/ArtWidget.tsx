@@ -107,8 +107,6 @@ const ArtWidget = (props: any) => {
     };
   }, [params.artId]);
 
-  console.log(artQueryData)
-
   useEffect(() => {
     // for smooth transition animation do not update data if
     // they provided initially
@@ -148,6 +146,8 @@ const ArtWidget = (props: any) => {
         .classList.remove("overflow-hidden");
   }, [isFullScreenBanner, isArtistModalOpened, isShareModelOpened]);
 
+console.log(artPiece?.mainImage);
+  
   return (
     <>
       <motion.main

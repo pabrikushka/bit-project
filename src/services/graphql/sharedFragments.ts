@@ -26,6 +26,8 @@ export const CORE_ARTS_FIELDS_FRAGMENT = gql`
   }
 `;
 
+// TODO: Delete artReleased
+
 export const CORE_ARTISTS_FIELDS_FRAGMENT = gql`
   fragment coreArtitFileds on Artists {
     sys {
