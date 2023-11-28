@@ -18,6 +18,11 @@
     margin-top: 2rem;
   }
 
+  &.art-title-block {
+    display: flex;
+    flex-direction: column;
+  }
+
   @include media-breakpoint-up(sm) {
     .art-details {
       h3 {
@@ -276,12 +281,9 @@
 .art-card-content,
 .art-banner {
   @include media-breakpoint-up(lg) {
-    min-height: 18rem;
+    min-height: 20rem;
   }
 
-  @include media-breakpoint-up(xl) {
-    min-height: 18rem;
-  }
 
   @include media-breakpoint-up(xxl) {
   }

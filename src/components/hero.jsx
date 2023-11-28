@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useSpring, useTransform, useMotionValue, MotionValue } from "framer-motion";
-import Mona from "../assets/videos/dude.mp4"
 
 // function useParallax(value: MotionValue<number>, distance: number) {
 //     return useTransform(value, [0, 1], [-distance, distance]);

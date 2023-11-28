@@ -17,6 +17,7 @@ const ArtWidget = lazy(() => import("./components/art/ArtWidget"));
 const Events = lazy(() => import("./pages/events"));
 const FaqWidget = lazy(() => import("./components/faq/FaqWidget"));
 const CollectiveWidget = lazy(() => import("./components/collective/CollectiveWidget"));
+const NotFound = lazy(() => import("./components/404"));
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -34,6 +35,7 @@ const AnimatedRoutes = () => {
                 <Route path="/collective" exact element={<CollectiveWidget/>} />
                 <Route path="/events" exact element={<Events />} />
                 <Route path="/faq" exact element={<FaqWidget/>} />
+                <Route path='*' exact element={ <NotFound/> }/>
             </Routes>
         </AnimatePresence>
     );
