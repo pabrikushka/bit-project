@@ -6,6 +6,7 @@ import ParallaxText from "../parallaxText";
 import TransitAnimator from "../../shared/TransitAnimator";
 import useScrollOnTop from "../../shared/useScrollOnTop";
 import Mona from '../../assets/videos/Collective-Animation.mp4';
+import Subscribe from "../art/share/subscribe/Subscribe";
 
 const CollectiveWidget = (props: any) => {
   const ref = useRef(null);
@@ -119,6 +120,16 @@ const CollectiveWidget = (props: any) => {
                       To hear about Smashtoshi's future projects and events before anyone else subscribe to our mailing list and follow this journey.
                     </motion.p>
                   </motion.div>
+                </div>
+
+                <div className="mt-5 pt-5">
+                  <div className="collective-subscribe-holder">
+                    <h3>Subscribe</h3>
+                    <h4 className="text-light-60">Be the first to know about the latest updates, artworks and events</h4>
+                    <div className="mt-4 collective-subscribe">
+                      <Subscribe />
+                    </div>
+                  </div>
                 </div>
               </Col>
             </Row>

@@ -25,8 +25,8 @@ function App() {
           </BrowserRouter>
           
           <DefaultSEO
-            title='test'
-            description='Should be changed'
+            title='History of Bitcoin | by Smashtoshi'
+            description='Global Art Collective. Telling the stories that deserve to be told. #Bitcoin'
             imageSrc='http://example.com/facebook-foo.jpg'
             keywords={[]}
           />

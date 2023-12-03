@@ -92,7 +92,6 @@ const ShareModal = (props: ShareModalProps) => {
                   <ShareButtonWrapper socialName="Whatsapp" shareUrl={shareUrl} />
                   <ShareButtonWrapper socialName="Facebook" shareUrl={shareUrl} />
                   <ShareButtonWrapper socialName="Reddit" shareUrl={shareUrl} />
-                  <ShareButtonWrapper socialName="Email" shareUrl={shareUrl} />
                   <ShareButtonWrapper socialName="Telegram" shareUrl={shareUrl} />
                 </div>
               </div>

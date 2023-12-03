@@ -72,7 +72,7 @@ const ArtWidget = (props: any) => {
       const scrollPosition = window.scrollY;
       const targetElement = targetRef.current;
       const targetHeight = targetElement.offsetHeight
-      setIsScrolled(scrollPosition > targetHeight-60);
+      setIsScrolled(scrollPosition > targetHeight - 60);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -146,8 +146,8 @@ const ArtWidget = (props: any) => {
         .classList.remove("overflow-hidden");
   }, [isFullScreenBanner, isArtistModalOpened, isShareModelOpened]);
 
-console.log(artPiece?.mainImage);
-  
+  console.log(artPiece?.mainImage);
+
   return (
     <>
       <motion.main
@@ -164,7 +164,7 @@ console.log(artPiece?.mainImage);
             duration: 1,
           },
         }}
-        //onAnimationStart={() => setExitAnimationStarting(true)}
+      //onAnimationStart={() => setExitAnimationStarting(true)}
       >
         <section>
           <Container className="px-xl-5">

@@ -32,3 +32,14 @@
 .collective-overview {
     margin-top: 10rem;
 }
+
+.collective-subscribe-holder {
+    background: rgba($bit-blue, 0.05);
+    padding: 1rem;
+    .subscribe {
+        max-width: none;
+    }
+    @include media-breakpoint-up(md) {
+        padding: 2rem;
+    }
+}
