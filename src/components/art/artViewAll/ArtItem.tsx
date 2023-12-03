@@ -84,7 +84,7 @@ const ArtItem = (props: ArtItemProps) => {
               </motion.div>
               <div className='art-card-mini-body py-4 py-sm-1 ps-sm-4'>
                 <div className='d-flex align-items-start justify-content-between justify-content-sm-start mb-1 flex-lg-column flex-xxl-row'>
-                  <h5 className='font-aeonik small text-light-70 me-0 mb-md-0 mb-lg-3 me-sm-5 me-lg-0 me-xl-5'>{formatEventDate(new Date(props.itemData.artReleaseDate))}</h5>
+                  {props.itemData.eventDate && <h5 className='font-aeonik small text-light-70 me-0 mb-md-0 mb-lg-3 me-sm-5 me-lg-0 me-xl-5'>{formatEventDate(new Date(props.itemData.eventDate))}</h5>}
                   <h5 className='font-aeonik small text-light-70'>{createBTCLebel(props.itemData.btcPrice)}</h5>
                 </div>
                 <div className='art-card-mini-main'>

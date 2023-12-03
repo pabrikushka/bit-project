@@ -95,6 +95,8 @@ const HistoryItem = (props: HistoryItemProps) => {
   const canHistoryItemPictureBeVisible = !props.exitAnimationStarting;
   // window.addEventListener('mousemove', handleMouse);
 
+  console.log('item is', props.itemData);
+
   return (
     <MotionArtNavigator
       initial="rest"

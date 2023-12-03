@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState, useContext } from "react";
-import { motion, useInView } from "framer-motion";
-import { IHistoryItem } from "./types";
-import { countDaysToRelease, createCenterArt } from "./helpers";
-import { SizesContext } from "../../context/sizesContext";
+import React, { useCallback, useEffect, useRef, useState, useContext } from 'react';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { IHistoryItem } from './types';
+import { countDaysToRelease, createCenterArt } from './helpers';
+import { SizesContext } from '../../context/sizesContext';
+import { Spinner } from 'react-bootstrap';
 
 interface HistoryItemPictureProps {
   itemData: IHistoryItem;
@@ -14,93 +15,145 @@ interface HistoryItemPictureProps {
 }
 
 const HistoryItemPicture = (props: HistoryItemPictureProps) => {
-  const { resetArt, fadeOut, artHolderAnimation, artImgAnimation, artHolderMotion, historyEvent, isMobile } = props.itemData;
+  const { resetArt, fadeOut, artHolderAnimation, artImgAnimation, artHolderMotion, historyEvent, isMobile } =
+    props.itemData;
   const { frameX, frameY, frameRotate, imgX, imgY } = props;
-  const {isTablet} = useContext(SizesContext);
+  const { isTablet } = useContext(SizesContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   const pictureContainerRef = useRef() as React.MutableRefObject<HTMLInputElement>;
   const isInView = useInView(pictureContainerRef);
 
   const [centerArt, setCenterArt] = useState<any>(createCenterArt(isMobile, pictureContainerRef));
 
+  // Loading image
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
+  // Scroll
   const handleScroll = useCallback(() => {
     if (isInView) {
       setCenterArt(createCenterArt(isMobile, pictureContainerRef));
     }
   }, [isInView, pictureContainerRef, isMobile]);
-
+  
   useEffect(() => {
     if (isInView && !isMobile) {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener('scroll', handleScroll);
     }
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isInView, isMobile]);
+
   if (!historyEvent.mainImage) return <div></div>;
 
   return (
     <motion.div
       ref={pictureContainerRef}
       // exit={fadeOut}
-      className="art-wrapper col-xs-12 col-lg-4 order-md-3 col-xl-5"
-      initial={!isTablet && {
-        scale: 0.8,
-        opacity: 0,
-      }}
-      animate={!isTablet && {
-        scale: 0.95,
-        opacity: 1,
-      }}
-      exit={!isTablet && {
-        scale: 0.8,
-        opacity: 0,
-      }}
-      transition={!isTablet && {
-        opacity: {
-          duration: 0.2,
-          ease: "easeOut",
-        },
-        scale: {
-          type: "spring",
-          stiffness: 200,
-          velocity: 0,
-          duration: 0.8,
-          mass: 1,
-          damping: 15,
-        },
-      }}
-    >
+      className='art-wrapper col-xs-12 col-lg-4 order-md-3 col-xl-5'
+      initial={
+        !isTablet && {
+          scale: 0.8,
+          opacity: 0,
+        }
+      }
+      animate={
+        !isTablet && {
+          scale: 0.95,
+          opacity: 1,
+        }
+      }
+      exit={
+        !isTablet && {
+          scale: 0.8,
+          opacity: 0,
+        }
+      }
+      transition={
+        !isTablet && {
+          opacity: {
+            duration: 0.2,
+            ease: 'easeOut',
+          },
+          scale: {
+            type: 'spring',
+            stiffness: 200,
+            velocity: 0,
+            duration: 0.8,
+            mass: 1,
+            damping: 15,
+          },
+        }
+      }>
       <motion.div
         // exit={resetArt}
-        className="art-holder"
+        className='art-holder'
         // animate={artHolderAnimation}
       >
         <motion.div
           // exit={resetArt}
-          className="art-frame"
-          style={!isTablet && {
-            translateX: frameX,
-            y: frameY,
-            rotate: frameRotate,
-          }}
+          className='art-frame position-relative'
+          style={
+            !isTablet && {
+              translateX: frameX,
+              y: frameY,
+              rotate: frameRotate,
+            }
+          }
           // variants={artHolderMotion}
         >
+
+          {/* spinner with background */}
+          {/* <AnimatePresence> */}
+            {/* {isLoading && (
+              <motion.div
+                className='art-spinner-background'
+                // initial={{ opacity: 1 }}
+                // animate={{ opacity: 1 }}
+                // exit={{ opacity: 0 }}
+                >
+                <Spinner className='art-spinner' animation='border' role='status'>
+                  <span className='visually-hidden'>Loading...</span>
+                </Spinner>
+              </motion.div>
+            )} */}
+          {/* </AnimatePresence> */}
+
+          {/* screen loader */}
+          {/* <AnimatePresence> */}
+            {isLoading && (
+              <motion.div
+                key='art-screen-loader'
+                className='art-screen-loader'
+                // initial={{ opacity: 1 }}
+                // animate={{ opacity: 1 }}
+                // exit={{ opacity: 0 }}
+                ></motion.div>
+            )}
+          {/* </AnimatePresence> */}
+
+          {/* image */}
           <motion.img
             // exit={resetArt}
-            src={historyEvent.thumbnail?.url ?? ""}
-            alt={historyEvent.thumbnail?.title ?? ""}
-            className="art-img"
-            style={!isTablet && {
-              translateX: imgX,
-              y: imgY,
-            }}
+            src={historyEvent.thumbnail?.url ?? ''}
+            alt={historyEvent.thumbnail?.title ?? ''}
+            className='art-img'
+            style={
+              !isTablet && {
+                translateX: imgX,
+                y: imgY,
+              }
+            }
+            onLoad={handleImageLoad}
             // animate={artImgAnimation}
           />
 
           {/* Release message  */}
           {!historyEvent.artReleased && (
-            <div className="release-message-holder w-100 h-100 start-0 top-0 position-absolute d-flex align-items-center justify-content-center">
-              <div className="release-message bg-dark p-3 text-center">
-                <h3 className="text-uppercase mb-0">
+            <div className='release-message-holder w-100 h-100 start-0 top-0 position-absolute d-flex align-items-center justify-content-center'>
+              <div className='release-message bg-dark p-3 text-center'>
+                <h3 className='text-uppercase mb-0'>
                   Artwork unveiled <br /> in {countDaysToRelease(historyEvent.artReleaseDate)} days
                 </h3>
               </div>
