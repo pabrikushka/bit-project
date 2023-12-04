@@ -5,10 +5,7 @@ import { ISEOProps } from "../../shared/types";
 interface DefaultSEOProps extends ISEOProps {}
 
 const DefaultSEO = (props: DefaultSEOProps) => {
-  const { title, description, imageSrc, keywords } = props;
-  if (!title || !description || !imageSrc) {
-    return null;
-  }
+  const { title, description, keywords } = props;
   const base = window.location.origin;
   return (
     <>
@@ -18,7 +15,7 @@ const DefaultSEO = (props: DefaultSEOProps) => {
         keywords={keywords ?? []}
         siteUrl={base}
         image={{
-          src: imageSrc,
+          src: "/opengraph.png",
         }}
       />
     </>
