@@ -16,7 +16,7 @@ const Lottie = () => {
           {
             visibility: [0.2, 0.6],
             type: "seek",
-            frames: [0, 80],
+            frames: [0, 61],
           },
         ],
       });
@@ -29,7 +29,7 @@ const Book = () => {
     return (
         <section className='book-section'>
 
-            <div className="book-lottie">
+            <div className="book-lottie mb-5 pb-5">
                 <Container>
                     <Lottie />
                 </Container>
