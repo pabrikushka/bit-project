@@ -15,7 +15,7 @@ const DefaultSEO = (props: DefaultSEOProps) => {
         keywords={keywords ?? []}
         siteUrl={base}
         image={{
-          src: "/opengraph.png",
+          src: `${base}/opengraph.png`,
         }}
       />
     </>
