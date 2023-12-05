@@ -25,16 +25,17 @@ const AnimatedRoutes = () => {
     return (
         <AnimatePresence mode='wait'>
             <Routes location={location} key={location.pathname}>
-                <Route path="/" exact element={<Home />} />
-                <Route path="/history" exact element={<HistoryWidget />} />
+                {/* <Route path="/" exact element={<Home />} /> */}
+
+                <Route path="/" exact element={<HistoryWidget />} />
                 <Route path="/art/:artId" exact 
                 element={
                     // kind of workaround to provide art object for a very first rendering 
                     <ArtWidget initialArt={location?.state?.id ? location?.state: undefined}/>
                 } />
-                <Route path="/collective" exact element={<CollectiveWidget/>} />
+                {/* <Route path="/collective" exact element={<CollectiveWidget/>} />
                 <Route path="/events" exact element={<Events />} />
-                <Route path="/faq" exact element={<FaqWidget/>} />
+                <Route path="/faq" exact element={<FaqWidget/>} /> */}
                 <Route path='*' exact element={ <NotFound/> }/>
             </Routes>
         </AnimatePresence>
