@@ -39,4 +39,9 @@
             margin-top: 27rem;
         }
     }
+    @include media-breakpoint-down(md) {
+        .animator-holder {
+            margin-top: 22rem;
+        }
+    }
 }
