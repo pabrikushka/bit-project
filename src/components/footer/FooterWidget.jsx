@@ -35,8 +35,8 @@ const Footer = () => {
               <img src={LogoXL} className='brand-logo primary' />
               {/* <Logo className={'brand-logo secondary'}/> */}
             </a>
-            <a className='text-decoration-none' href='#'>
-              <p className='text-light-60 mb-1'>hello@samtoshi.com</p>
+            <a className='text-decoration-none' href='mailto:hello@smashtoshi.com'>
+              <p className='text-light-60 mb-1'>hello@smashtoshi.com</p>
             </a>
           </Col>
           <Col className='footer-col d-lg-flex flex-column align-items-md-center' xs={12} sm={6} lg={4} xxl={5}>
