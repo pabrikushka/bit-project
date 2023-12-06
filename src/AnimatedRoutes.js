@@ -25,7 +25,7 @@ const AnimatedRoutes = () => {
     return (
         <AnimatePresence mode='wait'>
             <Routes location={location} key={location.pathname}>
-                {/* <Route path="/" exact element={<Home />} /> */}
+                <Route path="/home" exact element={<Home />} />
 
                 <Route path="/" exact element={<HistoryWidget />} />
                 <Route path="/art/:artId" exact 

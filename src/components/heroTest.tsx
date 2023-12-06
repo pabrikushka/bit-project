@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useSpring, useTransform, useMotionValue, MotionValue } from 'framer-motion';
 import Mona from '../assets/videos/bit-teaser-no-audio.mp4';
+import Full from '../assets/videos/bit-full.mp4';
 import Button from 'react-bootstrap/Button';
 import VideoModal from './video/VideoModal';
 
@@ -85,7 +86,7 @@ const HeroTest = (props: HeroProps) => {
       <Button variant='primary' className='bit-btn hero-btn' onClick={handleShowVideoModal}>
         Play Video
       </Button>
-      {showVideoModal && <VideoModal video={Mona} onClose={handleCloseVideoModal} />}
+      {showVideoModal && <VideoModal video={Full} onClose={handleCloseVideoModal} />}
     </header>
 
   );
