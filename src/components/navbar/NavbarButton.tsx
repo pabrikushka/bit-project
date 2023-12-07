@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 function NavbarButton(props: any) {
     return (
         <div className={props.styleName}>
-            <a className="btn btn-primary bit-btn d-none" href="https://smashtoshi.myshopify.com/">
+            <a className="btn btn-primary bit-btn " href="https://smashtoshi.myshopify.com/">
                 Pre-Order
             </a>
         </div>
