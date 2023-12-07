@@ -89,7 +89,7 @@ const ArtGroup = (props: Props) => {
       <section className='art-section-mini pt-5 my-5'>
         <div className='d-flex align-items-end justify-content-between'>
           <h2 className='mb-0  fw-light'>More</h2>
-          <NavLink to='/' className='nav-link m-0 mb-1 p-0 text-uppercase'>
+          <NavLink to='/history' className='nav-link m-0 mb-1 p-0 text-uppercase'>
             VIew all
           </NavLink>
         </div>
