@@ -58,6 +58,10 @@ const Home = () => {
         </RenderIfVisible>
 
         <RenderIfVisible visibleOffset={VISIBLE_OFFSET}>
+          <Book />
+        </RenderIfVisible>
+
+        <RenderIfVisible visibleOffset={VISIBLE_OFFSET}>
           <Overview
             title={'The ultimate btc collection'}
             text={
@@ -68,9 +72,7 @@ const Home = () => {
           />
         </RenderIfVisible>
 
-        <RenderIfVisible visibleOffset={VISIBLE_OFFSET}>
-          <Book />
-        </RenderIfVisible>
+        
 
         {/* <Overview
                 title={"Experience the exhibition"}
