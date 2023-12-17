@@ -8,7 +8,7 @@ const formatEventDate = (eventDate: Date | undefined): string => {
       return eventDate.toLocaleDateString('en-US', options);
 } 
 
-const createBTCLebel = (btcPrice: number) => `1BTC:$${btcPrice.toFixed(2)}`;
+const createBTCLebel = (btcPrice: number) => `1BTC:$${btcPrice.toFixed(6)}`;
 
 const notNullOrUndefined = (value: any) => value !== null && value !== undefined;
 
