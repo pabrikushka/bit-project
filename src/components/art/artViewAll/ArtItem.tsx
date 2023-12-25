@@ -56,6 +56,10 @@ const ArtItem = (props: ArtItemProps) => {
     y.set((event.clientY - rect.top) / rect.height);
   }
 
+  const currentDate = new Date();
+  const releaseDate = new Date(props.itemData.artReleaseDate);
+  const artReleased = currentDate >= releaseDate;
+
   console.log('item data!', props.itemData);
 
   return (
@@ -72,7 +76,7 @@ const ArtItem = (props: ArtItemProps) => {
                 }}
                 className='art-mini-wrapper'>
                 <motion.img
-                  src={props.itemData.artReleased ? props.itemData.thumbnail?.url : props.itemData.glitchedImage?.url}
+                  src={artReleased ? props.itemData.thumbnail?.url : props.itemData.glitchedImage?.url}
                   alt=''
                   style={!isTablet && {
                     scale: 1.15,
